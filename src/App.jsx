@@ -17,16 +17,10 @@ function App() {
 
 function MainLayout() {
   return (
-    <>
-      <nav className="bg-blue-600 p-4 text-white">
-        <ul className="flex space-x-4">
-          <li><Link to="/" className="hover:underline">Dashboard</Link></li>
-          <li><Link to="/login" className="hover:underline">Logout</Link></li>
-        </ul>
-      </nav>
+    <>      
       <main className="p-4">
         <Routes>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Login />} />
         </Routes>
       </main>
     </>
