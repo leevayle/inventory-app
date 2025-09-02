@@ -9,9 +9,9 @@ function Welcome(){
                     <button className="m-4 p-2 bg-[var(--accent)] rounded shadow hover:bg-gray-100">Home</button>
                 </div>
                 <div className="flex-1 bg-gray-100  rounded-bl-xl rounded-br-xl sm:rounded-bl-none sm:rounded-tr-xl flex flex-col">
-                    <p className="text-2xl font-bold text-center mt-10 text-[var(--primary)]">Welcome</p>
+                    <p className="text-2xl font-bold text-center mt-10 text-[var(--primary)]">Welcome!</p>
                     
-                    <button className="w-1/2 h-10 hover:w-2/3 bg-[var(--primary)] m-auto mt-20 rounded-3xl hover:bg-[var(--accent)] transition-all">Login</button>
+                    <button className="w-1/2 h-10 hover:w-2/3 bg-[var(--primary)] m-auto mt-20 rounded-3xl hover:bg-[var(--accent)] cursor-pointer transition-all hover:font-bold">Login</button>
                 </div>
             </div>
         
