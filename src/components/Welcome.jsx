@@ -10,8 +10,14 @@ function Welcome(){
                 </div>
                 <div className="flex-1 bg-gray-100  rounded-bl-xl rounded-br-xl sm:rounded-bl-none sm:rounded-tr-xl flex flex-col">
                     <p className="text-2xl font-bold text-center mt-10 text-[var(--primary)]">Welcome!</p>
+                    <div className="flex flex-col w-80 m-auto h-80 rounded-xl ">
+                        <input type="text" placeholder="email" className="w-70 h-9 rounded-xl border border-gray-300 p-2 text-center"></input>
+                        <input type="password" placeholder="Password" className="w-70 h-9 rounded-xl border border-gray-300 p-2 text-center mt-5 "></input>
+                        
+                        <button className="w-1/2 h-10 hover:w-2/3 bg-[var(--primary)] m-auto mt-20 rounded-3xl hover:bg-[var(--accent)] cursor-pointer transition-all hover:font-bold">Login</button>
+                    </div>
                     
-                    <button className="w-1/2 h-10 hover:w-2/3 bg-[var(--primary)] m-auto mt-20 rounded-3xl hover:bg-[var(--accent)] cursor-pointer transition-all hover:font-bold">Login</button>
+                    
                 </div>
             </div>
         
