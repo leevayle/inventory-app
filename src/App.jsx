@@ -1,20 +1,38 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Welcome from './components/Welcome';
 import Register from './components/register';
+import ResetPassword from './components/ResetPassword'; // New component
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="h-screen w-screen flex justify-center items-center">
-      <Routes>        
+      <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/Welcome" element={<Welcome />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/" element={<MainLayout />}>        
-        
-        </Route>
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/dashboard"
+          element={user ? <Dashboard /> : <Navigate to="/welcome" />}
+        />
+        <Route path="/reset" element={<ResetPassword />} /> {/* New route */}
+        <Route
+          path="*"
+          element={user ? <MainLayout /> : <Navigate to="/welcome" />}
+        />
       </Routes>
     </div>
   );
@@ -22,12 +40,17 @@ function App() {
 
 function MainLayout() {
   return (
-    <>      
-      <main className="m-0">
+    <>
+      <nav className="bg-[var(--primary)] p-4 text-white">
+        <ul className="flex space-x-4">
+          <li><Link to="/dashboard" className="hover:underline">Dashboard</Link></li>
+          <li><Link to="/welcome" className="hover:underline" onClick={() => auth.signOut()}>Logout</Link></li>
+        </ul>
+      </nav>
+      <main className="m-0 p-4">
         <Routes>
-          <Route index element={<Welcome />} />
+          <Route index element={<Dashboard />} />
         </Routes>
-        
       </main>
     </>
   );
