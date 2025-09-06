@@ -1,29 +1,51 @@
-import { useState } from 'react';
-// import { Link } from 'react-router-dom';
 
-function Login() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
+// import stuff
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-//     // Add Firebase auth logic later
-//     console.log('Login attempt:', { email, password });
-//   };
 
-  return (
-    <>
-    
-    < div className='w-screen h-screen flex bg-gray-300'>
+function Login(){
 
-        <div className='h-1/4 w-1/2 m-auto bg-grey'>
-            login
-        </div>
 
-    </div>
-    
-    </>
-  );
+
+    return(
+
+        <>
+
+            
+            <div className="flex flex-col sm:flex-row w-[50vw] min-w-[300px] min-h-[70vh]  m-auto shadow-lg rounded-xl border border-[var(--primary)] sm:min-w-[550px] ">
+                <div className="sm:w-1/3 w-full bg-white rounded-tl-xl rounded-tr-xl sm:rounded-tr-none sm:rounded-bl-xl bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-cover bg-center ">
+                    <button className="m-4 p-2 bg-[var(--accent)] rounded shadow hover:bg-gray-100 cursor-pointer transition">Register</button>
+                </div>
+                <div className="flex-1  rounded-bl-xl rounded-br-xl sm:rounded-bl-none sm:rounded-tr-xl flex flex-col pb-4 h-auto ">
+                    
+                    <p className="text-2xl font-bold text-center mt-10 text-[var(--primary)]">Log In!</p>
+
+                    <form className="flex flex-col w-[90%] m-auto h-80 rounded-xl pt-10 " action="">
+                    
+                        
+
+                        <input type="email" placeholder="email" className="w-[90%] max-w-72 h-9 rounded-xl border border-gray-400 p-2 text-center outline-0 focus:border-[var(--accent)] focus:w-[95%] transition-all m-auto focus-shadow" required></input>
+                        <input type="password" placeholder="Password" className="w-[90%] max-w-72 h-9 rounded-xl border border-gray-400 p-2 text-center  outline-0 focus:border-[var(--accent)] focus:w-[95%] transition-all m-auto focus-shadow mt-5" required></input>
+                        
+                        
+                        <button className="w-1/2 h-10 hover:w-2/3 bg-[var(--primary)] m-auto mt-20 rounded-3xl hover:bg-[var(--accent)] cursor-pointer transition-all hover:font-bold hover-shadow" type="submit">Login</button>
+
+                        
+                        
+                        <p className="m-auto text-gray-400">Forgot passeord? <Link to="Reset" className="text-blue-400">reset it.</Link></p>
+                        
+                    
+                    </form>
+                    
+                    
+                </div>
+            </div>
+        
+        </>
+
+    );
+
 }
 
 export default Login;

@@ -2,15 +2,18 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Welcome from './components/Welcome';
+import Register from './components/register';
 
 function App() {
   return (
-    <div className="h-screen bg-gray-100 w-screen flex justify-center items-center">
-      <Routes>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Routes>        
         <Route path="/login" element={<Login />} />
         <Route path="/Welcome" element={<Welcome />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/" element={<MainLayout />}>        
-          <Route index element={<Dashboard />} />
+        
         </Route>
       </Routes>
     </div>
