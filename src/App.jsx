@@ -6,7 +6,10 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Welcome from './components/Welcome';
 import Register from './components/register';
-import ResetPassword from './components/ResetPassword'; // New component
+import ResetPassword from './components/ResetPassword'; 
+import Splash from './components/splash';
+import Welcome2 from './components/welcome2';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/swift" element={<Splash />} />
+        <Route path="/welcome2" element={<Welcome2 />} />
         <Route
           path="/dashboard"
           element={user ? <Dashboard /> : <Navigate to="/welcome" />}
@@ -31,7 +36,7 @@ function App() {
         <Route path="/reset" element={<ResetPassword />} /> {/* New route */}
         <Route
           path="*"
-          element={user ? <MainLayout /> : <Navigate to="/welcome" />}
+          element={user ? <MainLayout /> : <Navigate to="/swift" />}
         />
       </Routes>
     </div>
