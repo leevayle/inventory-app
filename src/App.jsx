@@ -8,7 +8,8 @@ import Welcome from './components/Welcome';
 import Register from './components/register';
 import ResetPassword from './components/ResetPassword'; 
 import Splash from './components/splash';
-import Welcome2 from './components/welcome2';
+import Start from './components/start.jsx';
+import Phone from './components/Phone_no.jsx';
 
 
 function App() {
@@ -25,18 +26,20 @@ function App() {
     <div className="h-screen w-screen flex justify-center items-center">
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/swift" element={<Splash />} />
-        <Route path="/welcome2" element={<Welcome2 />} />
+        <Route path="/Welcome" element={<Welcome />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/SwiftPos" element={<Splash />} />
+        <Route path="/Start" element={<Start />} />
+        <Route path="/Phone" element={<Phone />} />
+
         <Route
           path="/dashboard"
-          element={user ? <Dashboard /> : <Navigate to="/welcome" />}
+          element={user ? <Dashboard /> : <Navigate to="/Welcome" />}
         />
         <Route path="/reset" element={<ResetPassword />} /> {/* New route */}
         <Route
           path="*"
-          element={user ? <MainLayout /> : <Navigate to="/swift" />}
+          element={user ? <MainLayout /> : <Navigate to="/SwiftPos" />}
         />
       </Routes>
     </div>

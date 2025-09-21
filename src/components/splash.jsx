@@ -56,8 +56,8 @@ function Splash(){
                 )}
             </div>
 
-            <div className="flex m-auto mb-5" style={bottomStyle}>
-                <p className='mt-1 text-gray-400'>System by </p>
+            <div className="flex m-auto mb-13" style={bottomStyle}>
+                <p className='mt-1.5 text-gray-400'>System by </p>
                 <a href="https://codex.co.ke" target='_blank' >
                 {showLoader ? (
                     <img src={logo} alt="Swift Logo" className="w-25 h-auto m-auto"/>
@@ -70,6 +70,8 @@ function Splash(){
         </div>
         </>
     );
+
+  
 }
 
 export default Splash;
