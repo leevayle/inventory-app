@@ -24,11 +24,13 @@ function Phone(){
                         <div className=' flex flex-1 flex-col'>
                             <form className='flex flex-col flex-1'>
                                 <div className='flex flex-col h-50 pb-10 mt-10 justify-between '>
-                                    <select type='text' required className='text-[var(--text)] outline-none w-60 max-w-70 h-14 m-auto border border-[var(--borders)] text-center poppins rounded-4xl cursor-pointer'><option value="+254" selected>Kenya</option>
+                                    <div className='text-[var(--text)] outline-none w-60 max-w-70 h-14 m-auto border border-[var(--borders)] text-center poppins rounded-4xl flex'>
+                                    <select type='text' required className='border-0 active:border-0 outline-0  cursor-pointer w-auto pr-1 flex m-auto self-center'><option value="+254" selected>Kenya</option>
                                                                                                     <option value="+256">Uganda</option>  
                                                                                                     <option value="+1">United states</option> 
                                                                                                     <option value="+44" >United kingdom</option>
                                     </select>
+                                    </div>
                                     <input type='text' placeholder='Phone number' required className='text-[var(--text)] outline-none w-60 max-w-70 h-14 m-auto border border-[var(--borders)] text-center poppins rounded-4xl'></input>
                                 </div>
                             
