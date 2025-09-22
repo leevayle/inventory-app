@@ -4,12 +4,16 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import Welcome from './components/Welcome';
-import Register from './components/register';
+import Welcome from './components/Welcome.jsx';
 import ResetPassword from './components/ResetPassword'; 
 import Splash from './components/splash';
 import Start from './components/start.jsx';
-import Phone from './components/Phone_no.jsx';
+import Phone from './components/Phone.jsx';
+import Email from './components/Email.jsx';
+import Almost from './components/Almost.jsx';
+import Finish from './components/Finish.jsx';
+import Trust from './components/Trust.jsx';
+import Pin from './components/Pin.jsx';
 
 
 function App() {
@@ -27,10 +31,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/Welcome" element={<Welcome />} />
-        <Route path="/Register" element={<Register />} />
         <Route path="/SwiftPos" element={<Splash />} />
         <Route path="/Start" element={<Start />} />
         <Route path="/Phone" element={<Phone />} />
+        <Route path='/Email' element={<Email />} />
+        <Route path='/Almost' element={<Almost />} />
+        <Route path='/Finish' element={<Finish />} />
+        <Route path='/Trust' element={<Trust />} />
+        <Route path='/Quick-Login' element={<Pin />} />
+        <Route path='/Dashboard' element={<Dashboard />} />
+
 
         <Route
           path="/dashboard"

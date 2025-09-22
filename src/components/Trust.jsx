@@ -2,7 +2,7 @@ import logo from '../assets/logo.png';
 
 
 
-function Welcome(){
+function Trust(){
     return(
         <>
             <div className="flex flex-col h-[80%] w-[90%] max-w-100 max-h-200">
@@ -12,19 +12,22 @@ function Welcome(){
 
                 <div className='w-full h-auto mt-7 title flex flex-col'>
                     <div className='h-15 flex ml-auto mr-auto text-5xl'>
-                        <span className='title1 '>Swift</span><span className='text-[var(--primary)]'>Pos</span><span className='title1 text-[var(--accent)]'>.</span>
+                        <p><span className='title1 '>Trust </span><span className='text-[var(--primary)]'>this </span><span className='title1 text-[var(--accent)]'>device?</span></p>
                     </div>
                     <div className=' w-full h-auto sub'>
-                        <p className='text-center text-[var(--subtext)] mt-5'>Stock, Sales and Accounts <br /> all in one place</p>
+                        <p className='text-center text-[var(--subtext)] mt-5'>If you trust it, you will be able to 
+                                                                                login<br /> with your pin, after this first login. <br />
+                                                                                If not, you will use your email and <br />
+                                                                                password each time.</p>
                     </div>
 
                 </div>
                 <div className=' flex flex-1 flex-col'>
                     <div className=' h-45 mt-auto flex flex-col'>
-                        <a href='/Start'>
+                        <a href=''>
                         <div className=' w-60 max-w-70 h-14 mr-auto ml-auto rounded-4xl mt-2 cursor-pointer flex gradient hover:w-70 active:w-60 transition-all'>
                             <div className=' w-[75%] flex'>
-                                <p className='w-full text-center self-center poppins text-xl text-white'>Get started</p>
+                                <p className='w-full text-center self-center poppins text-xl text-white'>Trust device</p>
                             </div>
                             <div className=' rounded-4xl h-12 w-12 m-auto bg-white flex '>
                                 <svg className='flex m-auto self-center rotate-45' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
@@ -37,7 +40,7 @@ function Welcome(){
                         </div>
                         </a>
                         <div className=' boxshaddow ml-auto mr-auto h-14 w-60 max-w-70 mt-8 rounded-4xl cursor-pointer flex text-[var(--primary)] hover:text-amber-50  hover:bg-[var(--primary)] transition-all'>
-                            <p className='w-full text-center self-center poppins text-xl '>Watch video</p>
+                            <p className='w-full text-center self-center poppins text-xl '>Don't trust!</p>
                         </div>
 
                     </div>
@@ -52,4 +55,4 @@ function Welcome(){
     );
 }
 
-export default Welcome;
+export default Trust;

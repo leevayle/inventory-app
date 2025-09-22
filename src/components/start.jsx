@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+
 import logo from '../assets/logo.png';
 
 
@@ -18,9 +18,9 @@ function Start(){
                     </div>
 
                     <div className=' w-full h-5 flex mt-10'>
-                        <div className=' flex w-10 h-2.5 rounded-4xl ml-auto self-center gradient'></div>
-                        <div className=' flex w-10 h-2.5 rounded-4xl self-center ml-5 mr-5 bg-[var(--borders)]'></div>
-                        <div className=' flex w-10 h-2.5 rounded-4xl mr-auto self-center bg-[var(--borders)]'></div>
+                        <div className=' flex w-9 h-2 rounded-4xl ml-auto self-center gradient'></div>
+                        <div className=' flex w-9 h-2 rounded-4xl self-center ml-5 mr-5 bg-[var(--borders)]'></div>
+                        <div className=' flex w-9 h-2 rounded-4xl mr-auto self-center bg-[var(--borders)]'></div>
 
                     </div>
 

@@ -36,14 +36,13 @@ function Splash(){
     };
 
     const bottomStyle = {
-        transform: showLoader ? 'translateY(0)' : 'translateY(20px)',
         opacity: showLoader ? 1 : 0,
         transition: 'transform 1s ease, opacity 1s ease',
     };
 
     return(
         <>
-        <div className=" w-auto h-auto flex min-h-full min-w-100 flex-col">
+        <div className=" w-auto h-auto flex min-h-full min-w-100 flex-col ">
             <div className="width-20 flex mt-50" style={logoWrapStyle} onTransitionEnd={handleTransitionEnd}>
                 <img src={swiftlogo} alt="Swift Logo" className="h-50 m-auto"/>
             </div>
@@ -56,11 +55,11 @@ function Splash(){
                 )}
             </div>
 
-            <div className="flex m-auto mb-13" style={bottomStyle}>
+            <div className="flex m-auto mb-13 sm:mb-13 " style={bottomStyle}>
                 <p className='mt-1.5 text-gray-400'>System by </p>
                 <a href="https://codex.co.ke" target='_blank' >
                 {showLoader ? (
-                    <img src={logo} alt="Swift Logo" className="w-25 h-auto m-auto"/>
+                    <img src={logo} alt="Swift Logo" className="w-25 h-auto m-auto mb-4"/>
                 ) : (
                     <div style={{width: 100, height: 24}} />
                 )}
@@ -70,8 +69,7 @@ function Splash(){
         </div>
         </>
     );
-
-  
+    
 }
 
 export default Splash;

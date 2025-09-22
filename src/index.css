@@ -39,16 +39,23 @@ code {
 .poppins{
   font-family: poppins,sans-serif;
 }
+.bold{
+  font-weight: bold;
+}
 
 :root {
-  --bg:#DDDEE0;
+  --bg:#F5F5F5;
   --b: #FFFFFF;
-  --primary: #2DB188;    
+  --primary: #2DB188;  
+  --primary2: #00E382;  
   --primary-l: #B0F4D8;        
   --accent: #F3BA1C;
   --accent-l: #FBD968;
   --subtext: #949494;
-  --borders: #EAEAEA;
+  --text:#7b7b7b;
+  --borders: #dfdfdf;
+  --borders-l: #EAEAEA;
+  --black: black;
   }
 .gradient{
   background: linear-gradient(to left, #2DB188 , #F3BA1C);
