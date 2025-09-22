@@ -57,6 +57,7 @@ code {
   --borders-l: #EAEAEA;
   --black: black;
   }
+  
 .gradient{
   background: linear-gradient(to left, #2DB188 , #F3BA1C);
 }

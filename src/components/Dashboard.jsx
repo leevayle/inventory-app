@@ -120,7 +120,7 @@ function Dashboard() {
           
           </div>
           <div className='hidden w-auto min-w-5 poppins ml-2 pr-5 md:flex justify-between text-[var(--text)]'><p className='flex m-auto'>Username</p></div>
-          <div title='Settings' className='hidden h-12 w-12 lg:flex m-auto rounded-4xl bg-[var(--borders-l)] ml-2 cursor-pointer  '>
+          <div title='Settings' className='hidden h-12 w-12 lg:flex m-auto rounded-4xl bg-[var(--borders-l)] ml-2 cursor-pointer  rotate-0 hover:rotate-180 ease-in-out transition-all'>
             <svg className='hidden md:flex m-auto h-7 w-full' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  color="var(--text)" fill="none">
               <path d="M15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5C13.933 8.5 15.5 10.067 15.5 12Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M21.011 14.0965C21.5329 13.9558 21.7939 13.8854 21.8969 13.7508C22 13.6163 22 13.3998 22 12.9669V11.0332C22 10.6003 22 10.3838 21.8969 10.2493C21.7938 10.1147 21.5329 10.0443 21.011 9.90358C19.0606 9.37759 17.8399 7.33851 18.3433 5.40087C18.4817 4.86799 18.5509 4.60156 18.4848 4.44529C18.4187 4.28902 18.2291 4.18134 17.8497 3.96596L16.125 2.98673C15.7528 2.77539 15.5667 2.66972 15.3997 2.69222C15.2326 2.71472 15.0442 2.90273 14.6672 3.27873C13.208 4.73448 10.7936 4.73442 9.33434 3.27864C8.95743 2.90263 8.76898 2.71463 8.60193 2.69212C8.43489 2.66962 8.24877 2.77529 7.87653 2.98663L6.15184 3.96587C5.77253 4.18123 5.58287 4.28891 5.51678 4.44515C5.45068 4.6014 5.51987 4.86787 5.65825 5.4008C6.16137 7.3385 4.93972 9.37763 2.98902 9.9036C2.46712 10.0443 2.20617 10.1147 2.10308 10.2492C2 10.3838 2 10.6003 2 11.0332V12.9669C2 13.3998 2 13.6163 2.10308 13.7508C2.20615 13.8854 2.46711 13.9558 2.98902 14.0965C4.9394 14.6225 6.16008 16.6616 5.65672 18.5992C5.51829 19.1321 5.44907 19.3985 5.51516 19.5548C5.58126 19.7111 5.77092 19.8188 6.15025 20.0341L7.87495 21.0134C8.24721 21.2247 8.43334 21.3304 8.6004 21.3079C8.76746 21.2854 8.95588 21.0973 9.33271 20.7213C10.7927 19.2644 13.2088 19.2643 14.6689 20.7212C15.0457 21.0973 15.2341 21.2853 15.4012 21.3078C15.5682 21.3303 15.7544 21.2246 16.1266 21.0133L17.8513 20.034C18.2307 19.8187 18.4204 19.711 18.4864 19.5547C18.5525 19.3984 18.4833 19.132 18.3448 18.5991C17.8412 16.6616 19.0609 14.6226 21.011 14.0965Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -154,7 +154,23 @@ function Dashboard() {
       <div className=' w-full block flex-1 overflow-y-auto '>        
 
         <div className='flex justify-between h-15'>
-          <div className='border md:flex hidden border-[var(--subtext)] rounded-4xl w-100 h-12 mt-auto mb-auto ml-7'></div>
+          <div className='border md:flex hidden border-[var(--subtext)] rounded-4xl w-auto h-12 mt-auto mb-auto ml-7 pr-1 '>
+            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--black)] hover:text-[var(--black)] bg-[var(--accent-l)] '>            
+              <p className='flex m-auto '>Summary</p>
+            </div>
+            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+              <p className='flex m-auto '>Reports</p>
+            </div>
+            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+              <p className='flex m-auto '>Charts</p>
+            </div>
+            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+              <p className='flex m-auto '>Revenue</p>
+            </div>
+            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+              <p className='flex m-auto '>Stock alerts</p>
+            </div>
+          </div>
 
           {/* For mobile screens */}
           <select className='md:hidden lg:hidden w-35 h-13 outline-0 border border-t-0 border-l-0 border-r-0 ml-7 pl-2 border-b-[var(--borders)] text-[var(--text)] cursor-pointer'>
@@ -169,12 +185,40 @@ function Dashboard() {
 
           
 
-          <div className=' md:flex hidden rounded-4xl w-75 h-12 mt-auto mb-auto mr-2 bg-[var(--b)] boxshaddow'>
-            <div className='border w-9 h-9 flex mt-auto mb-auto ml-3'></div>
+          <div title='Date range' className=' md:flex hidden rounded-4xl w-auto h-12 mt-auto mb-auto mr-2 bg-[var(--b)] boxshaddow'>
+            <div className=' w-9 h-9 flex mt-auto mb-auto ml-3 ' >
+              <svg className='flex self-center m-auto w-[90%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                <path d="M16 2V6M8 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13 4H11C7.22876 4 5.34315 4 4.17157 5.17157C3 6.34315 3 8.22876 3 12V14C3 17.7712 3 19.6569 4.17157 20.8284C5.34315 22 7.22876 22 11 22H13C16.7712 22 18.6569 22 19.8284 20.8284C21 19.6569 21 17.7712 21 14V12C21 8.22876 21 6.34315 19.8284 5.17157C18.6569 4 16.7712 4 13 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.9955 14H12.0045M11.9955 18H12.0045M15.991 14H16M8 14H8.00897M8 18H8.00897" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <input type='date' className='flex m-auto ml-5 mr-5 h-full outline-0'></input>
           </div>
             
         </div>
-        <div className='flex flex-1 rounded-4xl h-150 '>
+
+        <div className='flex flex-1 xl:flex-row flex-col  h-150 pl-7 pt-5 pr-7 '>
+          <div className='w-full border flex flex-col xl:flex-row'>
+          
+            <div className='w-80 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5'>
+            
+            </div>
+            <div className='w-80 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5'>
+
+            </div>
+          
+          
+            <div className='w-80 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5'>
+            
+            </div>
+            <div className='w-80 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5'>
+
+            </div>
+          </div>
+
+          
           
         </div>
 
