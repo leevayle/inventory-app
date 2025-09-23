@@ -1,12 +1,20 @@
-# React + Vite
+# Swift Pos system (Web based)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="1187" height="1448" alt="swift pos orange accent" src="https://github.com/user-attachments/assets/b57140e8-117c-4454-b96d-8f280bcb2391" />
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a system i'm making for retail stores to use to manage the business online from any device.
 
-## Expanding the ESLint configuration
+Stack
+- React
+- Tailwind
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Important pages/directories
+'*' - root
+/Welcome - welcome
+/Login - login with email/password
+/Quick-Login - login with pin
+/Dashboard - main dash
+
+System by Code.x
+leevayle@protonmail.com
