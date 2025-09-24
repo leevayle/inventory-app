@@ -227,13 +227,7 @@ function Dashboard() {
             </div>                      
           
           </div>         
-          <div className='w-full flex flex-col md:flex-row '>
-          
-            <div className='md:w-[83%] w-[90%] max-w-[90%]s h-80 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5 '>
-            
-            </div>                                            
-          
-          </div>         
+                 
 
           
           
