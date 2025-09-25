@@ -14,6 +14,7 @@ import Almost from './components/Almost.jsx';
 import Finish from './components/Finish.jsx';
 import Trust from './components/Trust.jsx';
 import Pin from './components/Pin.jsx';
+import Sell from './components/sell.jsx';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/Welcome" element={<Welcome />} />
-        <Route path="/SwiftPos" element={<Splash />} />
+        <Route path="/Getting_started" element={<Splash />} />
         <Route path="/Start" element={<Start />} />
         <Route path="/Phone" element={<Phone />} />
         <Route path='/Email' element={<Email />} />
@@ -40,6 +41,7 @@ function App() {
         <Route path='/Trust' element={<Trust />} />
         <Route path='/Quick-Login' element={<Pin />} />
         <Route path='/Dashboard' element={<Dashboard />} />
+        <Route path='/Sell' element={<Sell />} />
 
 
         <Route
@@ -49,7 +51,7 @@ function App() {
         <Route path="/reset" element={<ResetPassword />} /> {/* New route */}
         <Route
           path="*"
-          element={user ? <MainLayout /> : <Navigate to="/SwiftPos" />}
+          element={user ? <MainLayout /> : <Navigate to="/Getting_started" />}
         />
       </Routes>
     </div>

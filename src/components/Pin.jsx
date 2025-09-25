@@ -3,7 +3,7 @@ import logo from '../assets/logo.png';
 function Pin(){
     return(
         <>
-            <div className="flex flex-col h-[85%] w-[90%] max-w-100 max-h-200">
+            <div className="flex flex-col h-[85%] w-[90%] max-w-100 max-h-200 ">
                 <div className="flex m-auto mt-0 w-33 h-33 ">
                     <img className='flex m-auto ' src={logo}></img>
                 </div>

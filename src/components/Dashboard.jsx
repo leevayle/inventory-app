@@ -4,8 +4,9 @@ import placeholder from '../assets/placeholder.webp';
 
 function Dashboard() {
   return (
-    
-    <div className="border flex flex-col w-[100%] h-[100%] bg-[var(--bg)]">
+    <>
+    <div className='w-full bg-[var(--bg)] h-full flex'>
+    <div className=" flex m-auto flex-col w-[100%] h-[100%] bg-[var(--bg)] max-w-[2000px]">
       
       {/* Nav for dash */}
       <div className=' w-full h-25 flex '>
@@ -20,6 +21,8 @@ function Dashboard() {
             </div>
             <p className='flex m-auto'>Home</p>
           </div>
+
+          <a href="/Sell" className='m-auto'>
           <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--primary)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>
             <div className='flex w-5 h-5 m-auto mr-2'>
               <svg className='flex m-0' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="#000000" fill="none">
@@ -29,6 +32,8 @@ function Dashboard() {
             </div>
             <p className='flex m-auto '>Sell</p>
           </div>
+          </a>
+          
           <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--primary)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>
             <div className='flex w-5 h-5 m-auto mr-2'>
               <svg className='flex m-auto' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
@@ -208,7 +213,7 @@ function Dashboard() {
       <div className='flex-1 p-6 space-y-6 poppins'>
         
         {/* Top Row Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
           
           {/* Total Sales Card */}
           <div className="bg-[var(--b)] rounded-3xl p-5 flex flex-col justify-between boxshaddow h-50">
@@ -296,7 +301,7 @@ function Dashboard() {
         </div>
 
         {/* Bottom Row with Charts and other info */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           
           {/* Restock Card */}
           <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1">
@@ -308,7 +313,7 @@ function Dashboard() {
                     <tr className="border-b border-gray-200">
                       <th scope="col" className="px-1 py-2 font-medium text-[var(--text)]">Item</th>
                       <th scope="col" className="px-1 py-2 font-medium text-[var(--text)] text-center">Remaining</th>
-                      <th scope="col" className="px-1 py-2 font-medium text-[var(--text)]">Quick action</th>
+                      <th scope="col" className="px-1 py-2 font-medium text-[var(--text)]">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -317,7 +322,7 @@ function Dashboard() {
                       <td className="px-1 py-2 text-center">3</td>
                       <td className="px-1 py-2">
                         <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
-                          Restock
+                          Order
                         </button>
                       </td>
                     </tr>
@@ -326,7 +331,7 @@ function Dashboard() {
                       <td className="px-1 py-2 text-center">7</td>
                       <td className="px-1 py-2">
                         <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
-                          Restock
+                          Order
                         </button>
                       </td>
                     </tr>
@@ -335,7 +340,7 @@ function Dashboard() {
                       <td className="px-1 py-2 text-center">4</td>
                       <td className="px-1 py-2">
                         <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
-                          Restock
+                          Order
                         </button>
                       </td>
                     </tr>
@@ -351,7 +356,7 @@ function Dashboard() {
 
           {/* Sales Chart Card */}
             <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1 lg:col-span-2 relative">
-            <h3 className="font-bold text-lg mb-4 ml-5">Sales</h3>
+            <h3 className="font-bold text-lg mb-4 ml-5">Sales chart</h3>
   
               {/* Key for the chart */}
               <div className="absolute top-5 right-5 flex space-x-4 text-xs mr-5">
@@ -399,38 +404,38 @@ function Dashboard() {
 
           {/* Placeholder Card */}
           <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1">
-  <h3 className="font-bold text-lg mb-4">Expiring soon!</h3>
+            <h3 className="font-bold text-lg mb-4">Expiring soon!</h3>
 
-  <div className="overflow-x-auto">
-    <table className="min-w-full text-left text-sm whitespace-nowrap">
-      <thead>
-        <tr className="border-b border-gray-200">
-          <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Item</th>
-          <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Exp-Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="border-b border-gray-200 hover:bg-gray-100">
-          <td className="px-1 py-2 text-[var(--text)]">Whole Wheat Bread</td>
-          <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
-        </tr>
-        <tr className="border-b border-gray-200 hover:bg-gray-100">
-          <td className="px-1 py-2 text-[var(--text)]">Milk</td>
-          <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
-        </tr>
-        <tr className="hover:bg-gray-100">
-          <td className="px-1 py-2 text-[var(--text)]">Yogurt</td>
-          <td className="px-1 py-2 text-[var(--text)]">29 Sep 2025</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left text-sm whitespace-nowrap">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Item</th>
+                    <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Exp-Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-200 hover:bg-gray-100">
+                    <td className="px-1 py-2 text-[var(--text)]">Whole Wheat Bread</td>
+                    <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
+                  </tr>
+                  <tr className="border-b border-gray-200 hover:bg-gray-100">
+                    <td className="px-1 py-2 text-[var(--text)]">Milk</td>
+                    <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
+                  </tr>
+                  <tr className="hover:bg-gray-100">
+                    <td className="px-1 py-2 text-[var(--text)]">Yogurt</td>
+                    <td className="px-1 py-2 text-[var(--text)]">29 Sep 2025</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
   
-  <div className="flex items-center mt-6 cursor-pointer group">
-    <p className="text-sm font-semibold mr-2 group-hover:underline">View full report here</p>
-    <div className="w-8 h-8 bg-yellow-400 group-hover:bg-yellow-500 transition-all rounded-full"></div>
-  </div>
-</div>
+            <div className="flex items-center mt-6 cursor-pointer group">
+              <p className="text-sm font-semibold mr-2 group-hover:underline">View full report here</p>
+              <div className="w-8 h-8 bg-yellow-400 group-hover:bg-yellow-500 transition-all rounded-full"></div>
+            </div>
+          </div>
         </div>
       </div>
         
@@ -443,6 +448,8 @@ function Dashboard() {
           <p className='self-center poppins text-[var(--text)]'>A product of</p><img className='h-10 ' src={codex} />
       </div>  */}
     </div>
+    </div>
+    </>
   );
 }
 
