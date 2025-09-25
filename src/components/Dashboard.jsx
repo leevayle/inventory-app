@@ -158,21 +158,21 @@ function Dashboard() {
 
       <div className=' w-full block flex-1 overflow-y-auto '>        
 
-        <div className='flex justify-between h-15'>
-          <div className='border md:flex hidden border-[var(--subtext)] rounded-4xl w-auto h-12 mt-auto mb-auto ml-7 pr-1 '>
-            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--black)] hover:text-[var(--black)] bg-[var(--accent-l)] '>            
+        <div className='flex justify-between h-20'>
+          <div className='border md:flex hidden border-[var(--subtext)] rounded-4xl w-auto h-15 mt-auto mb-auto ml-7 pr-1 '>
+            <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--black)] hover:text-[var(--black)] bg-[var(--accent-l)] '>            
               <p className='flex m-auto '>Summary</p>
             </div>
-            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+            <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
               <p className='flex m-auto '>Reports</p>
             </div>
-            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+            <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
               <p className='flex m-auto '>Charts</p>
             </div>
-            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+            <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
               <p className='flex m-auto '>Revenue</p>
             </div>
-            <div className='flex rounded-4xl w-auto h-10 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
+            <div className='flex rounded-4xl w-auto h-13 m-auto justify-between pl-5 pr-5 cursor-pointer hover:bg-[var(--accent-l)] active:bg-[var(--accent)] transition-all ml-1 text-[var(--text)] hover:text-[var(--black)]'>            
               <p className='flex m-auto '>Stock alerts</p>
             </div>
           </div>
@@ -190,7 +190,7 @@ function Dashboard() {
 
           
 
-          <div title='Date range' className=' md:flex hidden rounded-4xl w-auto h-12 mt-auto mb-auto mr-2 bg-[var(--b)] boxshaddow'>
+          <div title='Date range' className=' md:flex hidden rounded-4xl w-auto min-w-70 h-15 mt-auto mb-auto mr-2 bg-[var(--b)] boxshaddow'>
             <div className=' w-9 h-9 flex mt-auto mb-auto ml-3 ' >
               <svg className='flex self-center m-auto w-[90%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
                 <path d="M16 2V6M8 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -205,42 +205,243 @@ function Dashboard() {
         </div>
 
         {/* Main dash area */}
+      <div className='flex-1 p-6 space-y-6 poppins'>
+        
+        {/* Top Row Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          
+          {/* Total Sales Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 flex flex-col justify-between boxshaddow h-50">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-black text-m bold">Total Sales</p>
+                <p className="text-xs text-green-500">+2.5% from last month</p>
+              </div>
+              <div className="bg-gray-100 p-2 rounded-full">
+                 <svg className='w-5 h-5 text-gray-600' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182.553-.44 1.278-.659 2.003-.659 1.5 0 2.805.954 3.372 2.341" /></svg>
+              </div>
+            </div>
+            <div className="flex justify-between items-end mt-4">
+              <p className="text-3xl font-semibold">4,000,000.34</p>
+              <div className="w-10 h-10 bg-yellow-400 hover:bg-yellow-500 transition-all cursor-pointer rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
 
-        <div className='flex flex-1 xl:flex-row flex-col  h-150 pl-2 pt-5 pr-2 '>
-          <div className='w-full flex flex-col md:flex-row '>
-          
-            <div className='md:w-80 w-[90%] max-w-90 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5 '>
-            
-            </div>                      
-            <div className='md:w-80 w-[90%] max-w-90 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5 '>
-            
-            </div>                      
-          
-          </div>         
-          <div className='w-full flex flex-col md:flex-row '>
-          
-            <div className='md:w-80 w-[90%] max-w-90 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5 '>
-            
-            </div>                      
-            <div className='md:w-80 w-[90%] max-w-90 h-50 bg-[var(--b)] rounded-3xl m-auto mb-5 mt-5 '>
-            
-            </div>                      
-          
-          </div>         
-                 
+          {/* Total Items Sold Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 flex flex-col justify-between boxshaddow">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-black text-m bold">Total Items Sold</p>
+                <p className="text-xs text-green-500">+0.5% from last month</p>
+              </div>
+              <div className="bg-gray-100 p-2 rounded-full">
+                 <svg className='w-5 h-5 text-gray-600' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c.51 0 .962-.343 1.087-.835l1.838-5.513c.243-.729-.21-1.544-.986-1.544H5.64M4.5 19.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg>
+              </div>
+            </div>
+            <div className="flex justify-between items-end mt-4">
+              <p className="text-3xl font-semibold">2,206</p>
+              <div className="w-10 h-10 bg-yellow-400 hover:bg-yellow-500 transition-all cursor-pointer rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
 
-          
-          
+          {/* Total orders fulfilled Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 flex flex-col justify-between boxshaddow">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-black text-m bold">Total orders fulfilled</p>
+                <p className="text-xs text-red-500">-0.5% from last month</p>
+              </div>
+              <div className="bg-gray-100 p-2 rounded-full">
+                 <svg className='w-5 h-5 text-gray-600' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08H4.123a48.424 48.424 0 0 0-1.123.08C1.845 3.988 1 4.973 1 6.108v11.785c0 1.275 1.025 2.309 2.25 2.309H8.25M9 18h3.75m-3.75-3h3.75m-3.75-3h3.75M15 12v6m3-3H9" /></svg>
+              </div>
+            </div>
+            <div className="flex justify-between items-end mt-4">
+              <p className="text-3xl font-semibold">34</p>
+              <div className="w-10 h-10 bg-yellow-400 hover:bg-yellow-500 transition-all cursor-pointer rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Total Profits Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 flex flex-col justify-between boxshaddow">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-black text-m bold">Total Profits</p>
+                <p className="text-xs text-green-500">+2.5% from last month</p>
+              </div>
+              <div className="bg-gray-100 p-2 rounded-full">
+                 <svg className='w-5 h-5 text-gray-600' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" /></svg>
+              </div>
+            </div>
+            <div className="flex justify-between items-end mt-4">
+              <p className="text-3xl font-semibold">492,034.26</p>
+              <div className="w-10 h-10 bg-yellow-400 hover:bg-yellow-500 transition-all cursor-pointer rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Bottom Row with Charts and other info */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          
+          {/* Restock Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1">
+              <h3 className="font-bold text-lg mb-4">Restock soon!</h3>
+  
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-left text-sm whitespace-nowrap">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th scope="col" className="px-1 py-2 font-medium text-[var(--text)]">Item</th>
+                      <th scope="col" className="px-1 py-2 font-medium text-[var(--text)] text-center">Remaining</th>
+                      <th scope="col" className="px-1 py-2 font-medium text-[var(--text)]">Quick action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                      <td className="px-1 py-2">Blue Pen</td>
+                      <td className="px-1 py-2 text-center">3</td>
+                      <td className="px-1 py-2">
+                        <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
+                          Restock
+                        </button>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                      <td className="px-1 py-2">Notebook</td>
+                      <td className="px-1 py-2 text-center">7</td>
+                      <td className="px-1 py-2">
+                        <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
+                          Restock
+                        </button>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-100">
+                      <td className="px-1 py-2">Stapler</td>
+                      <td className="px-1 py-2 text-center">4</td>
+                      <td className="px-1 py-2">
+                        <button className="bg-[var(--primary)] hover:bg-[var(--primary-l)] transition-all text-[var(--black)] px-3 py-1 rounded-full text-xs ">
+                          Restock
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="flex items-center mt-6 cursor-pointer group">
+                <p className="text-sm font-semibold mr-2 group-hover:underline">View full report here</p>
+                <div className="w-8 h-8 bg-yellow-400 group-hover:bg-yellow-500 transition-all rounded-full"></div>
+              </div>
+            </div>
+
+          {/* Sales Chart Card */}
+            <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1 lg:col-span-2 relative">
+            <h3 className="font-bold text-lg mb-4 ml-5">Sales</h3>
+  
+              {/* Key for the chart */}
+              <div className="absolute top-5 right-5 flex space-x-4 text-xs mr-5">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-cyan-100 rounded-full mr-1"></div>
+                  <span>Total Sales</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-teal-400 rounded-full mr-1"></div>
+                  <span>Profit</span>
+                </div>
+              </div>
+
+              <div className="flex justify-around items-end h-48">
+                <div className="text-center w-1/5 h-[80%] m-auto">
+                  <div className="flex justify-center items-end h-full gap-2">
+                    <div className="w-6 bg-cyan-100 rounded-t-lg" style={{ height: '75%' }}></div>
+                    <div className="w-6 bg-teal-400 rounded-t-lg" style={{ height: '25%' }}></div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">02 Aug</p>
+                </div>
+                <div className="text-center w-1/5 h-[80%] m-auto">
+                  <div className="flex justify-center items-end h-full gap-2">
+                    <div className="w-6 bg-cyan-100 rounded-t-lg" style={{ height: '15%' }}></div>
+                    <div className="w-6 bg-teal-400 rounded-t-lg" style={{ height: '85%' }}></div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">01 Aug</p>
+                </div>
+                <div className="text-center w-1/5 h-[80%] m-auto">
+                  <div className="flex justify-center items-end h-full gap-2">
+                    <div className="w-6 bg-cyan-100 rounded-t-lg" style={{ height: '60%' }}></div>
+                    <div className="w-6 bg-teal-400 rounded-t-lg" style={{ height: '40%' }}></div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">31 Jul</p>
+                </div>
+                <div className="text-center w-1/5 h-[80%] m-auto">
+                  <div className="flex justify-center items-end h-full gap-2">
+                    <div className="w-6 bg-cyan-100 rounded-t-lg" style={{ height: '70%' }}></div>
+                    <div className="w-6 bg-teal-400 rounded-t-lg" style={{ height: '30%' }}></div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">30 Jul</p>
+                </div>
+              </div>
+          </div>
+
+          {/* Placeholder Card */}
+          <div className="bg-[var(--b)] rounded-3xl p-5 boxshaddow col-span-1">
+  <h3 className="font-bold text-lg mb-4">Expiring soon!</h3>
+
+  <div className="overflow-x-auto">
+    <table className="min-w-full text-left text-sm whitespace-nowrap">
+      <thead>
+        <tr className="border-b border-gray-200">
+          <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Item</th>
+          <th scope="col" className="px-1 py-2 font-medium text-[var(--black)]">Exp-Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-b border-gray-200 hover:bg-gray-100">
+          <td className="px-1 py-2 text-[var(--text)]">Whole Wheat Bread</td>
+          <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
+        </tr>
+        <tr className="border-b border-gray-200 hover:bg-gray-100">
+          <td className="px-1 py-2 text-[var(--text)]">Milk</td>
+          <td className="px-1 py-2 text-[var(--text)]">28 Sep 2025</td>
+        </tr>
+        <tr className="hover:bg-gray-100">
+          <td className="px-1 py-2 text-[var(--text)]">Yogurt</td>
+          <td className="px-1 py-2 text-[var(--text)]">29 Sep 2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div className="flex items-center mt-6 cursor-pointer group">
+    <p className="text-sm font-semibold mr-2 group-hover:underline">View full report here</p>
+    <div className="w-8 h-8 bg-yellow-400 group-hover:bg-yellow-500 transition-all rounded-full"></div>
+  </div>
+</div>
+        </div>
+      </div>
         
 
         
         
 
       </div> 
-      {/* <div className='w-60 flex m-auto h-10 justify-center'>
+      <div className='w-60 flex m-auto h-10 justify-center'>
           <p className='self-center poppins text-[var(--text)]'>A product of</p><img className='h-10 ' src={codex} />
-      </div>  */}
+      </div> 
     </div>
   );
 }
