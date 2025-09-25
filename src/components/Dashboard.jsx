@@ -439,9 +439,9 @@ function Dashboard() {
         
 
       </div> 
-      <div className='w-60 flex m-auto h-10 justify-center'>
+      {/* <div className='w-60 flex m-auto h-10 justify-center'>
           <p className='self-center poppins text-[var(--text)]'>A product of</p><img className='h-10 ' src={codex} />
-      </div> 
+      </div>  */}
     </div>
   );
 }
