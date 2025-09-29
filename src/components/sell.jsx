@@ -284,7 +284,7 @@ function Sell() {
                 </div>
                 
                 {/* Confirm Button */}
-                <button className='w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition duration-150'>
+                <button className='cursor-pointer w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition duration-150 '>
                   Confirm Sale
                 </button>
               </div>
