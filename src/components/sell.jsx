@@ -61,7 +61,7 @@ function Sell() {
             <p className='flex m-auto'>Orders</p>
           </div>
         </div>
-        <div className='xl:hidden hidden sm:hidden  md:flex ml-auto mt-auto mb-auto rounded-4xl h-15 min-w-25 w-auto bg-[var(--b)] boxshaddow pl-1 pr-1 justify-between max-w-200'>
+        <div className='xl:hidden hidden sm:hidden sm:mr-auto md:flex ml-auto  mt-auto mb-auto rounded-4xl h-15 min-w-25 w-auto bg-[var(--b)] boxshaddow pl-1 pr-1 justify-between max-w-200'>
           <div className='flex rounded-4xl w-auto h-13 m-auto justify-between bg-[var(--primary2)] pl-5 pr-5 cursor-pointer hover:bg-[var(--primary)] transition-all'>
             <div className='flex w-5 h-5 m-auto mr-2'>
               <svg className='flex m-auto' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="#000000" fill="none">
