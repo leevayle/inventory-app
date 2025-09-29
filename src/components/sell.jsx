@@ -133,7 +133,7 @@ function Sell() {
 
         </div>
         
-        <div className='flex sm:hidden m-auto  mr-5 ml-1  rounded-4xl h-15 w-15 bg-[var(--b)] boxshaddow cursor-pointer overflow-hidden relative '>
+        <div className='flex md:hidden m-auto  mr-5 ml-1  rounded-4xl h-15 w-15 bg-[var(--b)] boxshaddow cursor-pointer overflow-hidden relative '>
           <select className='w-full h-full opacity-0 z-1 cursor-pointer'>
             <option>Home</option>
             <option>Sell</option>
