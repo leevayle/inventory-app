@@ -157,14 +157,139 @@ function Sell() {
 
         {/* main sell area */}
        <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[2fr_0.8fr] gap-4 w-full h-full p-4'>
+          
+          
+          
           <div className='lg:col-span-1 grid grid-rows-3 gap-4'>
+
             <div className='row-span-2 border'></div>
+
+
             <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4'>
-              <div className='col-span-1 w-full border'></div>
-              <div className='col-span-1 w-full border'></div>
+              <div className='col-span-1 w-full bg-[var(--b)] rounded-2xl'>
+                <div className='w-full p-6   '>
+                    
+                    {/* Header and Text Section */}
+                    <div className='flex items-start mb-4'>
+                      
+                      {/* Gift Icon (Using SVG to replace the placeholder image) */}
+                      <div className='w-10 h-10 flex items-center justify-center text-gray-700 mr-4'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                            <rect x="2" y="7" width="20" height="5"></rect>
+                            <line x1="12" y1="2" x2="12" y2="7"></line>
+                            <path d="M10 7L8 5"></path>
+                            <path d="M14 7L16 5"></path>
+                        </svg>
+                      </div>
+                      
+                      <div>
+                        <p className='text-gray-900 text-xl font-bold'>Discount section</p>
+                        <p className='text-sm text-gray-600 mt-1'>Apply the discounts and coupons before confirming the sale.</p>
+                      </div>
+                    </div>
+                    
+                    {/* Input and Button Section (Flex container for alignment) */}
+                    <div className='flex items-center space-x-2 pl-4 pr-4'>
+                      
+                      {/* Coupon Input Field (full width, large border radius) */}
+                      <input 
+                        type="text"
+                        placeholder="Enter coupon / discount amount here"
+                        className="flex-grow py-3 px-4 text-sm text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:border-green-400 placeholder:text-gray-400 mt-5"
+                      />
+                      
+                      {/* Apply Button (large border radius, light green background) */}
+                      <button 
+                        className='mt-5 flex-shrink-0 w-32 py-3 bg-green-300 text-green-800 font-semibold text-base rounded-full hover:bg-green-400 transition duration-150'
+                      >
+                        Apply
+                      </button>
+                    </div>
+                  </div>
+              </div>
+              <div className='col-span-1 w-full rounded-2xl bg-[var(--b)] overflow-hidden boxshaddow'>
+                <div className='w-full h-full '>
+        
+                  
+                  
+                </div>
+
+              </div>
             </div>
+
+            
           </div>
-          <div className='lg:col-span-1 border'></div>
+
+
+
+
+
+          <div className='lg:col-span-1 p-0 '>
+            <div className='w-full p-6 bg-[var(--b)] rounded-xl h-full boxshaddow'>
+        
+            {/* Header Text */}
+            <div className="text-center mb-6">
+              <p className='text-gray-500 text-xl font-semibold'>Select Payment method</p>
+              <p className='text-sm text-gray-600 mt-1'>Select the payment method the customer wishes to use below</p>
+            </div>
+            
+            
+            <div className='space-y-3 mb-6'>
+              
+              {/* M-Pesa Card (Default style) */}
+              <div className='w-full p-4 hover:bg-green-50 text-[var(--primary)] rounded-lg flex items-center justify-between border border-gray-100 cursor-pointer hover:border-[var(--primary)] transition duration-150'>
+                <div className='flex items-center'>
+                  {/* Icon / Placeholder Image for M-PESA */}
+                  <div className='w-8 h-8 flex items-center justify-center text-lg font-bold bg-white text-[#55AE48] rounded-full mr-3'>M</div>
+                  <div>
+                    <p className='font-medium text-gray-800'>Pay with M-Pesa</p>
+                    <p className='text-xs text-gray-500'>Complete payment using M-Pesa</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Card Payment Card (Default style) */}
+                <div className='w-full p-4 bg-gray-50 text-gray-700 rounded-lg flex items-center justify-between border border-gray-200 transition duration-150'>
+                    <div className='flex items-center'>
+                      {/* Card Icon */}
+                      <div className='w-8 h-8 flex items-center justify-center text-lg bg-white rounded-full mr-3'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-9 5h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className='font-medium text-gray-800'>Pay with Card</p>
+                        <p className='text-xs text-gray-500'>Complete payment using Bank card</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Cash Card (Selected Style, matching the yellow highlight in the original image) */}
+                  <div className='w-full p-4 bg-yellow-50 text-gray-700 rounded-lg flex items-center justify-between border-2 border-yellow-400 transition duration-150'>
+                    <div className='flex items-center'>
+                      {/* Cash Icon */}
+                      <div className='w-8 h-8 flex items-center justify-center text-lg bg-white rounded-full mr-3'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2V9m0 2a2 2 0 002 2h2a2 2 0 002-2m-2-4v12m-4-10H9a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className='font-medium text-gray-800'>Pay with Cash</p>
+                        <p className='text-xs text-gray-500'>Complete payment using cash</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                
+                {/* Confirm Button */}
+                <button className='w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition duration-150'>
+                  Confirm Sale
+                </button>
+              </div>
+
+          </div>
         </div>      
 
           
