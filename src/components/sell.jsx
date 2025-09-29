@@ -153,14 +153,21 @@ function Sell() {
         
       </div>
 
-      <div className=' w-full block flex-1 overflow-y-auto '>        
+      <div className=' w-full block flex-1 overflow-y-auto '> 
 
-    
+        {/* main sell area */}
+       <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[2fr_0.8fr] gap-4 w-full h-full p-4'>
+          <div className='lg:col-span-1 grid grid-rows-3 gap-4'>
+            <div className='row-span-2 border'></div>
+            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4'>
+              <div className='col-span-1 w-full border'></div>
+              <div className='col-span-1 w-full border'></div>
+            </div>
+          </div>
+          <div className='lg:col-span-1 border'></div>
+        </div>      
 
-        {/* Main sales area */}
-            
-
-        
+          
         
 
       </div> 
