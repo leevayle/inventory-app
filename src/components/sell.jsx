@@ -160,9 +160,145 @@ function Sell() {
           
           
           
-          <div className='lg:col-span-1 grid grid-rows-3 gap-4'>
+          <div className='lg:col-span-1 grid grid-rows-3 gap-4 '>
 
-            <div className='row-span-2 border'></div>
+            {/* Main table */}
+            <div className='row-span-2 bg-[var(--b)] rounded-2xl boxshaddow flex flex-col poppins'>
+
+              {/* Search goes here */}
+              <div className=' w-full h-15 flex boxshaddow'>
+                <div className='h-10 border border-[var(--borders)] rounded-full w-80 sm:w-100 m-auto pl-5 pr-5 flex '>
+                  <input type='text' placeholder='Search products' className='w-full m-auto h-8 outline-0 text-sm'></input>
+                </div>
+              </div>
+
+              {/* Table goes here */}
+              <div className=' w-full flex flex-1 flex-col overflow-y-auto rounded-b-3xl pl-5 pr-5'>
+                <table className="min-w-full text-left text-sm whitespace-nowrap border-collapse">
+                  <thead>
+                    {/* Table Header Row */}
+                    <tr className="border-b border-gray-200 text-gray-500 font-medium">
+                      <th scope="col" className="px-1 py-2">Code</th>
+                      <th scope="col" className="px-1 py-2">Name</th>
+                      <th scope="col" className="px-1 py-2 text-center">Qty</th>
+                      <th scope="col" className="px-1 py-2 text-right">Amount</th>
+                      <th scope="col" className="px-1 py-2 text-center">Picture</th>
+                      <th scope="col" className="px-1 py-2 text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Example Data Row 1 (Original) */}
+                    <tr className="border-b border-gray-100 text-gray-800 hover:bg-gray-50 transition duration-100">
+                      <td className="px-1 py-3 font-mono text-xs">96732156</td>
+                      <td className="px-1 py-3 font-medium">Mumias brown sugar 2kg</td>
+                      
+                      {/* Quantity Controls */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="flex items-center justify-center space-x-1">
+                          {/* Minus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-red-100 text-red-600 rounded-md font-bold text-lg hover:bg-red-200 transition duration-150 p-1">
+                            -
+                          </button>
+                          <span className="text-sm font-medium">26</span>
+                          {/* Plus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-green-100 text-green-600 rounded-md font-bold text-lg hover:bg-green-200 transition duration-150 p-1">
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      
+                      {/* Amount */}
+                      <td className="px-1 py-3 text-right font-semibold">320.00</td>
+                      
+                      {/* Picture Placeholder */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="w-8 h-8 mx-auto border border-gray-300 bg-white rounded-full"></div>
+                      </td>
+                      
+                      {/* Delete Button */}
+                      <td className="px-1 py-3 text-center">
+                        <button className="text-white bg-red-400 px-3 py-1 rounded-full text-xs font-semibold hover:bg-red-500 transition duration-150">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                    
+                    {/* New Example Data Row 2 */}
+                    <tr className="border-b border-gray-100 text-gray-800 hover:bg-gray-50 transition duration-100">
+                      <td className="px-1 py-3 font-mono text-xs">81045932</td>
+                      <td className="px-1 py-3 font-medium">KCC long life milk 500ml</td>
+                      
+                      {/* Quantity Controls */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="flex items-center justify-center space-x-1">
+                          {/* Minus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-red-100 text-red-600 rounded-md font-bold text-lg hover:bg-red-200 transition duration-150 p-1">
+                            -
+                          </button>
+                          <span className="text-sm font-medium">4</span>
+                          {/* Plus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-green-100 text-green-600 rounded-md font-bold text-lg hover:bg-green-200 transition duration-150 p-1">
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      
+                      {/* Amount */}
+                      <td className="px-1 py-3 text-right font-semibold">75.50</td>
+                      
+                      {/* Picture Placeholder */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="w-8 h-8 mx-auto border border-gray-300 bg-white rounded-full"></div>
+                      </td>
+                      
+                      {/* Delete Button */}
+                      <td className="px-1 py-3 text-center">
+                        <button className="text-white bg-red-400 px-3 py-1 rounded-full text-xs font-semibold hover:bg-red-500 transition duration-150">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                    
+                    {/* New Example Data Row 3 */}
+                    <tr className="border-b border-gray-100 text-gray-800 hover:bg-gray-50 transition duration-100">
+                      <td className="px-1 py-3 font-mono text-xs">55428711</td>
+                      <td className="px-1 py-3 font-medium">Omo washing powder 1kg</td>
+                      
+                      {/* Quantity Controls */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="flex items-center justify-center space-x-1">
+                          {/* Minus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-red-100 text-red-600 rounded-md font-bold text-lg hover:bg-red-200 transition duration-150 p-1">
+                            -
+                          </button>
+                          <span className="text-sm font-medium">1</span>
+                          {/* Plus Button */}
+                          <button className="w-6 h-6 flex items-center justify-center bg-green-100 text-green-600 rounded-md font-bold text-lg hover:bg-green-200 transition duration-150 p-1">
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      
+                      {/* Amount */}
+                      <td className="px-1 py-3 text-right font-semibold">210.00</td>
+                      
+                      {/* Picture Placeholder */}
+                      <td className="px-1 py-3 text-center">
+                        <div className="w-8 h-8 mx-auto border border-gray-300 bg-white rounded-full"></div>
+                      </td>
+                      
+                      {/* Delete Button */}
+                      <td className="px-1 py-3 text-center">
+                        <button className="text-white bg-red-400 px-3 py-1 rounded-full text-xs font-semibold hover:bg-red-500 transition duration-150">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
 
 
             <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4'>
@@ -173,7 +309,7 @@ function Sell() {
                     <div className='flex items-start mb-4'>
                       
                       {/* Gift Icon (Using SVG to replace the placeholder image) */}
-                      <div className='w-10 h-10 flex items-center justify-center text-gray-700 mr-4'>
+                      <div className='w-15 h-15 flex items-center justify-center mr-4'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="20 12 20 22 4 22 4 12"></polyline>
                             <rect x="2" y="7" width="20" height="5"></rect>
@@ -183,9 +319,9 @@ function Sell() {
                         </svg>
                       </div>
                       
-                      <div>
-                        <p className='text-gray-900 text-xl font-bold'>Discount section</p>
-                        <p className='text-sm text-gray-600 mt-1'>Apply the discounts and coupons before confirming the sale.</p>
+                      <div className='poppins'>
+                        <p className='text-[var(--black)] text-l font-bold'>Discount section</p>
+                        <p className='text-sm text-[var(--text)] mt-1'>Apply the discounts and coupons before confirming the sale.</p>
                       </div>
                     </div>
                     
@@ -193,27 +329,60 @@ function Sell() {
                     <div className='flex items-center space-x-2 pl-4 pr-4'>
                       
                       {/* Coupon Input Field (full width, large border radius) */}
-                      <input 
-                        type="text"
-                        placeholder="Enter coupon / discount amount here"
-                        className="flex-grow py-3 px-4 text-sm text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:border-green-400 placeholder:text-gray-400 mt-5"
-                      />
-                      
-                      {/* Apply Button (large border radius, light green background) */}
-                      <button 
-                        className='mt-5 flex-shrink-0 w-32 py-3 bg-green-300 text-green-800 font-semibold text-base rounded-full hover:bg-green-400 transition duration-150'
-                      >
-                        Apply
-                      </button>
+                      <div className='sm:flex w-full justify-around gap-2 '>
+                        <input 
+                          type="text"
+                          placeholder="Enter coupon / discount amount here"
+                          className="sm:w-80 w-full flex  py-3 px-4 text-sm text-[var(--text)] border border-[var(--borders)] rounded-full focus:outline-none focus:border-[var(--primary)]  m-auto"
+                        />
+                        
+                        {/* Apply Button (large border radius, light green background) */}
+                        <button 
+                          className='poppins cursor-pointer w-full m-auto mt-5 sm:mt-auto sm:w-32 py-3 bg-[var(--primary-l)] text-[var(--black)] text-base rounded-full hover:bg-green-400 transition duration-150'
+                        >
+                          Apply
+                        </button>
+                      </div>
                     </div>
                   </div>
               </div>
               <div className='col-span-1 w-full rounded-2xl bg-[var(--b)] overflow-hidden boxshaddow'>
-                <div className='w-full h-full '>
-        
-                  
-                  
+                
+                {/* Sale Summary section - Content added here */}
+              <div className='w-full h-full p-4 bg-gray-50 rounded-xl'>
+                
+                {/* Subtotal Row (Stronger font) */}
+                <div className='flex justify-between items-center mb-2'>
+                  <p className='text-sm font-semibold text-gray-800'>Sub total</p>
+                  <p className='text-sm font-bold text-gray-800'>425.06</p>
                 </div>
+
+                {/* Detail Rows (Lighter font) */}
+                <div className='space-y-1 mb-4'>
+                  <div className='flex justify-between items-center'>
+                    <p className='text-sm text-gray-600'>Delivery fee</p>
+                    <p className='text-sm text-gray-800'>+120.0</p>
+                  </div>
+                  <div className='flex justify-between items-center'>
+                    <p className='text-sm text-gray-600'>Tax on goods</p>
+                    <p className='text-sm text-gray-800'>+14.00</p>
+                  </div>
+                  <div className='flex justify-between items-center'>
+                    <p className='text-sm text-gray-600'>Member discount</p>
+                    <p className='text-sm text-red-600'>-23.06</p>
+                  </div>
+                </div>
+                
+                {/* Separator Line */}
+                <hr className='border-t border-gray-300 my-4' />
+
+                {/* Total Row (Bold and prominent) */}
+                <div className='flex justify-between items-center mt-4'>
+                  <p className='text-lg font-bold text-gray-900'>Total</p>
+                  <p className='text-lg font-bold text-gray-900'>416.00</p>
+                </div>
+              </div>
+
 
               </div>
             </div>
@@ -225,69 +394,68 @@ function Sell() {
 
 
 
-          <div className='lg:col-span-1 p-0 '>
-            <div className='w-full p-6 bg-[var(--b)] rounded-xl h-full boxshaddow'>
+        <div className='lg:col-span-1 poppins'>
+          <div className='w-full bg-[var(--b)] rounded-xl h-full boxshaddow flex flex-col p-7'>
         
             {/* Header Text */}
-            <div className="text-center mb-6">
-              <p className='text-gray-500 text-xl font-semibold'>Select Payment method</p>
-              <p className='text-sm text-gray-600 mt-1'>Select the payment method the customer wishes to use below</p>
+            <div className="text-center mb-10 w-80 m-auto">
+              <p className='text-[var(--black)] text-xl font-semibold'>Select Payment method</p>
+              <p className='text-sm text-[var(--text)] mt-1'>Select the payment method the customer wishes to use below</p>
             </div>
             
             
-            <div className='space-y-3 mb-6'>
+            <div className='space-y-5 flex flex-col mb-auto '>
               
               {/* M-Pesa Card (Default style) */}
-              <div className='w-full p-4 hover:bg-green-50 text-[var(--primary)] rounded-lg flex items-center justify-between border border-gray-100 cursor-pointer hover:border-[var(--primary)] transition duration-150'>
+              <div className='w-full h-20 p-4 hover:bg-green-50 text-[var(--primary)] rounded-xl flex items-center justify-between border-2 border-[var(--borders)] cursor-pointer hover:border-[var(--primary)] transition duration-150'>
                 <div className='flex items-center'>
                   {/* Icon / Placeholder Image for M-PESA */}
-                  <div className='w-8 h-8 flex items-center justify-center text-lg font-bold bg-white text-[#55AE48] rounded-full mr-3'>M</div>
+                  <div className='w-15 h-10 flex items-center justify-center text-lg font-bold mr-5'>
+                    <img />
+                  </div>
                   <div>
                     <p className='font-medium text-gray-800'>Pay with M-Pesa</p>
                     <p className='text-xs text-gray-500'>Complete payment using M-Pesa</p>
                   </div>
                 </div>
               </div>
-              
-              {/* Card Payment Card (Default style) */}
-                <div className='w-full p-4 bg-gray-50 text-gray-700 rounded-lg flex items-center justify-between border border-gray-200 transition duration-150'>
-                    <div className='flex items-center'>
-                      {/* Card Icon */}
-                      <div className='w-8 h-8 flex items-center justify-center text-lg bg-white rounded-full mr-3'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-9 5h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className='font-medium text-gray-800'>Pay with Card</p>
-                        <p className='text-xs text-gray-500'>Complete payment using Bank card</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Cash Card (Selected Style, matching the yellow highlight in the original image) */}
-                  <div className='w-full p-4 bg-yellow-50 text-gray-700 rounded-lg flex items-center justify-between border-2 border-yellow-400 transition duration-150'>
-                    <div className='flex items-center'>
-                      {/* Cash Icon */}
-                      <div className='w-8 h-8 flex items-center justify-center text-lg bg-white rounded-full mr-3'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2V9m0 2a2 2 0 002 2h2a2 2 0 002-2m-2-4v12m-4-10H9a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className='font-medium text-gray-800'>Pay with Cash</p>
-                        <p className='text-xs text-gray-500'>Complete payment using cash</p>
-                      </div>
-                    </div>
-                  </div>
 
+
+              <div className='w-full h-20 p-4 hover:bg-green-50 text-[var(--primary)] rounded-xl flex items-center justify-between border-2 border-[var(--borders)] cursor-pointer hover:border-[var(--primary)] transition duration-150'>
+                <div className='flex items-center'>
+                  {/* Icon / Placeholder Image for M-PESA */}
+                  <div className='w-15 h-10 flex items-center justify-center text-lg font-bold mr-5'>
+                    <img />
+                  </div>
+                  <div>
+                    <p className='font-medium text-gray-800'>Pay with Card</p>
+                    <p className='text-xs text-gray-500'>Complete payment using bank card</p>
+                  </div>
                 </div>
+              </div>
+
+
+              <div className='mb-10 w-full h-20 p-4 hover:bg-green-50 text-[var(--primary)] rounded-xl flex items-center justify-between border-2 border-[var(--borders)] cursor-pointer hover:border-[var(--primary)] transition duration-150'>
+                <div className='flex items-center'>
+                  {/* Icon / Placeholder Image for M-PESA */}
+                  <div className='w-15 h-10 flex items-center justify-center text-lg font-bold mr-5'>
+                    <img />
+                  </div>
+                  <div>
+                    <p className='font-medium text-gray-800'>Pay with Cash</p>
+                    <p className='text-xs text-gray-500'>Complete payment using Cash</p>
+                  </div>
+                </div>
+          </div>
+              
+              
+        </div>
                 
                 {/* Confirm Button */}
-                <button className='cursor-pointer w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition duration-150 '>
+                <button className='cursor-pointer mt-auto w-full bg-[var(--accent)] text-[var(--b)] py-3 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition duration-150 '>
                   Confirm Sale
                 </button>
-              </div>
+            </div>
 
           </div>
         </div>      
