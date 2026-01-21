@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/welcome.css">
+
+    <title>Get started with SwiftPos</title>
+</head>
+<body>
+    <div class="main flex mauto column " style="opacity: 0;">
+        <div class="top ">
+            <div class="container flex mauto column ">
+                <div class="image ">
+                    <div class="a flex mauto ">
+                        <img class="full" src="assets/images/logo.png" alt="SwiftPos Logo">
+                    </div>
+                    <div class="b ">
+                         <span class="c1">Swift</span><span class="c2">Pos</span><span class="c3">.</span>
+                    </div>
+                    <div class="b1 ">
+                            Stock, Sales and Accounts <br />
+                    all in one place!
+                    </div>
+                    
+                </div>
+               
+                
+            </div>
+            <div class="c flex column mauto ">
+                      <div class="ba mauto flex row ">
+                            <div class="left flex mauto ">
+                               <p class="mauto mt">Get started</p>
+                            </div>
+                            <div class="right mauto flex">
+                                <div class="arr flex mauto">
+                                    <img class="full" src="assets/images/arrow-up-right-01-stroke-rounded.png" alt="Arrow Right">
+                                </div>
+                               
+                            </div>
+                      </div>  
+                      <!-- <div class="bb mauto "><p>Watch video</p></div>   -->
+            </div>
+             
+        </div>
+        
+        
+    </div>
+    
+</body>
+
+<script>
+  window.addEventListener('load', function() {
+    const main = document.querySelector('.main');
+    main.style.transition = 'opacity 0.5s ease-in-out';
+    main.style.opacity = '1';
+  });
+
+  const getStartedBtn = document.querySelector('.ba');
+  const leftDiv = document.querySelector('.ba .left');
+  const rightDiv = document.querySelector('.ba .right');
+  const arrDiv = document.querySelector('.arr');
+  const arrowImg = document.querySelector('.arr img');
+
+  getStartedBtn.addEventListener('click', () => {
+
+    getStartedBtn.style.boxShadow = "rgba(0, 0, 0, 0.1) 0px 10px 50px";
+
+    // 1) Remove left side
+    leftDiv.remove();
+
+    // 2) Reduce width
+    getStartedBtn.style.width = "65px";
+
+    // 3) Make right fill the parent (no padding/margin)
+    rightDiv.style.width = "100%";
+    rightDiv.style.height = "100%";
+    rightDiv.style.padding = "0";
+    rightDiv.style.margin = "0";
+    rightDiv.style.justifyContent = "center";
+
+  // 7) Change image
+    arrowImg.src = "assets/images/1.gif";
+
+    // 4) Make inner circle fill the parent
+    arrDiv.style.width = "100%";
+    arrDiv.style.height = "100%";
+    arrDiv.style.padding = "0";
+    arrDiv.style.margin = "0";
+
+    // 5) Remove extra spacing
+    arrDiv.style.display = "flex";
+    arrDiv.style.alignItems = "center";
+    arrDiv.style.justifyContent = "center";
+
+
+     // Redirect after 2 seconds
+    setTimeout(() => {
+      // 6) Change parent background to white
+    getStartedBtn.style.background = "white";
+    }, 200);
+
+    
+
+  
+
+    // Redirect after 2 seconds
+    setTimeout(() => {
+      window.location.href = 'signup.html';
+    }, 2000);
+  });
+</script>
+
+
+
+
+
+
+
+</html>

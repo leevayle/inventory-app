@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/install.css">
+    <title>Uninstall Swift POS</title>
+</head>
+<body>
+    <div class="main flex mauto column">
+        <div class="top">
+            <div class="container flex mauto column">
+                <div class="image">
+                    <div class="a flex mauto">
+                        <img class="full" src="../assets/images/logo.png" alt="SwiftPos Logo">
+                    </div>
+                    <div class="b">
+                        <span class="c1">Deleting</span><br>
+                        <span class="c2">Software</span><br>
+                        <span class="c3">...</span>
+                    </div>
+                    <div class="c mauto">
+                        <div class="bar danger"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom flex">
+            <div class="bottom1 flex row mauto">
+                <span class="textbtm flex">
+                    This is permanent and cannot be undone.<br>
+                    All data will be lost permanently.
+                </span>
+            </div>
+        </div>
+    </div>
+
+<script>
+window.addEventListener('load', () => {
+    const bar = document.querySelector('.bar');
+
+    const updateBar = (percent) => {
+        bar.style.width = percent + '%';
+    };
+
+    console.log('Uninstall page fully loaded');
+
+    // Small buffer to ensure UI is visible
+    setTimeout(startUninstallFlow, 400);
+
+    function startUninstallFlow() {
+
+        /* 🔴 FIRST WARNING */
+        const firstConfirm = confirm(
+            'WARNING:\nThis will permanently delete the Swift POS database.\n\nDo you want to continue?'
+        );
+
+        if (!firstConfirm) {
+            console.log('Uninstall cancelled at first warning');
+            window.location.href = '../index.html';
+            return;
+        }
+
+        /* ⏳ After 2s → 30% */
+        setTimeout(() => {
+            updateBar(30);
+            console.log('Progress 30%');
+
+            /* ⏳ After 1 more second → FINAL CONFIRM */
+            setTimeout(() => {
+                const finalConfirm = confirm(
+                    'FINAL CONFIRMATION:\nThis action CANNOT be undone.\n\nClick OK to DELETE EVERYTHING.'
+                );
+
+                if (!finalConfirm) {
+                    console.log('Uninstall cancelled at final confirmation');
+                    window.location.href = '../index.html';
+                    return;
+                }
+
+                runUninstall();
+                localStorage.clear();
+
+            }, 1000);
+
+        }, 2000);
+    }
+
+    /* 🔥 ACTUAL UNINSTALL */
+    async function runUninstall() {
+        try {
+            updateBar(50);
+            console.log('Calling maintenance reset script...');
+
+            const res = await fetch('../scripts/maintanance_reset.php', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (!res.ok) {
+                throw new Error('Server responded with ' + res.status);
+            }
+
+            const data = await res.json();
+            console.log('Uninstall response:', data);
+
+            if (data.status !== 'success') {
+                throw new Error(data.message || 'Uninstall failed');
+            }
+
+            updateBar(80);
+            console.log('Database dropped successfully');
+
+            setTimeout(() => {
+                updateBar(100);
+
+                setTimeout(() => {
+                    alert('Swift POS has been completely removed.');
+                    window.location.href = '../index.html';
+                }, 1200);
+
+            }, 2000);
+
+        } catch (err) {
+            console.error('Uninstall error:', err);
+            alert('Uninstall failed. Check console or server logs.');
+        }
+    }
+});
+</script>
+
+
+</body>
+</html>

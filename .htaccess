@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /inventory-app/
+    
+    # Block direct browser access to scripts folder, but allow internal requests
+    RewriteCond %{REQUEST_URI} ^/inventory-app/scripts/
+    RewriteCond %{HTTP_REFERER} !^http [NC]
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+ErrorDocument 404 /inventory-app/preliminary/404.html
+ErrorDocument 403 /inventory-app/preliminary/403.html
+

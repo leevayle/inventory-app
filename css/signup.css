@@ -1,0 +1,190 @@
+/* written by leevayle@protonmail.com */
+
+:root{
+    --accent1: #17B095;
+    --accent2: #F3BA1C;
+    --background-color: #ffffff;
+    --background2: #ebebeb;
+    --text-color: #a3a3a3;
+    --black: #000000;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+}
+body {
+    display: flex;
+    background-color: var(--background-color);
+}
+*{transition: ease-in-out 0.3s;}
+
+
+
+
+
+
+
+
+
+
+.main{
+    height: 95%;
+    width: 50%;
+}
+.top{
+    height: 70%;
+}
+.bottom{
+    height: 30%;
+}
+.container{
+    width: 50%;
+    height: 100%;
+}
+.image{
+    height: auto;
+    width: 100%;
+    margin-top: 15%;
+    font-family: century gothic, sans-serif;
+    font-size: xxx-large;
+}
+.a{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 40px;
+}
+.b{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.b1{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-family: 'poppins', sans-serif;
+    font-size: medium;
+    color: var(--text-color);
+    justify-content: center;
+    gap: 20px;
+}
+
+.step1, .step2, .step3{
+    width: 30px;
+    height: 10px;
+    border-radius: 25px;
+    background-color: var(--background2);
+}
+
+
+.c{
+    min-height: 150px;
+    margin-top: 60px;
+    width: 50%;
+}
+
+
+.c1{
+    color: var(--black);
+    font-weight: bold;
+}
+.c2{
+    color: var(--accent1);
+}
+.c3{
+    color: var(--accent2);
+}
+
+
+.ba, .bb{
+    width: 90%;
+    max-width: 250px;
+    height: 62px;
+    border-radius: 50px;
+    font-family: 'poppins', sans-serif;
+    font-size: medium;
+    text-align: center;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+.ba{
+    background: var(--accent2);
+    color: var(--background-color);
+    height: 50px;
+}
+.bb{
+    
+    color: var(--text-color);
+    
+}
+.bb:hover{
+    color: var(--accent1);
+}
+
+.ba:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    max-width: 300px;
+    
+}
+.left{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.mt{
+    margin-top: 0px;
+    width: 100%;
+    font-size: large;
+    margin-top: 5px;
+}
+.confetti-container{
+
+    background-image: url(../assets/images/success.gif);
+    background-size: cover;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media  screen and (max-width:500px) {
+    .main{
+        width: 99%;
+        height: 99%;
+    }
+    .container{
+    width: 80%;
+    }
+    .image{
+    margin-top: 15%;
+    font-size: xx-large;
+    }
+    .a{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    }
+    .mt{
+    margin-top: 5px;
+    font-size: large;
+}
+.c{
+    width: 80%;
+}
+     
+    
+}
+ 

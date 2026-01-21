@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/notif.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <title>SwiftPos | SwiftPos</title>
+</head>
+<body>
+    <div class="main flex mauto column ">
+        <div class="poppins" id="notification"></div>
+
+
+
+        <div class="top confetti-container">
+             <!-- <div class="confetti-container red" id="Confetti">
+                <img class="confetti-gif" src="assets/images/success.gif" alt="Confetti">
+            </div> -->
+            <div class="container flex mauto column  ">
+                <div class="image ">
+                    <div class="a flex mauto ">
+                        <img class="full" src="assets/images/logo.png" alt="SwiftPos Logo">
+                    </div>
+                    <div class="b ">
+                         <span class="c1">And</span><span class="c2"> that's</span><span class="c3"> it!</span>
+                    </div>
+                    
+                    
+                </div>
+                <div class="b1 flex ">
+                            Now be patient for your admin to approve your <br />
+                            sign up and you're all set! <br />
+                            When you're approved, you can log in!
+                    </div>
+               
+                
+            </div>
+            <div class="c flex column mauto ">
+                      <div class="ba mauto flex row ">
+                            <div class="left flex mauto  ">
+                               <p class="mauto mt">Log in</p>
+                            </div>                            
+                      </div>  
+                      
+                      <div class="bb mauto "><p>Refresh my status?</p></div>  
+            </div>
+            
+           
+             
+        </div>
+        
+        
+    </div>
+    
+</body>
+
+<script src="js/notification.js" defer></script>
+<script defer src="js/status.js"></script>
+
+<script defer>
+    document.querySelector('.left').addEventListener('click', function() {
+        window.location.href = 'login.html';
+    });
+</script>
+
+<script defer>
+    document.querySelector('.bb').addEventListener('click', function() {
+        checkStatus();
+    }); 
+</script>
+
+    
+
+
+</html>

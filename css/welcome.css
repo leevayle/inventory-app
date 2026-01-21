@@ -1,0 +1,177 @@
+/* written by leevayle@protonmail.com */
+
+:root{
+    --accent1: #17B095;
+    --accent2: #F3BA1C;
+    --background-color: #ffffff;
+    --background2: #ebebeb;
+    --text-color: #a3a3a3;
+    --black: #000000;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+}
+body {
+    display: flex;
+    background-color: var(--background-color);
+}
+*{transition: ease-in-out 0.3s;}
+
+
+
+
+
+
+
+
+
+
+.main{
+    height: 90%;
+    width: 50%;
+}
+.top{
+    height: 70%;
+}
+.bottom{
+    height: 30%;
+}
+.container{
+    width: 50%;
+    height: 100%;
+}
+.image{
+    height: auto;
+    width: 100%;
+    margin-top: 20%;
+    font-family: century gothic, sans-serif;
+    font-size: xxx-large;
+}
+.a{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 40px;
+}
+.b{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.b1{
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'poppins', sans-serif;
+    font-size: medium;
+    color: var(--text-color);
+}
+.c{
+    min-height: 220px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+
+.c1{
+    color: var(--black);
+    font-weight: bold;
+}
+.c2{
+    color: var(--accent1);
+}
+.c3{
+    color: var(--accent2);
+}
+
+
+.ba, .bb{
+    width: 100%;
+    max-width: 250px;
+    height: 62px;
+    border-radius: 50px;
+    font-family: 'poppins', sans-serif;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+.ba{
+    background: linear-gradient(to right,var(--accent2), var(--accent1));
+    color: var(--background-color);
+}
+.bb{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    color: var(--accent1);
+    
+}
+.bb:hover{
+    background-color: var(--accent1);
+    color: var(--background-color);
+}
+.ba:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    max-width: 300px;
+}
+.left{
+    width: 60%;
+    height: 46px;
+    margin-left: 20px;
+    text-align: centerx;
+    padding-top: 10px;
+}
+.right{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: var(--background-color);
+    
+}
+.mt{
+    margin-top: 0px;
+    width: 100%;
+    font-size: x-large;
+}
+.arr{
+    width: 60%;
+    height: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media  screen and (max-width:500px) {
+    .main{
+        width: 99%;
+        height: 99%;
+    }
+    .container{
+    width: 80%;
+    }
+    .image{
+    margin-top: 45%;
+    font-size: xx-large;
+    }
+    .a{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    }
+    .mt{
+    margin-top: 5px;
+    width: 100%;
+    font-size: large;
+}
+    
+}

@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'century gothic';
+    src: url('../assets/fonts/TCB.TTF') format('truetype');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../assets/fonts/POPPINS-LIGHT.TTF') format('truetype');
+
+    font-weight: normal;
+    font-style: normal;
+}

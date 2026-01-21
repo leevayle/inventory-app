@@ -1,0 +1,128 @@
+/* written by leevayle@protonmail.com */
+
+:root{
+    --accent1: #17B095;
+    --accent2: #F3BA1C;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --black: #000000;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background-color);
+}
+body {
+    display: flex;
+    background-color: var(--background-color);
+}
+*{transition: ease-in-out 1s;}
+
+
+
+
+
+
+
+
+
+
+.main{
+    height: 90%;
+    width: 50%;
+}
+.top{
+    height: 70%;
+}
+.bottom{
+    height: 30%;
+}
+.container{
+    width: 50%;
+    height: 100%;
+}
+.image{
+    height: auto;
+    width: 100%;
+    margin-top: 30%;
+    font-family: century gothic, sans-serif;
+    font-size: xxx-large;
+}
+.a{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 40px;
+}
+.b{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.c{
+    height: 40px;
+    width: 100px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.c1{
+    color: var(--black);
+    font-weight: bold;
+}
+.c2{
+    color: var(--accent1);
+    font-weight: lighter;
+}
+.c3{
+    color: var(--accent2);
+}
+
+.bottom1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: poppins, sans-serif;
+    font-size: medium;
+}
+.textbtm{
+    margin-top: 7px;
+}
+.btmimg{
+    width: 100px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media  screen and (max-width:500px) {
+    .main{
+        width: 99%;
+        height: 99%;
+    }
+    .container{
+    width: 80%;
+    }
+    .image{
+    margin-top: 45%;
+    font-size: xx-large;
+    }
+    .a{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    }
+    .c{
+         width: 70px;
+    }
+}
