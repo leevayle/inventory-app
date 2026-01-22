@@ -1,10 +1,9 @@
 <?php
 header('Content-Type: application/json');
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'swift_pos_invent';
-$DB_USER = 'root';
-$DB_PASS = '';
+// Load database config and $pdo from key.php
+define('APP_INIT', true);
+require_once __DIR__ . '/key.php';
 
 function hexToString(string $hex): string {
     if (!ctype_xdigit($hex)) {
@@ -32,15 +31,7 @@ try {
         throw new Exception('Invalid phone number');
     }
 
-    // DB connection
-    $pdo = new PDO(
-        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
-        $DB_USER,
-        $DB_PASS,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-
-    // Fetch status & role
+    // Use $pdo from key.php
     $stmt = $pdo->prepare("
         SELECT status, role
         FROM users
@@ -49,7 +40,7 @@ try {
     ");
     $stmt->execute(['phone' => $phone]);
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch();
 
     if (!$user) {
         http_response_code(404);

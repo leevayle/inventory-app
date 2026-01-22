@@ -1,11 +1,17 @@
 <?php
+// Define the constant required by key.php
+define('APP_INIT', true);
+
+// Set header for JSON response
 header('Content-Type: application/json');
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'swift_pos_invent';
-$DB_USER = 'root';
-$DB_PASS = '';
+// Include the database connection file
+// This provides the $pdo object and DB constants
+require_once __DIR__ . '/key.php';
 
+/**
+ * Helper: Convert Hex to String
+ */
 function hexToString(string $hex): string {
     if (!ctype_xdigit($hex)) {
         throw new Exception('Invalid hex payload');
@@ -19,9 +25,7 @@ function hexToString(string $hex): string {
 }
 
 /**
- * Very basic SQL injection pattern detection
- * (prepared statements already protect you,
- * this is just early rejection / hygiene)
+ * Helper: Basic SQL injection pattern detection
  */
 function looksLikeInjection(string $value): bool {
     return preg_match(
@@ -31,6 +35,9 @@ function looksLikeInjection(string $value): bool {
 }
 
 try {
+    // Ensure we are targeting the correct database defined in key.php
+    $pdo->exec("USE " . DB_NAME);
+
     $input = json_decode(file_get_contents('php://input'), true);
 
     if (
@@ -59,15 +66,7 @@ try {
         exit;
     }
 
-    // DB connection
-    $pdo = new PDO(
-        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
-        $DB_USER,
-        $DB_PASS,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-
-    // Fetch user
+    // Fetch user using the $pdo instance from key.php
     $stmt = $pdo->prepare("
         SELECT id, password, status, role, phone
         FROM users
@@ -76,7 +75,7 @@ try {
     ");
     $stmt->execute(['username' => $username]);
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch();
 
     if (!$user) {
         echo json_encode(['error' => "User doesn't exist"]);
@@ -99,12 +98,13 @@ try {
     echo json_encode([
         'success' => true,
         'role'    => $user['role'],
-        'phone'   => bin2hex($user['phone']) // keep frontend hex-consistent
+        'phone'   => bin2hex($user['phone'] ?? '') // keep frontend hex-consistent
     ]);
 
 } catch (Throwable $e) {
     http_response_code(400);
     echo json_encode([
-        'error' => 'Authentication failed'
+        'error' => 'Authentication failed',
+        'debug' => $e->getMessage() // You can remove this in production
     ]);
 }

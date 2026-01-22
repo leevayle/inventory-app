@@ -1,18 +1,20 @@
 <?php
+define('APP_INIT', true);
+
 header('Content-Type: application/json');
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'swift_pos_invent';
-$DB_USER = 'root';
-$DB_PASS = '';
+require_once __DIR__ . '/key.php';
 
 try {
-    // 1️⃣ Connect to MySQL server (no DB selected)
+    // 1️⃣ Connect to MySQL server (no database selected)
     $pdo = new PDO(
-        "mysql:host=$DB_HOST;charset=utf8mb4",
-        $DB_USER,
-        $DB_PASS,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        "mysql:host=" . DB_HOST . ";charset=utf8mb4",
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
     );
 
     // 2️⃣ Check if database exists
@@ -21,7 +23,7 @@ try {
         FROM INFORMATION_SCHEMA.SCHEMATA
         WHERE SCHEMA_NAME = :dbname
     ");
-    $stmt->execute(['dbname' => $DB_NAME]);
+    $stmt->execute(['dbname' => DB_NAME]);
 
     if (!$stmt->fetch()) {
         echo json_encode([
@@ -32,7 +34,7 @@ try {
     }
 
     // 3️⃣ Drop database
-    $pdo->exec("DROP DATABASE `$DB_NAME`");
+    $pdo->exec("DROP DATABASE `" . DB_NAME . "`");
 
     echo json_encode([
         'status'  => 'success',

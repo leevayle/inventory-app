@@ -8,64 +8,49 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/notif.css">
     <link rel="stylesheet" href="css/phone.css">
-    <title>Register | SwiftPos</title>
+    <title>Reset password | SwiftPos</title>
 </head>
 <body>
     <div class="main flex mauto column ">
         <div class="poppins" id="notification"></div>
         <div class="top ">
             <div class="container flex mauto column  ">
-                <div class="image ">
+                <div class="image " id="login">
                     <div class="a flex mauto ">
                         <img class="full" src="assets/images/logo.png" alt="SwiftPos Logo">
                     </div>
                     <div class="b ">
-                         <span class="c1">You're</span><span class="c2"> almost</span><span class="c3"> done!</span>
-                    </div>
-
-                    <div class="b1 ">
-                            Kindly provide us with a 4 digit pin <br /> and Nickname. 
-                            You will use these for quick login on trusted 
-                            devices when pin authentication is enabled.
+                         <span class="c1">Reset</span><span class="c2"> Your</span><span class="c3"> password</span>
                     </div>
                     
                     
                 </div>
-                <!-- <div class="b1 flex ">
-                            <div class="step1 gradient ">
-
-                            </div>
-
-                            <div class="step2 gradient">
-
-                            </div>
-
-                            <div  class="step3 gradient">
-
-                            </div>
-                </div> -->
+                <div class="b1 flex ">
+                            Provide your email, phone and new password <br />
+                                to reset your password.
+                </div>
                 <div class="inputContainer flex column mauto ">
                     <div class="input  flex mauto ">
-                        <input class="full poppins" type="text" placeholder="Nick name" autocomplete="off" id="username" />
+                        <input class="full poppins" type="text" placeholder="Username" autocomplete="off" id="username" />
                     </div>
                     
                     
             
                     <div class="input flex mauto ">
-                        <input class="full poppins"  type="password"  placeholder="Pin" autocomplete="off"  id="pin" />
+                        <input class="full poppins"  type="password"  placeholder="Password" autocomplete="off"  id="password" />
                     </div>
                 </div>
                
                 
             </div>
             <div class="c flex column mauto ">
-                      <div class="ba mauto flex row ">
+                      <div class="ba mauto flex row " id="loginbtn">
                             <div class="left flex mauto  ">
-                               <p class="mauto mt poppins">Continue</p>
+                               <p class="mauto mt poppins">Authenticate</p>
                             </div>                            
                       </div>  
                       
-                      <!-- <div class="bb mauto poppins"><p>Cant see your country?</p></div>   -->
+                      <div class="bb mauto poppins"><p>Forgot password?</p></div>  
             </div>
              
         </div>
@@ -75,8 +60,10 @@
     
 </body>
 
-<script defer src="js/almost.js"></script>
 <script src="js/notification.js" defer></script>
+<script defer src="js/reset.js"></script>
+
+
 
 
 </html>
