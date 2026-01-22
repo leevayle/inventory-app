@@ -123,7 +123,7 @@ function registerUser() {
             // 🧹 CLEANUP: remove setup keys
             localStorage.removeItem('002'); 
             localStorage.removeItem('003'); 
-            localStorage.removeItem('004'); 
+            // localStorage.removeItem('004'); 
             localStorage.removeItem('005'); 
             localStorage.removeItem('signeduplevel');
 

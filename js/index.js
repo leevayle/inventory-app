@@ -16,7 +16,8 @@ async function bootstrap() {
         // 2️⃣ Handle expected responses
         if (res.status === 200 || res.status === 404) {
             data = await res.json();
-            console.log('DB check:', data);
+            // console.log('DB check:', data);
+            console.log('Check 1 passed');
         } else {
             throw new Error(`Unexpected server response ${res.status}`);
         }
@@ -34,10 +35,12 @@ async function bootstrap() {
 
         // 5️⃣ Redirect logic
         if (data.status === 'installed') {
-            console.log('Database exists → welcome');
+            // console.log('Database exists → welcome');
+            console.log('Check 1.1 passed');
             window.location.href = '/inventory-app/welcome.html';
         } else {
-            console.log('Database missing → installer');
+            // console.log('Database missing → installer');
+            console.warn('Check 1.1 failed');
             window.location.href = '/inventory-app/install/start.html';
         }
 

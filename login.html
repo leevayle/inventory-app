@@ -5,53 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/notif.css">
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/signup.css">
-    <title>Register | SwiftPos</title>
+    <link rel="stylesheet" href="css/notif.css">
+    <link rel="stylesheet" href="css/phone.css">
+    <title>Log in | SwiftPos</title>
 </head>
 <body>
     <div class="main flex mauto column ">
         <div class="poppins" id="notification"></div>
-
-
-
         <div class="top ">
             <div class="container flex mauto column  ">
-                <div class="image ">
+                <div class="image " id="login">
                     <div class="a flex mauto ">
                         <img class="full" src="assets/images/logo.png" alt="SwiftPos Logo">
                     </div>
                     <div class="b ">
-                         <span class="c1">Sign</span><span class="c2"> Up</span><span class="c3">!</span>
+                         <span class="c1">Welcome,</span><span class="c2"> Log</span><span class="c3"> in!</span>
                     </div>
                     
                     
                 </div>
                 <div class="b1 flex ">
-                            <div class="step1 gradient ">
-
-                            </div>
-
-                            <div class="step2 ">
-
-                            </div>
-
-                            <div  class="step3 ">
-
-                            </div>
+                            Click on forgot password to reset <br />
+                                your password.
+                </div>
+                <div class="inputContainer flex column mauto ">
+                    <div class="input  flex mauto ">
+                        <input class="full poppins" type="text" placeholder="Username" autocomplete="off" id="username" />
                     </div>
+                    
+                    
+            
+                    <div class="input flex mauto ">
+                        <input class="full poppins"  type="password"  placeholder="Password" autocomplete="off"  id="password" />
+                    </div>
+                </div>
                
                 
             </div>
             <div class="c flex column mauto ">
-                      <div class="ba mauto flex row ">
+                      <div class="ba mauto flex row " id="loginbtn">
                             <div class="left flex mauto  ">
-                               <p class="mauto mt">Continue</p>
+                               <p class="mauto mt poppins">Log In</p>
                             </div>                            
                       </div>  
                       
-                      <div class="bb mauto "><p>Log in instead?</p></div>  
+                      <div class="bb mauto poppins"><p>Forgot password?</p></div>  
             </div>
              
         </div>
@@ -62,17 +61,9 @@
 </body>
 
 <script src="js/notification.js" defer></script>
+<script defer src="js/login.js"></script>
 
-<script defer>
-    document.querySelector('.left').addEventListener('click', function() {
-        window.location.href = 'phone.html';
-    });
-    document.querySelector('.bb').addEventListener('click', function() {
-        window.location.href = 'login.html';
-    });
-</script>
 
-    
 
 
 </html>

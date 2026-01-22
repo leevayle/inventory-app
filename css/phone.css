@@ -186,6 +186,15 @@ input::placeholder{
 #top{
     margin-top: 40%;
 }
+#login{
+    margin-top: 15%;
+}
+#loginbtn{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+#loginbtn:hover{
+    background-color: var(--accent1);
+}
 
 
 
