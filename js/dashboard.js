@@ -1,0 +1,1 @@
+notify('success','Page online','Your page is now online',2000);
