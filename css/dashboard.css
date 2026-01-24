@@ -12,6 +12,7 @@
     --black: #000000;
     --white: rgb(255, 255, 255);
     --circlebg: #EFF4F3;
+    --circlehover:#D8F9ED;
     --down: rgb(207, 19, 19);
 }
 
@@ -144,7 +145,7 @@ body {
 
 }
 .approval:hover{
-    background-color: var(--accent1);
+    background-color: var(--circlehover);
 }
 .approval:active{
     
@@ -241,7 +242,7 @@ body {
     background-color: var(--accent2);
 }
 .card:hover .cardtopl{
-    background-color: var(--background2);
+    background-color: var(--circlehover);
 }
 
 .bottomcont{
@@ -342,4 +343,188 @@ body {
 
 
 
+
+
+
+
+.btmcard1top{
+    height: 10%;
+    color: rgb(167, 41, 41);
+    padding-left: 40px;
+    margin-top: 10px;
+}
+.btmcard1c{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+/* table styling */
+
+.dummy-inventory-table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.dummy-inventory-table th,
+.dummy-inventory-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dummy-inventory-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+}
+
+.dummy-inventory-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.dummy-inventory-table td:nth-child(3) {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Optional: make low stock stand out */
+.dummy-inventory-table tr td:nth-child(3):where(:text(0), :text(1), :text(2), :text(3), :text(4), :text(5)) {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+/* CHART AREA */
+.charttop{
+    height: 50px;
+    width: 80%;
+    align-items: center;
+    padding-left: 20px;
+}
+.chartbtm{
+    flex-grow: 1;
+    max-height: 300px;
+    width: 90%;
+}
+
+.chartelement{
+    width: 100px;
+    height: 100%;
+    align-items: center;
+    color: var(--text-color);
+}
+.c-element{
+    height: 80%;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.graph{
+    height: 0%;
+    background: linear-gradient(to top,#01CD74, #02885A);
+    margin-top: auto;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+#graph1{
+    height: 30%;
+}
+#graph2{
+    height: 63%;
+}
+#graph3{
+    height: 93%;
+}
+#graph4{
+    height: 13%;
+}
+
+
+
+
+
+
+.recentstop{
+    height: 40px;
+    padding: 5px;
+    width: 90%;
+    align-items: center;
+}
+
+
+
+/*  RECENT SALES */
+
+/* Shared base styles for both tables */
+.dummy-inventory-table,
+.dummy-purchases-table {
+  width: 100%;
+  max-width: 700px;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 1.5rem 0;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.dummy-inventory-table th,
+.dummy-inventory-table td,
+.dummy-purchases-table th,
+.dummy-purchases-table td {
+  padding: 11px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e8ecef;
+}
+
+.dummy-inventory-table th,
+.dummy-purchases-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+
+.dummy-inventory-table tbody tr:hover,
+.dummy-purchases-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Specific to purchases table */
+.dummy-purchases-table th:nth-child(3),
+.dummy-purchases-table th:nth-child(4),
+.dummy-purchases-table td:nth-child(3),
+.dummy-purchases-table td:nth-child(4) {
+  text-align: right;
+}
+
+.dummy-purchases-table td:nth-child(3) {
+  font-weight: 500;
+  color: #1e40af;
+}
+
+.dummy-purchases-table td:nth-child(4) {
+  color: #047857;
+}
+
+.dummy-purchases-table td:nth-child(5) {
+  text-align: center;
+  font-weight: 500;
+}
 
