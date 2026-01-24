@@ -8,12 +8,27 @@
     border: 1px solid green;
 }
 .gradient{
-    background: linear-gradient(to right,var(--accent2), var(--accent1));
+    background: linear-gradient(to right,var(--accent1), var(--accent2));
+}
+.bg1{
+    background-color: var(--accent1);
+}
+.bg2{
+    background-color: var(--accent2);
+    
 }
 .poppins{
     font-family: 'poppins', sans-serif;
 }
 
+
+:root{
+    --accent1: #17B095;
+    --accent2: #F3BA1C;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --black: #000000;
+}
 
 .flex{
     display: flex;

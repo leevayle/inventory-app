@@ -21,12 +21,17 @@ return [
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
 
+            fname VARCHAR(50),
+            sname VARCHAR(50),
+
             username VARCHAR(50) NOT NULL,
             email VARCHAR(100) UNIQUE NOT NULL,
             phone VARCHAR(20) UNIQUE NOT NULL,
 
             password VARCHAR(255) NOT NULL,
             pin VARCHAR(255) NOT NULL,
+
+            gender ENUM('female','male','unset') DEFAULT 'unset',
 
             status ENUM('inactive','active','suspended') DEFAULT 'inactive',
             role ENUM('admin','cashier','manager','stockist','pending','superadmin') DEFAULT 'pending',

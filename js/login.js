@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             notify('success', 'Welcome', 'Login successful', 2500);
 
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'main/dashboard.html';
             }, 3000);
 
         } catch (err) {
