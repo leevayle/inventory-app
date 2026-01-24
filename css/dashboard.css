@@ -4,12 +4,15 @@
     --accent1: #17B095;
     --accent1a:#00E382;
     --accent2: #F3BA1C;
+    --accent2a:#FBD968;
     --background-color: #F5F5F5;
     --background2: #ebebeb;
     --hover: rgb(216, 216, 216);
     --text-color: #a3a3a3;
     --black: #000000;
     --white: rgb(255, 255, 255);
+    --circlebg: #EFF4F3;
+    --down: rgb(207, 19, 19);
 }
 
 
@@ -234,6 +237,12 @@ body {
 .card:hover{
     border: 1px solid var(--accent1a);
 }
+.card:hover .cardbtmr{
+    background-color: var(--accent2);
+}
+.card:hover .cardtopl{
+    background-color: var(--background2);
+}
 
 .bottomcont{
     width: 99.5%;
@@ -275,6 +284,60 @@ body {
 
 
 
+
+
+/* Card elements, inside the card*/
+.cardtop, .cardbtm{
+    width: 100%;
+    height: 50%;
+    
+}
+
+
+.cardtopl{
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: var(--circlebg);
+    padding: 20px;
+}
+.cardtopr{
+    margin-right: auto;
+}
+.cardtoprtrend{
+    height: 20px;
+    font-size: small;
+}
+.up{
+    color: var(--accent1);
+}
+.down{
+    color: var(--down);
+}
+
+.cardbtml{
+    margin-left: 30px;
+    font-size: x-large;
+    width: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+.cardbtmr{
+    width: 60px;
+    height: 60px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: auto;
+    background-color: var(--accent2a);
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    font-size: xx-large;
+    color: var(--accent1);
+}
 
 
 
