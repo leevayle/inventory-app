@@ -11,7 +11,7 @@
     background: linear-gradient(to right,var(--accent1), var(--accent2));
 }
 .gradient2{
-        background: linear-gradient(to top,#D8F9ED, #B2F4D9);
+        background: linear-gradient(to top,#f6f9d8, #B2F4D9);
 }
 .bg1{
     background-color: var(--accent1);

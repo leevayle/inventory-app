@@ -427,7 +427,7 @@ body {
 }
 .c-element{
     height: 80%;
-    width: 100px;
+    width: 90px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -435,7 +435,7 @@ body {
 }
 .graph{
     height: 0%;
-    background: linear-gradient(to top,#01CD74, #02885A);
+    background: linear-gradient(to top,#64cd01, #02885A);
     margin-top: auto;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
