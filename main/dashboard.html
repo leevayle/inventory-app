@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/notif.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <title>Log in | SwiftPos</title>
+    <title id="title">SwiftPos v1.0</title>
 </head>
-<body>
+<body class="flex column ">
 
     <!-- Skeleton Preview -->
-<div id="skeleton-preview" class="skeleton-container">
+<div id="skeleton-preview" class="skeleton-container ">
     <div class="skeleton-header">
         <div class="skeleton-logo"></div>
         <div class="skeleton-nav">
@@ -54,7 +54,10 @@
 </div>
 
 
-<div class="app flex ">
+<div class="app flex mauto ">
+
+    <!-- NOTIFICATION DIV -->
+
     <div class="poppins" id="notification"></div>
     <!-- TOP BAR -->
 
@@ -64,6 +67,7 @@
         </div>
 
         <div class="top-center w-auto vauto flex ">
+            
             <div class="roundnav flex mauto w-auto active">
                 <div class="icondiv mauto ">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z" stroke="#1C274C" stroke-width="1.5"></path> <path d="M15 18H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
@@ -94,6 +98,14 @@
                 </div>
                 <div class="navtitle mauto poppins ">Orders</div>
             </div>
+
+            <select class="mobilemenu flex full transparent">
+                <option value="home">Home</option>
+                <option value="sell">Sell</option>
+                <option value="bills">Bills</option>
+                <option value="stock control">Stock control</option>
+                <option value="orders">Orders</option>
+            </select>
             
             
         </div>
@@ -127,7 +139,7 @@
 
         <!-- SUN NAVIGATION -->
 
-        <div class="subnav flex ">
+        <div class="subnav mauto flex ">
 
             <div class="subnavleft w-auto flex poppins ">
                 <div class="relative subtitlenav w-auto pointer " id="summary" title="summary">
@@ -179,7 +191,7 @@
         <!-- BOTTOM AREA -->
 
         <div class="maindash flex column " id="maindash">
-            <div class="cardcont flex ">
+            <div class="cardcont flex mauto ">
                 <div class="cardholder flex ">
                     <div class="card flex column vauto hauto ">
                         <div class="cardtop flex ">
@@ -196,7 +208,7 @@
                             </div>
                         </div>
                         <div class="cardbtm flex ">
-                            <div class="cardbtml poppins bold ">
+                            <div class="cardbtml times bold ">
                                 27,316.98
                             </div>
                             <div class="cardbtmr flex rounded pointer ">
@@ -211,7 +223,7 @@
                             </div>
                             <div class="cardtopr vauto flex column ">
                                 <div class="cardtoprtitle poppins bold ">
-                                    Total Items sold
+                                    Items sold
                                 </div>
                                 <div class="cardtoprtrend poppins">
                                     <span class="down">16% Decrease </span>
@@ -219,7 +231,7 @@
                             </div>
                         </div>
                         <div class="cardbtm flex ">
-                            <div class="cardbtml poppins bold ">
+                            <div class="cardbtml times bold ">
                                 26
                             </div>
                             <div class="cardbtmr flex rounded pointer ">
@@ -245,7 +257,7 @@
                             </div>
                         </div>
                         <div class="cardbtm flex ">
-                            <div class="cardbtml poppins bold ">
+                            <div class="cardbtml times bold ">
                                 3
                             </div>
                             <div class="cardbtmr flex rounded pointer ">
@@ -267,7 +279,7 @@
                             </div>
                         </div>
                         <div class="cardbtm flex ">
-                            <div class="cardbtml poppins bold ">
+                            <div class="cardbtml times bold ">
                                 7,025.23
                             </div>
                             <div class="cardbtmr flex rounded pointer ">
@@ -280,8 +292,8 @@
 
             <!-- BOTTOM DASH AREA -->
             
-            <div class="bottomcont flex mauto ">
-                <div class="bottomcard1 btmbg mauto red">
+            <div class="bottomcontdash-x flex mauto row red">
+                <div class="bottomcard1 btmbg mauto ">
                     <div class="btmcard1top poppins bold ">
                         Restock soon!
                     </div>
@@ -331,7 +343,7 @@
                         Sales chart for the period selected 
                     </div>
                     <div class="chartbtm flex mauto ">
-                        <div class="chartelement flex mauto column ">
+                        <div class=" flex mauto column chartelement" id="first-graph">
                             <div class="c-element flex column gradient2 ">
                                 <div class="graph" id="graph1">
 
@@ -375,7 +387,7 @@
 
 
 
-                <div class="bottomcard3 btmbg mauto red">
+                <div class="bottomcard3 btmbg mauto ">
                     <div class="recentstop flex mauto poppins bold ">
                         Recent purchases
                     </div>
@@ -386,8 +398,7 @@
                                 <th>Receipt No</th>
                                 <th>Cashier</th>
                                 <th>Amt</th>
-                                <th>Disc</th>
-                                <th>Items</th>
+                                
                                 <th>Method</th>
                                 </tr>
                             </thead>
@@ -396,32 +407,32 @@
                                 <td>REC-23041</td>
                                 <td>Jane M.</td>
                                 <td>4,850</td>
-                                <td>350</td>
-                                <td>7</td>
+                                
+                                
                                 <td>M-Pesa</td>
                                 </tr>
                                 <tr>
                                 <td>REC-23038</td>
                                 <td>Mike O.</td>
                                 <td>12,200</td>
-                                <td>0</td>
-                                <td>3</td>
+                                
+                                
                                 <td>Card</td>
                                 </tr>
                                 <tr>
                                 <td>REC-23035</td>
                                 <td>Jane M.</td>
                                 <td>2,180</td>
-                                <td>120</td>
-                                <td>12</td>
+                                
+                                
                                 <td>M-Pesa</td>
                                 </tr>
                                 <tr>
                                 <td>REC-23029</td>
                                 <td>Sarah K.</td>
                                 <td>8,990</td>
-                                <td>900</td>
-                                <td>5</td>
+                                
+                                
                                 <td>Cash</td>
                                 </tr>
                                 

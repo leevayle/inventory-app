@@ -20,6 +20,7 @@
 
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     background-color: var(--background-color);
 }
@@ -32,7 +33,7 @@ body {
 
 .app{
     height: 99.7%;
-    width: 100%;
+    width: 99.5%;
     flex-direction: column;
 }
 .nav{
@@ -162,7 +163,16 @@ body {
 }
 
 .subnav{
-    height: 60px;
+    min-height: 60px;
+    width: 95%;    
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.subnav::-webkit-scrollbar {
+  /* For Chrome, Safari, Opera, and other WebKit-based browsers */
+  display: none;
 }
 .subnavleft{
     padding-left: 20px;
@@ -211,16 +221,18 @@ body {
 }
 
 .maindash{
-    max-height: 100%;
-    flex-grow: 1;
+    min-height: 99vh;
+    min-width: 99%;
     overflow-y: auto;
-    padding-top: 30px;
+    padding-top: 0px;
+    width: 99.5%;
 }
 
 
 .cardcont{
-    width: 100%;
-    height: 45%;
+    width: 99.5%;
+    min-height: 35%;
+    height: auto;
 }
 .cardholder{
     height: 100%;
@@ -229,6 +241,8 @@ body {
 .card{
     width: 45%;
     height: 80%;
+    
+    max-height: 300px;
     border-radius: 30px;
     background-color: var(--white);
     box-shadow: rgba(0, 0, 0, 0.027) 0px 5px 30px;
@@ -245,9 +259,11 @@ body {
     background-color: var(--circlehover);
 }
 
-.bottomcont{
+.bottomcontdash-x{
     width: 99.5%;
-    height: 55%;
+    height: 50%;
+    flex-grow: 1;
+    height: auto;
 }
 .btmbg{
     background-color: var(--white);
@@ -255,7 +271,7 @@ body {
     border: 1px solid var(--white);
     transition: all 0.1s;
 }
-.bottomcont:last-child{
+.bottomcontdash-x:last-child{
     margin-right: 0px;
 }
 .btmbg:hover{
@@ -281,6 +297,7 @@ body {
     margin-left: 20px;
     border-radius: 30px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -351,11 +368,11 @@ body {
     height: 10%;
     color: rgb(167, 41, 41);
     padding-left: 40px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .btmcard1c{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 
@@ -364,7 +381,6 @@ body {
 
 .dummy-inventory-table {
   width: 100%;
-  max-width: 600px;
   border-collapse: collapse;
   margin: 1rem 0;
 }
@@ -417,6 +433,9 @@ body {
     flex-grow: 1;
     max-height: 300px;
     width: 90%;
+    max-width: 700px;
+    height: auto;
+    min-height: 250px;
 }
 
 .chartelement{
@@ -473,7 +492,7 @@ body {
 .dummy-inventory-table,
 .dummy-purchases-table {
   width: 100%;
-  max-width: 700px;
+  min-width: none;
   border-collapse: collapse;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   margin: 1.5rem 0;
@@ -486,7 +505,7 @@ body {
 .dummy-purchases-table th,
 .dummy-purchases-table td {
   padding: 11px 14px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #e8ecef;
 }
 
@@ -527,4 +546,160 @@ body {
   text-align: center;
   font-weight: 500;
 }
+
+
+
+
+
+.mobilemenu{
+    display: none;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:1565px) {
+   .icondiv{
+    display: none;
+   } 
+   .navtitle{
+    margin-right: 0px;
+   }
+   .roundnav{
+    padding-right: 30px;
+}
+   .dashuser{
+    display: none;
+   }
+   .bottomcontdash-x{
+    flex-direction: column;
+    padding: 0px;
+   }
+   .bottomcard1, .bottomcard2, .bottomcard3{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+   }
+}
+  
+
+
+
+@media screen and (max-width:1250px) {
+   .icondiv{
+    display: flex;
+    margin-right: 0px;
+   } 
+   .navtitle{
+    display: none;
+   }
+
+   .cardholder{
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+   }
+   .cardcont{
+    flex-direction: column;
+    height: auto;
+    min-height: 450px;
+   }
+   .card{
+    min-height: 200px;
+   }
+   
+}
+
+
+@media screen and (max-width:1065px) {
+   .approval, .dash-settings, .subnavright{
+    display: none;
+   }
+   .profile{
+    margin-right: 0px;
+   }
+   
+   
+}
+
+
+@media screen and (max-width:800px) {
+   
+   .cardholder{
+    flex-direction: column;
+    margin-top: 0px;
+   }
+   .cardcont{
+    height: auto;
+    min-height: 900px;
+    margin-top: 20px;
+   }
+   .card{
+    margin-bottom: 30px;
+    width: 90%;
+   }
+   
+}
+
+
+@media screen and (max-width:785px) {
+   
+   .roundnav{
+    display: none;
+   }
+   .top-center{
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    background-image: url(../assets/images/menu.jpg);
+    background-position: center;
+    background-size: cover;
+   }
+   .top-right{
+    margin-left: 10px;
+   }
+ 
+   .mobilemenu{
+    display: flex;
+   }
+   
+}
+
+
+@media screen and (max-width:540px) {
+   
+   .recents{
+    overflow: hidden;
+   }
+   
+}
+
+
+@media screen and (max-width:475px) {
+   
+   #first-graph{
+    display: none;
+   }
+   
+}
+
+@media screen and (max-width:357px) {
+   
+   .bottomcard2{
+    display: none;
+   }
+   
+}
+
 

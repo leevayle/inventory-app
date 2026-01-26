@@ -18,7 +18,7 @@ function showSkeleton() {
             dashboard.style.display = 'none';
         }
     }
-    notify('info','Preparing yor page','Waiting for server response, kindly wait. This might take a while',1000);
+    // notify('info','Preparing yor page','Waiting for server response, kindly wait. This might take a while',1000);
 }
 
 function hideSkeleton() {

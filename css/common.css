@@ -79,3 +79,12 @@
     position: absolute;
 }
 .bold{ font-weight: bold;}
+.times{
+    font-family: 'times new roman', sans-serif;
+}
+.hidden{
+   visibility: hidden;
+}
+.transparent{
+    opacity: 0;
+}
