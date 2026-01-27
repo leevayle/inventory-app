@@ -1,0 +1,27 @@
+.duration input{
+    width: 98%;
+    background-color: var(--white);
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    padding: 5px;
+    text-align: center;
+}
+.maindash{
+    min-height: 80vh;
+}
+.restock, .addnew{
+    width: 150px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--background2);
+    background-color: var(--white);
+}
+
+.restock:hover, .addnew:hover{
+    background-color: var(--accent2a);
+}

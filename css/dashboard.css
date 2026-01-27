@@ -221,7 +221,8 @@ body {
 }
 
 .maindash{
-    min-height: 99vh;
+    min-height: 80vh;
+    max-height: 81vh;
     min-width: 99%;
     overflow-y: auto;
     padding-top: 0px;
