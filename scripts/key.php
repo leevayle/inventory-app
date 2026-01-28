@@ -1,6 +1,5 @@
 <?php
 
-
 if (!defined('APP_INIT')) {
     http_response_code(403);
     exit('Forbidden');
@@ -13,8 +12,9 @@ define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 try {
+    // Include DB_NAME in DSN
     $pdo = new PDO(
-        "mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET,
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET,
         DB_USER,
         DB_PASS,
         [

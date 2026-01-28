@@ -76,10 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.error || 'Authentication failed');
             }
 
+            // ────────────────────────────────────────────────
+            //  Save the PREVIOUS last_login_at value to localStorage
+            // ────────────────────────────────────────────────
+            if (data.success) {
+                localStorage.setItem('lastLoginAt', data.last_login_at);
+                // value will be: "null" (string) or e.g. "2025-01-12 09:45:00"
+            }
+
             if (data.phone) localStorage.setItem('phone', data.phone);
             if (data.role) localStorage.setItem('role', data.role);
 
-            // ✅ reset button BEFORE notifying
+            // reset UI
             resetLoginBtn();
 
             notify('success', 'Welcome', 'Login successful', 2500);

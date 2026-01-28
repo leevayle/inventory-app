@@ -1,16 +1,18 @@
 <?php
-// Define the constant required by key.php
+// Required by key.php
 define('APP_INIT', true);
 
-// Set header for JSON response
+// JSON response
 header('Content-Type: application/json');
 
-// Include the database connection file
-// This provides the $pdo object and DB constants
+// Start session (CRITICAL)
+session_start();
+
+// DB connection
 require_once __DIR__ . '/key.php';
 
 /**
- * Helper: Convert Hex to String
+ * Convert hex string to normal string
  */
 function hexToString(string $hex): string {
     if (!ctype_xdigit($hex)) {
@@ -25,7 +27,7 @@ function hexToString(string $hex): string {
 }
 
 /**
- * Helper: Basic SQL injection pattern detection
+ * Basic SQL injection pattern detection
  */
 function looksLikeInjection(string $value): bool {
     return preg_match(
@@ -35,7 +37,7 @@ function looksLikeInjection(string $value): bool {
 }
 
 try {
-    // Ensure we are targeting the correct database defined in key.php
+    // Ensure correct database
     $pdo->exec("USE " . DB_NAME);
 
     $input = json_decode(file_get_contents('php://input'), true);
@@ -49,11 +51,8 @@ try {
     }
 
     // Decode hex
-    $username = hexToString($input['username']);
+    $username = trim(hexToString($input['username']));
     $password = hexToString($input['password']);
-
-    // Trim input
-    $username = trim($username);
 
     // Username rules
     if (strlen($username) > 15) {
@@ -66,23 +65,23 @@ try {
         exit;
     }
 
-    // Fetch user using the $pdo instance from key.php
+    // Fetch user + last_login_at
     $stmt = $pdo->prepare("
-        SELECT id, password, status, role, phone
+        SELECT id, username, password, status, role, phone, last_login_at
         FROM users
         WHERE username = :username
         LIMIT 1
     ");
     $stmt->execute(['username' => $username]);
 
-    $user = $stmt->fetch();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
         echo json_encode(['error' => "User doesn't exist"]);
         exit;
     }
 
-    // Verify password (hashed in DB)
+    // Verify password
     if (!password_verify($password, $user['password'])) {
         echo json_encode(['error' => 'Wrong password']);
         exit;
@@ -94,17 +93,38 @@ try {
         exit;
     }
 
-    // SUCCESS
+    // ────────────────────────────────────────────────
+    //               UPDATE last login time
+    // ────────────────────────────────────────────────
+    $updateStmt = $pdo->prepare("
+        UPDATE users 
+        SET last_login_at = NOW()
+        WHERE id = :id
+    ");
+    $updateStmt->execute(['id' => $user['id']]);
+
+    // ────────────────────────────────────────────────
+    //               SESSION
+    // ────────────────────────────────────────────────
+    $_SESSION['user_id']  = $user['id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['role']     = $user['role'];
+    $_SESSION['phone']    = $user['phone'];
+
+    // Optional but recommended (prevents session fixation)
+    session_regenerate_id(true);
+
+    // Respond with original success + the PREVIOUS last_login_at value
+    // (before we updated it)
     echo json_encode([
-        'success' => true,
-        'role'    => $user['role'],
-        'phone'   => bin2hex($user['phone'] ?? '') // keep frontend hex-consistent
+        'success'       => true,
+        'last_login_at' => $user['last_login_at']   // null or "2024-11-15 14:30:22"
     ]);
 
 } catch (Throwable $e) {
     http_response_code(400);
     echo json_encode([
-        'error' => 'Authentication failed',
-        'debug' => $e->getMessage() // You can remove this in production
+        'error' => 'Authentication failed'
+        // 'debug' => $e->getMessage()  // uncomment only during development
     ]);
 }

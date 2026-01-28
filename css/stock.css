@@ -25,3 +25,7 @@
 .restock:hover, .addnew:hover{
     background-color: var(--accent2a);
 }
+
+.duration:focus-within {
+    border: 1px solid var(--accent2);
+}

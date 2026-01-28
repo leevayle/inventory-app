@@ -39,6 +39,7 @@ return [
             profile_url VARCHAR(255) DEFAULT NULL,
             branch_id INT DEFAULT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            last_login_at DATETIME DEFAULT NULL,
 
             UNIQUE KEY uq_username (username),
             UNIQUE KEY uq_phone (phone),

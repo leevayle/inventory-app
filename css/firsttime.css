@@ -1,0 +1,130 @@
+/* First-time login modal */
+.first-time-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+.first-time-modal-content {
+  background: var(--white);
+  border-radius: 16px;
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+  margin: 10px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.modal-header h2 {
+  margin: 0 0 8px;
+  font-size: 1.7rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 90%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--accent1);
+    outline: none;
+}
+
+
+
+.gender-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+  margin-top: 8px;
+}
+
+.gender-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.profile-pic-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.profile-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent2a);
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn.primary {
+  background: var(--accent2);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: var(--accent1);
+}
+
+.btn.secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn.secondary:hover {
+  background: var(--accent1a);
+}
+
+.form-actions {
+  margin-top: 32px;
+  text-align: center;
+}
+
+small {
+  color: #666;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 6px;
+  text-align: center;
+}

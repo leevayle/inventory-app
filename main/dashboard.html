@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/notif.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/firsttime.css">
     <title id="title">SwiftPos v1.0</title>
 </head>
 <body class="flex column ">
@@ -113,7 +114,7 @@
         <div class="top-right vauto flex row ">
             <div class="profile flex">
                 <div class="dashimg vauto rounded pointer ">
-                    <img src="../assets/images/profiles/default.jpg" alt="Profile image" class="full rounded">
+                    <img src="../assets/images/profiles/default.jpg" alt="Profile image" class="full rounded" id="profile-pic">
                 </div>
                 <div class="poppins dashuser"> ~ <span id="username">Username</span></div>
             </div>
@@ -455,7 +456,114 @@
     
 
 
+   
+
+
+
+
+
+
+
+
+    <!-- 
+  Put this HTML somewhere in your dashboard.html (preferably near the end of <body>)
+  or in a separate file you include
+-->
+<div id="first-time-profile-modal" class="first-time-modal poppins" style="display: none;">
+  <div class="first-time-modal-content">
+    <div class="modal-header">
+      <h2>Welcome! Kindly complete your profile</h2>
+      <p>This will only take a moment</p>
+    </div>
+
+    <form id="first-time-profile-form" class="profile-form poppins">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input 
+          type="text" 
+          id="fname" 
+          name="fname" 
+          placeholder="e.g. Judy" 
+          required 
+          autocomplete="given-name"
+          maxlength="50"
+          
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input 
+          type="text" 
+          id="lname" 
+          name="surname" 
+          placeholder="e.g. Mogaka" 
+          required 
+          autocomplete="family-name"
+          maxlength="50"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="gender-options">
+          <label>
+            <input type="radio" name="gender" value="male" required> Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female"> Female
+          </label>
+          
+          <label>
+            <input type="radio" name="gender" value="unset"> Prefer not to say
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group profile-pic-group">
+        <label>Profile Picture</label>
+        <div class="profile-pic-preview-container">
+          <img 
+            id="profile-preview" 
+            src="../assets/images/profiles/default.jpg" 
+            alt="Profile preview" 
+            class="profile-preview"
+          >
+          <input 
+            type="file" 
+            id="profile_pic" 
+            name="profile_pic" 
+            accept="image/jpeg,image/png,image/webp" 
+            hidden
+          >
+          <button type="button" id="choose-photo-btn" class="btn secondary">
+            Choose Photo
+          </button>
+        </div>
+        <small>Max 5MB • JPG, PNG, WebP</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn primary" id="save-profile-btn">
+          Save & Continue
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
     
+
+
+
+
+
+
 
 
     
@@ -470,6 +578,8 @@
 <script src="../js/dashboard.js" defer></script>
 <script src="../js/skeleton.js" defer ></script>
 <script src="../js/mobilenav.js" defer ></script>
+<script src="../js/session.js" defer></script>
+<script src="../js/approve.js" defer></script>
 
 <script defer>
     
@@ -484,6 +594,89 @@
 
     });
 
+</script>
+
+
+<script defer>
+    // Run this when dashboard loads
+document.addEventListener('DOMContentLoaded', () => {
+  const lastLogin = localStorage.getItem('lastLoginAt');
+
+  // If never logged in before (null or string 'null')
+  if (!lastLogin || lastLogin === 'null') {
+    showFirstTimeProfileModal();
+  }
+});
+
+function showFirstTimeProfileModal() {
+  const modal = document.getElementById('first-time-profile-modal');
+  if (!modal) return;
+
+  modal.style.display = 'flex';
+
+  const form = document.getElementById('first-time-profile-form');
+  const preview = document.getElementById('profile-preview');
+  const fileInput = document.getElementById('profile_pic');
+  const chooseBtn = document.getElementById('choose-photo-btn');
+
+  // Photo preview
+  chooseBtn.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Optional: size check
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File is too large (max 5MB)');
+      fileInput.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      preview.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Form submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const saveBtn = document.getElementById('save-profile-btn');
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    try {
+      const formData = new FormData(form);
+      
+      const response = await fetch('../scripts/update-first-profile.php', {  // ← your backend endpoint
+        method: 'POST',
+        body: formData,
+        credentials: 'same-origin'
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Mark that onboarding is done
+        localStorage.setItem('lastLoginAt', new Date().toISOString()); // or keep real value
+        alert('Profile updated successfully!');
+        modal.style.display = 'none';
+        // optionally → location.reload() or show success animation
+      } else {
+        alert(result.error || 'Something went wrong');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to save profile');
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save & Continue';
+    }
+  });
+}
 </script>
 
 </html>
