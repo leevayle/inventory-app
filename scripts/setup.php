@@ -3,7 +3,17 @@ define('APP_INIT', true);
 
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/key.php';
+/*
+|--------------------------------------------------------------------------
+| HARD-CODED INSTALLER DATABASE CREDENTIALS
+|--------------------------------------------------------------------------
+| Installer must NOT rely on runtime config
+*/
+$DB_HOST    = 'localhost';
+$DB_NAME    = 'swift_pos_invent';
+$DB_USER    = 'root';
+$DB_PASS    = '';
+$DB_CHARSET = 'utf8mb4';
 
 $response = [
     'status'  => 'progress',
@@ -12,43 +22,62 @@ $response = [
 ];
 
 try {
+
     $input = json_decode(file_get_contents('php://input'), true);
-    $step  = (int) ($input['step'] ?? 1);
+    $step  = (int)($input['step'] ?? 1);
 
     /*
-     * STEP 1: CREATE DATABASE
-     */
+    |--------------------------------------------------------------------------
+    | STEP 1: CONNECT TO MYSQL (NO DB) + CREATE DATABASE
+    |--------------------------------------------------------------------------
+    */
     if ($step === 1) {
+
+        $pdo = new PDO(
+            "mysql:host=$DB_HOST;charset=$DB_CHARSET",
+            $DB_USER,
+            $DB_PASS,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        );
 
         $stmt = $pdo->prepare("
             SELECT SCHEMA_NAME
             FROM INFORMATION_SCHEMA.SCHEMATA
             WHERE SCHEMA_NAME = :dbname
         ");
-        $stmt->execute(['dbname' => DB_NAME]);
+        $stmt->execute(['dbname' => $DB_NAME]);
 
         if (!$stmt->fetch()) {
             $pdo->exec("
-                CREATE DATABASE `" . DB_NAME . "`
+                CREATE DATABASE `$DB_NAME`
                 CHARACTER SET utf8mb4
                 COLLATE utf8mb4_general_ci
             ");
         }
 
-        $pdo->exec("USE `" . DB_NAME . "`");
-
         $response['step']    = 1;
-        $response['message'] = 'Database ready';
+        $response['message'] = 'Database created / already exists';
         echo json_encode($response);
         exit;
     }
 
     /*
-     * STEP 2: CREATE TABLES (FROM SCHEMA FILE)
-     */
+    |--------------------------------------------------------------------------
+    | STEP 2: CONNECT TO DB + CREATE TABLES
+    |--------------------------------------------------------------------------
+    */
     if ($step === 2) {
 
-        $pdo->exec("USE `" . DB_NAME . "`");
+        $pdo = new PDO(
+            "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=$DB_CHARSET",
+            $DB_USER,
+            $DB_PASS,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        );
 
         $schemaFile = __DIR__ . '/schema/tables.php';
 
@@ -73,27 +102,61 @@ try {
     }
 
     /*
-     * STEP 3: SEED ADMIN USER
-     */
+    |--------------------------------------------------------------------------
+    | STEP 3: SEED ADMIN USER (RESPECT NOT NULL FIELDS)
+    |--------------------------------------------------------------------------
+    */
     if ($step === 3) {
 
-        $pdo->exec("USE `" . DB_NAME . "`");
+        $pdo = new PDO(
+            "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=$DB_CHARSET",
+            $DB_USER,
+            $DB_PASS,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        );
 
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE username = 'admin'");
-        $stmt->execute();
+        $check = $pdo->prepare("SELECT id FROM users WHERE username = 'admin'");
+        $check->execute();
 
-        if (!$stmt->fetch()) {
+        if (!$check->fetch()) {
+
             $hash = password_hash('admin$', PASSWORD_DEFAULT);
+            $pin  = password_hash('1234', PASSWORD_DEFAULT);
 
             $insert = $pdo->prepare("
-                INSERT INTO users (username, password, role, status)
-                VALUES ('admin', :pass, 'superadmin', 'active')
+                INSERT INTO users (
+                    fname,
+                    sname,
+                    username,
+                    email,
+                    phone,
+                    password,
+                    pin,
+                    role,
+                    status
+                ) VALUES (
+                    'System',
+                    'Administrator',
+                    'admin',
+                    'admin@localhost',
+                    '0700000000',
+                    :password,
+                    :pin,
+                    'superadmin',
+                    'active'
+                )
             ");
-            $insert->execute(['pass' => $hash]);
+
+            $insert->execute([
+                'password' => $hash,
+                'pin'      => $pin
+            ]);
         }
 
-        $response['step']    = 3;
-        $response['status']  = 'success';
+        $response['step']   = 3;
+        $response['status'] = 'success';
         $response['message'] = 'Installation complete';
         echo json_encode($response);
         exit;
@@ -102,10 +165,12 @@ try {
     throw new Exception('Invalid install step');
 
 } catch (Throwable $e) {
+
     http_response_code(500);
     echo json_encode([
         'status'  => 'error',
         'step'    => $response['step'],
         'message' => $e->getMessage()
     ]);
+    exit;
 }

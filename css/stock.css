@@ -29,3 +29,379 @@
 .duration:focus-within {
     border: 1px solid var(--accent2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cart-item-container {
+  width: 99.8%;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.cart-item-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.cart-item-table thead {
+  background: #f1f1f1;
+  color: #444;
+  font-weight: 600;
+}
+
+.cart-item-table th,
+.cart-item-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-row:hover {
+  background: #f5f5f5;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  background: #f8f9fa;
+}
+
+.qty-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.qty-btn.minus {
+  background: #fff5f5;
+  color: #e63946;
+}
+
+.qty-btn.plus {
+  background: #f0fff0;
+  color: #2f9e44;
+}
+
+.qty-input {
+  width: 54px;
+  height: 34px;
+  text-align: center;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: white;
+  appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.picture-placeholder {
+  width: 50px;
+  height: 50px;
+  background: #e9ecef;
+  border-radius: 6px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  opacity: 0.5;
+}
+.action-buttons:hover {
+    opacity: 1;
+}
+
+.btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: #51cf66;
+  color: white;
+}
+
+.btn-delete {
+  background: #ffbaba;
+  color: white;
+}
+.btn-delete:hover {
+  background: #ff7777;
+}
+
+.btn-edit{
+    background-color: rgb(255, 209, 139);
+    color: white;
+}
+.btn-edit:hover{
+    background-color: rgb(255, 153, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================
+   BASE BUTTONS
+================================ */
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.btn-save {
+  background: #92e4a0;
+  color: #ffffff;
+}
+
+.btn-save:hover {
+  background: #40c057;
+}
+
+/* ================================
+   MODAL OVERLAY
+================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* ================================
+   MODAL CONTAINER
+================================ */
+.modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  animation: modalSlideUp 0.2s ease-out;
+  padding: 20px;
+}
+
+/* ================================
+   MODAL ANIMATION
+================================ */
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================================
+   MODAL HEADER
+================================ */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666666;
+}
+
+.close-btn:hover {
+  color: #ff0000;
+}
+
+/* ================================
+   FORM BODY
+================================ */
+#productForm {
+  padding: 16px;
+}
+
+/* ================================
+   FORM GROUPS
+================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555555;
+  margin-bottom: 4px;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  transition: border-color 0.15s ease;
+  background-color: white;
+}
+
+.form-group input:focus {
+  border-color: #51cf66;
+  outline: none;
+}
+
+/* ================================
+   FILE INPUT (CLEANER LOOK)
+================================ */
+.form-group input[type="file"] {
+  padding: 6px;
+  font-size: 0.85rem;
+}
+
+/* ================================
+   FORM ACTIONS
+================================ */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  width: auto;
+  height: auto;
+}
+
+/* Long, conflict-safe button classes */
+.btn-product-form-save-action {
+  background: #51cf66;
+  color: #ffffff;
+}
+
+.btn-product-form-save-action:hover {
+  background: #40c057;
+}
+
+.btn-product-form-cancel-action {
+  background: #ff6b6b;
+  color: #ffffff;
+}
+
+.btn-product-form-cancel-action:hover {
+  background: #ff5252;
+}
+
+
+
+
+
+#productFormLoadingOverlay{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+/* ================================
+   MOBILE RESPONSIVENESS
+================================ */
+@media (max-width: 480px) {
+  .modal {
+    max-width: 95%;
+  }
+
+  .modal-header h2 {
+    font-size: 1.05rem;
+  }
+}
+

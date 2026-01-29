@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        console.log('Fetching approve.php...');
+        // console.log('Fetching approve.php...');
         const res = await fetch('../scripts/approve.php', { credentials: 'same-origin' });
-        console.log('Fetch response OK?', res.ok);
+        // console.log('Fetch response OK?', res.ok);
         if (!res.ok) {
             console.error('Server returned non-OK status');
             notify('error', 'Fetch Failed', 'Could not reach server to get profile info', 2000);
@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const data = await res.json();
-        console.log('Data from approve.php:', data);
+        // console.log('Data from approve.php:', data);
 
         // Update current user's profile image
         if (data.user && data.user.profile_url) {
-            console.log('Setting profile image for current user:', data.user.profile_url);
+            // console.log('Setting profile image for current user:', data.user.profile_url);
             profileImg.src = getProfileUrl(data.user.profile_url);
 
             // Success notification
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (typeof data.pendingCount === 'number') {
             counterEl.textContent = data.pendingCount;
             counterEl.classList.toggle('hidden', data.pendingCount === 0);
-            console.log('Pending users count:', data.pendingCount);
+            // console.log('Pending users count:', data.pendingCount);
         }
 
     } catch (err) {

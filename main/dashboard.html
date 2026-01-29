@@ -555,6 +555,115 @@
 
 
 
+<!-- SETTINGS -->
+ <!-- 
+  Place this HTML near the end of <body> in dashboard.html (or in a shared layout file)
+-->
+<div id="settings-modal" class="settings-modal" style="display: none;">
+  <div class="settings-modal-content">
+    <div class="modal-header">
+      <h2>Settings</h2>
+      <button type="button" class="close-btn" id="close-settings">×</button>
+    </div>
+
+    <div class="settings-tabs">
+      <!-- Simple tab-like sections -->
+      <div class="settings-section active" data-tab="general">General</div>
+      <div class="settings-section" data-tab="company">Company / Branch</div>
+      <div class="settings-section" data-tab="profile">Profile</div>
+    </div>
+
+    <form id="settings-form" class="settings-form">
+
+      <!-- ── General ──────────────────────────────────────────────── -->
+      <div class="tab-content" id="tab-general">
+        <div class="form-group">
+          <label>Theme</label>
+          <select id="theme-select" name="theme">
+            <option value="auto">System (Auto)</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Currency</label>
+          <select id="currency-select" name="currency">
+            <option value="KES">KES - Kenyan Shilling</option>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="UGX">UGX - Ugandan Shilling</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── Company / Branch ─────────────────────────────────────── -->
+      <div class="tab-content hidden" id="tab-company">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="company-name" name="company_name" placeholder="e.g. Kinanga Traders Ltd" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label>Branch Name</label>
+          <input type="text" id="branch-name" name="branch_name" placeholder="e.g. Kisii Main Branch" maxlength="80">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Kisii Town, Along Moi Avenue" maxlength="150">
+        </div>
+      </div>
+
+      <!-- ── Profile ──────────────────────────────────────────────── -->
+      <div class="tab-content hidden" id="tab-profile">
+        <div class="profile-header">
+          <img id="profile-preview-large" src="assets/images/default-avatar.png" alt="Your profile picture">
+          <div class="profile-info">
+            <h3 id="current-fullname">Loading...</h3>
+            <small id="current-username">@username</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="profile-fname" name="fname" placeholder="First name" required maxlength="50">
+        </div>
+
+        <div class="form-group">
+          <label>Surname</label>
+          <input type="text" id="profile-sname" name="sname" placeholder="Surname" required maxlength="50">
+        </div>
+
+        <div class="form-group profile-pic-group">
+          <label>Change Profile Picture</label>
+          <div class="profile-pic-controls">
+            <img id="profile-preview-small" src="assets/images/default-avatar.png" alt="Preview">
+            <input type="file" id="profile-pic-input" name="profile_pic" accept="image/jpeg,image/png,image/webp" hidden>
+            <button type="button" id="btn-choose-pic" class="btn secondary">Choose Photo</button>
+            <small>Max 5MB • JPG, PNG, WebP</small>
+          </div>
+        </div>
+
+        <div class="form-group password-reset">
+          <label>Password</label>
+          <button type="button" id="btn-reset-password" class="btn danger">Reset Password</button>
+          <small>We'll send a reset link to your email</small>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="cancel-settings" class="btn secondary">Cancel</button>
+        <button type="submit" id="save-settings-btn" class="btn primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
 
 
     
@@ -678,5 +787,7 @@ function showFirstTimeProfileModal() {
   });
 }
 </script>
+
+
 
 </html>
