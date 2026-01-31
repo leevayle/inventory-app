@@ -20,7 +20,7 @@ try {
 
     $userId = (int)$_SESSION['user_id'];
 
-    // 1️⃣ Fetch current logged-in user
+    // 1️⃣ Current logged-in user
     $stmtUser = $pdo->prepare("
         SELECT id, fname, sname, profile_url
         FROM users
@@ -36,29 +36,37 @@ try {
         } else if (substr($user['profile_url'], 0, 1) !== '/') {
             $user['profile_url'] = '/inventory-app/' . $user['profile_url'];
         }
-        // cache-buster
         $user['profile_url'] .= '?v=' . time();
     }
 
-    // 2️⃣ Fetch total pending users
+    // 2️⃣ Pending users count
     $stmtPending = $pdo->query("
-        SELECT COUNT(*) AS pendingCount
+        SELECT COUNT(*) FROM users WHERE role = 'pending'
+    ");
+    $pendingCount = (int)$stmtPending->fetchColumn();
+
+    // 3️⃣ Pending users details
+    $stmtUsers = $pdo->query("
+        SELECT id, username, phone
         FROM users
         WHERE role = 'pending'
+        ORDER BY created_at DESC
+        LIMIT 50
     ");
-    $pendingCount = (int) $stmtPending->fetchColumn();
+    $pendingUsers = $stmtUsers->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
         'success' => true,
         'user' => $user,
-        'pendingCount' => $pendingCount
+        'pendingCount' => $pendingCount,
+        'pendingUsers' => $pendingUsers
     ]);
 
 } catch (Throwable $e) {
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'error'   => 'Server error',
-        'debug'   => $e->getMessage()
+        'error' => 'Server error',
+        'debug' => $e->getMessage()
     ]);
 }

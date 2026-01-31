@@ -126,8 +126,8 @@
             </div>
         </div>
 
-        <div class="approval flex vauto rounded pointer relative" title="approval requests">
-            <div class="notification-counter absolute rounded poppins" id="approval-request-counter">3</div>
+        <div class="approval flex vauto rounded pointer relative" title="approval requests" id="pendingusers">
+            <div class="notification-counter absolute rounded poppins" id="approval-request-counter">0</div>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="6" r="4" stroke="#424242" stroke-width="1.5"></circle> <circle cx="18" cy="16" r="4" stroke="#424242" stroke-width="1.5"></circle> <path d="M16.6665 16L17.5 17L19.3332 15.1111" stroke="#424242" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15 13.3271C14.0736 13.1162 13.0609 13 12 13C7.58172 13 4 15.0147 4 17.5C4 19.9853 4 22 12 22C17.6874 22 19.3315 20.9817 19.8068 19.5" stroke="#424242" stroke-width="1.5"></path> </g></svg>
         </div>
 
@@ -453,6 +453,152 @@
     </div>
 
     
+
+
+
+
+
+
+    <!-- PENDING USERS MODAL -->
+    <!-- Trigger Button -->
+
+
+<!-- Modal Overlay -->
+<div id="signup-requests-modal" class="settings-modal poppins" style="display:none;">
+  <div class="settings-modal-content signup-wide">
+
+    <div class="modal-header">
+      <h2>Pending Signup Requests</h2>
+      <button type="button" class="close-btn" id="close-signup-requests">×</button>
+    </div>
+
+    <form id="signup-requests-form" class="settings-form">
+
+      <div class="tab-content">
+
+        <table class="settings-table signup-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Phone</th>
+              <th>Assign Role</th>
+              <th>Branch</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <!-- Dummy User 1 -->
+            <tr>
+              <td>john_doe</td>
+              <td>+254712345678</td>
+
+              <td>
+                <select name="users[1][role]">                  
+                  <option value="cashier" selected>Cashier</option>
+                  <option value="manager">Manager</option>
+                  <option value="admin">Admin</option>
+                  <option value="superadmin">S.Admin</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="users[1][branch]">
+                  <option value="">Select branch</option>
+                  <option value="1" selected>Main Branch</option>
+                  <option value="2">Westlands</option>
+                  <option value="3">Kisii</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="users[1][status]">
+                  <option value="active" selected>Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </td>
+
+              <td class="row-actions">
+                <button type="button" class="btn success">Approve</button>
+                <button type="button" class="btn danger">Reject</button>
+              </td>
+            </tr>
+
+            
+
+
+          </tbody>
+        </table>
+
+      </div>
+
+
+      
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- PENDING USERS MODAL UX -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const openBtn  = document.getElementById('pendingusers');
+    const modal    = document.getElementById('signup-requests-modal');
+    const closeBtn = document.getElementById('close-signup-requests');
+
+    // Open modal
+    openBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+
+    // Close modal via X
+    closeBtn.addEventListener('click', () => {
+        closeModal();
+    });
+
+    // Close modal by clicking backdrop
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
@@ -466,8 +612,7 @@
 
 
     <!-- 
-  Put this HTML somewhere in your dashboard.html (preferably near the end of <body>)
-  or in a separate file you include
+  FIRST LOGIN MODAL
 -->
 <div id="first-time-profile-modal" class="first-time-modal poppins" style="display: none;">
   <div class="first-time-modal-content">
@@ -561,13 +706,13 @@
 -->
 <div id="settings-modal" class="settings-modal" style="display: none;">
   <div class="settings-modal-content">
+
     <div class="modal-header">
       <h2>Settings</h2>
       <button type="button" class="close-btn" id="close-settings">×</button>
     </div>
 
     <div class="settings-tabs">
-      <!-- Simple tab-like sections -->
       <div class="settings-section active" data-tab="general">General</div>
       <div class="settings-section" data-tab="company">Company / Branch</div>
       <div class="settings-section" data-tab="profile">Profile</div>
@@ -577,6 +722,7 @@
 
       <!-- ── General ──────────────────────────────────────────────── -->
       <div class="tab-content" id="tab-general">
+
         <div class="form-group">
           <label>Theme</label>
           <select id="theme-select" name="theme">
@@ -596,13 +742,53 @@
             <option value="UGX">UGX - Ugandan Shilling</option>
           </select>
         </div>
+
+        <div class="form-group">
+          <label>Timezone</label>
+          <select id="timezone" name="timezone">
+            <option value="Africa/Nairobi">Africa / Nairobi</option>
+            <option value="UTC">UTC</option>
+            <option value="Europe/London">Europe / London</option>
+            <option value="America/New_York">America / New York</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Date Format</label>
+          <select id="date-format" name="date_format">
+            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Low Stock Alert Threshold</label>
+          <input type="number" id="low-stock-threshold" name="low_stock_threshold" min="0" placeholder="e.g. 10">
+        </div>
+
+        <div class="form-group">
+          <label>Default Sale Type</label>
+          <select id="default-sale-type" name="default_sale_type">
+            <option value="cash">Cash</option>
+            <option value="mpesa">M-PESA</option>
+            <option value="card">Card</option>
+          </select>
+        </div>
+
       </div>
 
       <!-- ── Company / Branch ─────────────────────────────────────── -->
       <div class="tab-content hidden" id="tab-company">
+
         <div class="form-group">
           <label>Company Name</label>
           <input type="text" id="company-name" name="company_name" placeholder="e.g. Kinanga Traders Ltd" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label>Business Registration / KRA PIN</label>
+          <input type="text" id="business-pin" name="business_pin" placeholder="e.g. P012345678X">
         </div>
 
         <div class="form-group">
@@ -611,18 +797,41 @@
         </div>
 
         <div class="form-group">
+          <label>Branch Phone</label>
+          <input type="tel" id="branch-phone" name="branch_phone" placeholder="+254 7XX XXX XXX">
+        </div>
+
+        <div class="form-group">
+          <label>Branch Email</label>
+          <input type="email" id="branch-email" name="branch_email" placeholder="branch@example.com">
+        </div>
+
+        <div class="form-group">
           <label>Location</label>
           <input type="text" id="location" name="location" placeholder="e.g. Kisii Town, Along Moi Avenue" maxlength="150">
         </div>
+
+        <div class="form-group">
+          <label>Default Tax Rate (%)</label>
+          <input type="number" id="tax-rate" name="tax_rate" min="0" max="100" step="0.01" placeholder="e.g. 16">
+        </div>
+
+        <div class="form-group">
+          <label>Receipt Footer Note</label>
+          <input type="text" id="receipt-footer" name="receipt_footer" placeholder="e.g. Goods once sold are not returnable">
+        </div>
+
       </div>
 
       <!-- ── Profile ──────────────────────────────────────────────── -->
       <div class="tab-content hidden" id="tab-profile">
+
         <div class="profile-header">
-          <img id="profile-preview-large" src="assets/images/default-avatar.png" alt="Your profile picture">
+          <img id="profile-preview-large" src="../assets/images/profiles/default.jpg" alt="Your profile picture">
           <div class="profile-info">
             <h3 id="current-fullname">Loading...</h3>
-            <small id="current-username">@username</small>
+            <small id="current-username">@username</small><br>
+            <small id="current-role">Role: Cashier</small>
           </div>
         </div>
 
@@ -639,11 +848,24 @@
         <div class="form-group profile-pic-group">
           <label>Change Profile Picture</label>
           <div class="profile-pic-controls">
-            <img id="profile-preview-small" src="assets/images/default-avatar.png" alt="Preview">
+            <img id="profile-preview-small" src="../assets/images/profiles/default.jpg" alt="Preview">
             <input type="file" id="profile-pic-input" name="profile_pic" accept="image/jpeg,image/png,image/webp" hidden>
             <button type="button" id="btn-choose-pic" class="btn secondary">Choose Photo</button>
             <small>Max 5MB • JPG, PNG, WebP</small>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Language</label>
+          <select id="preferred-language" name="language">
+            <option value="en">English</option>
+            <option value="sw">Swahili</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Last Password Change</label>
+          <input type="text" id="last-password-change" value="—" readonly>
         </div>
 
         <div class="form-group password-reset">
@@ -651,15 +873,65 @@
           <button type="button" id="btn-reset-password" class="btn danger">Reset Password</button>
           <small>We'll send a reset link to your email</small>
         </div>
+
       </div>
 
       <div class="form-actions">
         <button type="button" id="cancel-settings" class="btn secondary">Cancel</button>
         <button type="submit" id="save-settings-btn" class="btn primary">Save Changes</button>
       </div>
+
     </form>
   </div>
 </div>
+
+
+
+<!-- settings modal js -->
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('settings-modal');
+  const openBtn = document.getElementById('settings');
+  const closeBtn = document.getElementById('close-settings');
+  const cancelBtn = document.getElementById('cancel-settings');
+
+  const tabs = document.querySelectorAll('.settings-section');
+  const contents = document.querySelectorAll('.tab-content');
+
+  // Open modal
+  openBtn?.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  // Close modal
+  [closeBtn, cancelBtn].forEach(btn => {
+    btn?.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  });
+
+  // Close on backdrop click
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // Tabs logic
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.add('hidden'));
+
+      tab.classList.add('active');
+      document
+        .getElementById(`tab-${tab.dataset.tab}`)
+        .classList.remove('hidden');
+    });
+  });
+});
+
+ </script>
 
 
 
@@ -690,6 +962,10 @@
 <script src="../js/session.js" defer></script>
 <script src="../js/approve.js" defer></script>
 
+
+
+
+<!-- REDIRECT ON CLICK -->
 <script defer>
     
 
@@ -706,12 +982,14 @@
 </script>
 
 
+
+
+<!-- UPDATE MORE USER DETAILS ON FIRST LOGIN -->
+<!-- UPDATE MORE USER DETAILS ON FIRST LOGIN -->
 <script defer>
-    // Run this when dashboard loads
 document.addEventListener('DOMContentLoaded', () => {
   const lastLogin = localStorage.getItem('lastLoginAt');
 
-  // If never logged in before (null or string 'null')
   if (!lastLogin || lastLogin === 'null') {
     showFirstTimeProfileModal();
   }
@@ -728,28 +1006,49 @@ function showFirstTimeProfileModal() {
   const fileInput = document.getElementById('profile_pic');
   const chooseBtn = document.getElementById('choose-photo-btn');
 
-  // Photo preview
+  let cropper = null;
+  const maxSize = 5 * 1024 * 1024; // 5 MB
+
+  // Replace this with your own notification function
+  function notify(message) {
+    // Example: you can replace with custom toast or modal
+    alert(message);
+  }
+
+  // Open file dialog
   chooseBtn.addEventListener('click', () => fileInput.click());
 
   fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Optional: size check
-    if (file.size > 5 * 1024 * 1024) {
-      alert('File is too large (max 5MB)');
+    // Size check
+    if (file.size > maxSize) {
+      notify('File is too large (max 5MB)');
       fileInput.value = '';
-      return;
+      preview.src = '';
+      if (cropper) { cropper.destroy(); cropper = null; }
+      return; // stop processing
     }
 
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
+
+      // Destroy previous cropper if any
+      if (cropper) cropper.destroy();
+
+      // Initialize Cropper.js
+      cropper = new Cropper(preview, {
+        aspectRatio: 1, // 1:1 square
+        viewMode: 1,
+        autoCropArea: 1,
+        background: false
+      });
     };
     reader.readAsDataURL(file);
   });
 
-  // Form submit
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -759,8 +1058,18 @@ function showFirstTimeProfileModal() {
 
     try {
       const formData = new FormData(form);
-      
-      const response = await fetch('../scripts/update-first-profile.php', {  // ← your backend endpoint
+
+      // Replace file with cropped blob if cropper exists
+      if (cropper) {
+        await new Promise(resolve => cropper.getCroppedCanvas().toBlob(blob => {
+          const originalName = fileInput.files[0].name;
+          const ext = originalName.split('.').pop();
+          formData.set('profile_pic', blob, 'profile.' + ext);
+          resolve();
+        }, 'image/jpeg', 0.9));
+      }
+
+      const response = await fetch('../scripts/update-first-profile.php', {
         method: 'POST',
         body: formData,
         credentials: 'same-origin'
@@ -769,17 +1078,15 @@ function showFirstTimeProfileModal() {
       const result = await response.json();
 
       if (result.success) {
-        // Mark that onboarding is done
-        localStorage.setItem('lastLoginAt', new Date().toISOString()); // or keep real value
-        alert('Profile updated successfully!');
+        localStorage.setItem('lastLoginAt', new Date().toISOString());
+        notify('Profile updated successfully!');
         modal.style.display = 'none';
-        // optionally → location.reload() or show success animation
       } else {
-        alert(result.error || 'Something went wrong');
+        notify(result.error || 'Something went wrong');
       }
     } catch (err) {
       console.error(err);
-      alert('Failed to save profile');
+      notify('Failed to save profile');
     } finally {
       saveBtn.disabled = false;
       saveBtn.textContent = 'Save & Continue';
@@ -787,6 +1094,7 @@ function showFirstTimeProfileModal() {
   });
 }
 </script>
+
 
 
 

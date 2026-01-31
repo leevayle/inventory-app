@@ -198,65 +198,204 @@
         
 
             <!-- Modal Overlay -->
+<!-- ───────────── HTML + JS ───────────── -->
 <div id="productModal" class="modal-overlay">
-    <div class="modal poppins">
+    <div class="modal poppins modal-wide">
+
         <div class="modal-header">
             <h2>Add New Product</h2>
             <button type="button" class="close-btn" id="closeProductModal">&times;</button>
         </div>
 
-        <form id="productForm relative">
-            <div class="form-group">
-                <label>Product Code</label>
-                <input type="text" name="code" required>
+        <!-- Tabs -->
+        <div class="modal-tabs">
+            <button type="button" class="tab-btn active" data-tab="basic">Basic Info</button>
+            <button type="button" class="tab-btn" data-tab="pricing">Pricing & Stock</button>
+            <button type="button" class="tab-btn" data-tab="extra">Extra / Tracking</button>
+        </div>
+
+        <form id="productForm" class="relative" enctype="multipart/form-data">
+
+            <!-- Hidden -->
+            <input type="hidden" name="branch_id" value="">
+            <input type="hidden" name="is_active" value="1">
+
+            <!-- ── BASIC INFO ───────────────────────── -->
+            <div class="tab-content" id="tab-basic">
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Product Code</label>
+                        <input type="text" name="product_code" required maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label>SKU</label>
+                        <input type="text" name="sku" maxlength="50">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="product_name" required maxlength="255">
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category_id">
+                            <option value="drug">Drugs</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Supplier</label>
+                        <select name="supplier_id">
+                            <option value="Philmed">Philmed</option>
+                            <option value="Axar">Axar</option>
+                            <option value="Shivling">Shivling</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label>Product Name</label>
-                <input type="text" name="name" required>
+            <!-- ── PRICING & STOCK ──────────────────── -->
+            <div class="tab-content hidden" id="tab-pricing">
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Cost Price</label>
+                        <input type="number" name="cost_price" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selling Price</label>
+                        <input type="number" name="selling_price" min="0" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Unit Price</label>
+                        <input type="number" name="price" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Opening Stock Quantity</label>
+                        <input type="number" name="quantity" min="0" value="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Minimum Stock Alert</label>
+                    <input type="number" name="min_stock" min="0" value="0">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label>Price</label>
-                <input type="number" name="price" min="0" step="0.01" required>
+            <!-- ── EXTRA / TRACKING ─────────────────── -->
+            <div class="tab-content hidden" id="tab-extra">
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Batch Number</label>
+                        <input type="text" name="batch" maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="date" name="expiry_date">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Barcode</label>
+                        <input type="text" name="barcode" maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <input type="file" name="product_image" accept="image/jpeg,image/png,image/webp">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="3"></textarea>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label>Quantity</label>
-                <input type="number" name="qty" min="1" value="1" required>
-            </div>
-
-            <div class="form-group">
-                <label>Product Image (optional)</label>
-                <input type="file" name="image" accept="image/*">
-            </div>
-
-            <div class="form-actions flex ">
-                <button
-                    type="submit"
-                    class="btn btn-product-form-save-action mauto"
-                    
-                >
+            <!-- Actions -->
+            <div class="form-actions flex">
+                <button type="submit" class="btn btn-product-form-save-action mauto" id="saveProductBtn">
                     Save Product
                 </button>
 
-                <button
-                    type="button"
-                    class="btn btn-product-form-cancel-action mauto"
-                    id="cancelProductModal"
-                    
-                >
+                <button type="button" class="btn btn-product-form-cancel-action mauto" id="cancelProductModal">
                     Cancel
                 </button>
             </div>
-            <!-- Product Form Loading Overlay -->
-                <div id="productFormLoadingOverlay" style="display:none">
-                    <img src="../assets/images/1.gif" alt="Saving...">
-                    <p>Saving product…</p>
-                </div>
+
+            <!-- Loading -->
+            <div id="productFormLoadingOverlay" style="display:none">
+                <img src="../assets/images/1.gif" alt="Saving...">
+                <p>Saving product…</p>
+            </div>
+
         </form>
     </div>
 </div>
+
+<script defer>
+document.getElementById('saveProductBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const form = document.getElementById('productForm');
+    const formData = new FormData(form);
+
+    console.group('📦 Product FormData');
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+    console.groupEnd();
+
+    fetch('../scripts/save_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(async res => {
+        const text = await res.text();
+        console.group('📡 Raw Server Response');
+        console.log(text);
+        console.groupEnd();
+
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            throw new Error('Invalid JSON response');
+        }
+    })
+    .then(data => {
+        console.log('✅ Parsed JSON:', data);
+        if (data.status === 'success') {
+            notify('success', 'Saved', data.message, 2000);
+            form.reset();
+        } else {
+            notify('warning', 'Save Failed', data.message, 3000);
+        }
+    })
+    .catch(err => {
+        console.error('❌ Fetch Error:', err);
+        notify('error', 'Server Error', err.message, 3000);
+    });
+});
+</script>
+
 
 
 
@@ -320,7 +459,7 @@
 
             <!-- SAME OVERLAY SPINNER YOU ALREADY USE -->
             <div id="restockFormLoadingOverlay" style="display:none">
-                <img src="images/1.gif" alt="Processing...">
+                <img src="../assets/images/1.gif" alt="Processing...">
                 <p>Restocking…</p>
             </div>
 
@@ -386,7 +525,7 @@
                                     </div>
                                 </td>
                                 <td class="item-amount">320.00</td>
-                                <td><div class="picture-placeholder"><img class="full" src="../assets/images/products/1.jpg"></div></td>
+                                <td><div class="picture-placeholder"><img class="full" src="../assets/images/products/"></div></td>
                                 <td>
                                     <div class="action-buttons">
                                         <button type="button" class="btn btn-save" >Update</button>
@@ -566,6 +705,59 @@ document.addEventListener('input', (e) => {
 </script>
 
 
+<!-- <script defer>
+    //save product
+
+
+document.getElementById('saveProductBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const form = document.getElementById('productForm');
+    const formData = new FormData(form);
+
+    // 🔍 LOG FORM DATA BEFORE SENDING
+    console.group('📦 Product FormData');
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+    console.groupEnd();
+
+    fetch('../scripts/save_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(async res => {
+        const text = await res.text();
+
+        // 🔍 LOG RAW RESPONSE
+        console.group('📡 Raw Server Response');
+        console.log(text);
+        console.groupEnd();
+
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            throw new Error('Invalid JSON response');
+        }
+    })
+    .then(data => {
+        console.log('✅ Parsed JSON:', data);
+
+        if (data.status === 'success') {
+            notify('success', 'Saved', data.message, 2000);
+            form.reset();
+        } else {
+            notify('warning', 'Save Failed', data.message, 3000);
+        }
+    })
+    .catch(err => {
+        console.error('❌ Fetch Error:', err);
+        notify('error', 'Server Error', err.message, 3000);
+    });
+});
+</script> -->
+
+</script>
 
 <script>
 const modal = document.getElementById('productModal');
@@ -614,8 +806,10 @@ form.addEventListener('submit', (e) => {
 
 
 
-<!-- <script src="../js/session.js" defer></script>
-<script src="../js/approve.js" defer></script> -->
+
+
+<script src="../js/session.js" defer></script>
+<script src="../js/approve.js" defer></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -629,6 +823,15 @@ form.addEventListener('submit', (e) => {
                 window.location.href = 'dashboard.html';
             });
     });
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+    btn.classList.add('active');
+    document.getElementById(`tab-${btn.dataset.tab}`).classList.remove('hidden');
+  });
+});
 </script>
 
 
