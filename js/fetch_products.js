@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 tr.innerHTML = `
                     <td class="item-code">${prod.code}</td>
-                    <td class="item-name">${prod.name}</td>
+                    <td class="item-name poppins" style="text-align:left;">${prod.name}</td>
                     <td>
                         <div class="qty-control">
                             <button type="button" class="qty-btn minus">-</button>

@@ -433,3 +433,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
+// saving a product
+document.getElementById('saveProductBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+
+            // 🔍 LOG FORM DATA BEFORE SENDING
+            console.group('📦 Product FormData');
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+            console.groupEnd();
+
+            fetch('../scripts/save_product.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async res => {
+                const text = await res.text();
+
+                // 🔍 LOG RAW RESPONSE
+                console.group('📡 Raw Server Response');
+                console.log(text);
+                console.groupEnd();
+
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    throw new Error('Invalid JSON response');
+                }
+            })
+            .then(data => {
+                console.log('✅ Parsed JSON:', data);
+
+                if (data.status === 'success') {
+                    notify('success', 'Saved', data.message, 2000);
+                    form.reset();
+                } else {
+                    notify('warning', 'Save Failed', data.message, 3000);
+                }
+            })
+            .catch(err => {
+                console.error('❌ Fetch Error:', err);
+                notify('error', 'Server Error', err.message, 3000);
+            });
+        });

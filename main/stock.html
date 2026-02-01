@@ -142,7 +142,7 @@
 
     <!-- LOWER SECTION -->
 
-    <div class="content flex column">
+    <div class="content flex column relative">
 
         <!-- SUN NAVIGATION -->
 
@@ -571,12 +571,12 @@
 
     <div class="maindash flex column hauto " id="maindash">
             
-                <div class="cart-item-container hauto">
-                    <table class="cart-item-table">
+                <div class="cart-item-container hauto poppins flex ">
+                    <table class="cart-item-table ">
                         <thead>
                             <tr>
                                 <th>Code</th>
-                                <th>Name</th>
+                                <th style="text-align: left;">Name</th>
                                 <th>Qty</th>
                                 <th>Unit Price</th>
                                 <th>Picture</th>
@@ -637,8 +637,34 @@
             
         </div>
         
+        
 
     </div>
+
+
+    
+    <div class="flex pagination-cont poppins hauto absolute">
+    <div class="page-size">
+        <label>Show</label>
+        <select id="pageLimit">
+            <option value="20">20</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+        </select>
+        <span>items</span>
+    </div>
+
+    <div class="page-controls">
+        <button type="button" id="firstPage">«</button>
+        <button type="button" id="prevPage">‹</button>
+
+        <span id="pageInfo">Page 1</span>
+
+        <button type="button" id="nextPage">›</button>
+        <button type="button" id="lastPage">»</button>
+    </div>
+</div>
+
 
 
 
@@ -744,27 +770,6 @@
 
 
 
-<div class="flex pagination-cont poppins red">
-    <div class="page-size">
-        <label>Show</label>
-        <select id="pageLimit">
-            <option value="20">20</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
-        <span>items</span>
-    </div>
-
-    <div class="page-controls">
-        <button type="button" id="firstPage">«</button>
-        <button type="button" id="prevPage">‹</button>
-
-        <span id="pageInfo">Page 1</span>
-
-        <button type="button" id="nextPage">›</button>
-        <button type="button" id="lastPage">»</button>
-    </div>
-</div>
 
 
 

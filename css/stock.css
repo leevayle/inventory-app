@@ -66,6 +66,7 @@
 @media (max-width: 700px) {
   .grid-2 {
     grid-template-columns: 1fr;
+    gap: 5px;
   }
 }
 
@@ -74,9 +75,79 @@
 
 
 .pagination-cont{
-  width: 50%;
-  height: 100px;
+  width: 98%;
+  height: 50px;
+  bottom: 0px;
 }
+
+/* Pagination Container */
+.pagination-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    gap: 1rem;
+}
+
+/* Page size selector */
+.pagination-cont .page-size {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.pagination-cont .page-size label {
+    font-weight: 500;
+}
+
+.pagination-cont .page-size select {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+.pagination-cont .page-size select:focus {
+    border-color: var(--accent1); /* red theme */
+}
+
+/* Page controls */
+.pagination-cont .page-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-cont .page-controls button {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-cont .page-controls button:hover {
+    background-color: var(--accent1);
+    color: #fff;
+}
+
+.pagination-cont .page-controls #pageInfo {
+    padding: 0 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
 
 
 
@@ -116,6 +187,7 @@
   width: 99.8%;
   margin-top: 20px;
   overflow-x: auto;
+  height: 89%;
 }
 
 .cart-item-table {
@@ -124,6 +196,7 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  flex-grow: 1;
 }
 
 .cart-item-table thead {
