@@ -15,7 +15,7 @@
 <body class="flex column ">
 
     <!-- Skeleton Preview -->
-<div id="skeleton-preview" class="skeleton-container hidden ">
+<div id="skeleton-preview" class="skeleton-container ">
     <div class="skeleton-header">
         <div class="skeleton-logo"></div>
         <div class="skeleton-nav">
@@ -60,6 +60,10 @@
     <!-- NOTIFICATION DIV -->
 
     <div class="poppins" id="notification"></div>
+
+
+
+
     <!-- TOP BAR -->
 
     <div class="nav flex ">
@@ -134,6 +138,8 @@
     </div>
 
 
+
+
     <!-- LOWER SECTION -->
 
     <div class="content flex column">
@@ -191,6 +197,90 @@
 
 
 
+            <!-- PENDING USERS MODAL -->
+
+<div id="signup-requests-modal" class="settings-modal poppins" style="display:none;">
+  <div class="settings-modal-content signup-wide">
+
+    <div class="modal-header">
+      <h2>Pending Signup Requests</h2>
+      <button type="button" class="close-btn" id="close-signup-requests">×</button>
+    </div>
+
+    <form id="signup-requests-form" class="settings-form">
+
+      <div class="tab-content">
+
+        <table class="settings-table signup-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Phone</th>
+              <th>Assign Role</th>
+              <th>Branch</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <!-- Dummy User 1 -->
+            <tr>
+              <td>john_doe</td>
+              <td>+254712345678</td>
+
+              <td>
+                <select name="users[1][role]">                  
+                  <option value="cashier" selected>Cashier</option>
+                  <option value="manager">Manager</option>
+                  <option value="admin">Admin</option>
+                  <option value="superadmin">S.Admin</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="users[1][branch]">
+                  <option value="">Select branch</option>
+                  <option value="1" selected>Main Branch</option>
+                  <option value="2">Westlands</option>
+                  <option value="3">Kisii</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="users[1][status]">
+                  <option value="active" selected>Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </td>
+
+              <td class="row-actions">
+                <button type="button" class="btn success">Approve</button>
+                <button type="button" class="btn danger">Reject</button>
+              </td>
+            </tr>
+
+            
+
+
+          </tbody>
+        </table>
+
+      </div>
+
+
+      
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
 
         <!-- POPUP FOR ADD NEW PRODUCT -->
 
@@ -198,207 +288,206 @@
         
 
             <!-- new product -->
-<!-- ───────────── HTML + JS ───────────── -->
 
-<div id="productModal" class="modal-overlay">
-    <div class="modal poppins modal-wide">
+        <div id="productModal" class="modal-overlay">
+            <div class="modal poppins modal-wide">
 
-        <div class="modal-header">
-            <h2>Add New Product</h2>
-            <button type="button" class="close-btn" id="closeProductModal">&times;</button>
+                <div class="modal-header">
+                    <h2>Add New Product</h2>
+                    <button type="button" class="close-btn" id="closeProductModal">&times;</button>
+                </div>
+
+                <!-- Tabs -->
+                <div class="modal-tabs">
+                    <button type="button" class="tab-btn active" data-tab="basic">Basic Info</button>
+                    <button type="button" class="tab-btn" data-tab="pricing">Pricing & Stock</button>
+                    <button type="button" class="tab-btn" data-tab="extra">Extra / Tracking</button>
+                </div>
+
+                <form id="productForm" class="relative" enctype="multipart/form-data">
+
+                    <!-- Hidden -->
+                    <input type="hidden" name="branch_id" value="">
+                    <input type="hidden" name="is_active" value="1">
+
+                    <!-- ── BASIC INFO ───────────────────────── -->
+                    <div class="tab-content" id="tab-basic">
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Product Code</label>
+                                <input type="text" name="product_code" required maxlength="50">
+                            </div>
+
+                            <div class="form-group">
+                                <label>SKU</label>
+                                <input type="text" name="sku" maxlength="50">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name" required maxlength="255">
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select name="category_id">
+                                    <option value="drug">Drugs</option>
+                                    <option value="equipment">Equipment</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Supplier</label>
+                                <select name="supplier_id">
+                                    <option value="">Philmed</option>
+                                    <option value="1">Axar</option>
+                                    <option value="">Shivling</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ── PRICING & STOCK ──────────────────── -->
+                    <div class="tab-content hidden" id="tab-pricing">
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Cost Price</label>
+                                <input type="number" name="cost_price" min="0" step="0.01" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Selling Price</label>
+                                <input type="number" name="selling_price" min="0" step="0.01" required>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Unit Price</label>
+                                <input type="number" name="price" min="0" step="0.01" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Opening Stock Quantity</label>
+                                <input type="number" name="quantity" min="0" value="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Minimum Stock Alert</label>
+                            <input type="number" name="min_stock" min="0" value="0">
+                        </div>
+
+                    </div>
+
+                    <!-- ── EXTRA / TRACKING ─────────────────── -->
+                    <div class="tab-content hidden" id="tab-extra">
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Batch Number</label>
+                                <input type="text" name="batch" maxlength="100">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="date" name="expiry_date">
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Barcode</label>
+                                <input type="text" name="barcode" maxlength="100">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Product Image</label>
+                                <input type="file" name="product_image" accept="image/jpeg,image/png,image/webp">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" rows="3"></textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="form-actions flex">
+                        <button type="submit" class="btn btn-product-form-save-action mauto" id="saveProductBtn">
+                            Save Product
+                        </button>
+
+                        <button type="button" class="btn btn-product-form-cancel-action mauto" id="cancelProductModal">
+                            Cancel
+                        </button>
+                    </div>
+
+                    <!-- Loading -->
+                    <div id="productFormLoadingOverlay" style="display:none">
+                        <img src="../assets/images/1.gif" alt="Saving...">
+                        <p>Saving product…</p>
+                    </div>
+
+                </form>
+            </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="modal-tabs">
-            <button type="button" class="tab-btn active" data-tab="basic">Basic Info</button>
-            <button type="button" class="tab-btn" data-tab="pricing">Pricing & Stock</button>
-            <button type="button" class="tab-btn" data-tab="extra">Extra / Tracking</button>
-        </div>
-
-        <form id="productForm" class="relative" enctype="multipart/form-data">
-
-            <!-- Hidden -->
-            <input type="hidden" name="branch_id" value="">
-            <input type="hidden" name="is_active" value="1">
-
-            <!-- ── BASIC INFO ───────────────────────── -->
-            <div class="tab-content" id="tab-basic">
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Product Code</label>
-                        <input type="text" name="product_code" required maxlength="50">
-                    </div>
-
-                    <div class="form-group">
-                        <label>SKU</label>
-                        <input type="text" name="sku" maxlength="50">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" name="product_name" required maxlength="255">
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select name="category_id">
-                            <option value="drug">Drugs</option>
-                            <option value="equipment">Equipment</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Supplier</label>
-                        <select name="supplier_id">
-                            <option value="">Philmed</option>
-                            <option value="1">Axar</option>
-                            <option value="">Shivling</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ── PRICING & STOCK ──────────────────── -->
-            <div class="tab-content hidden" id="tab-pricing">
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Cost Price</label>
-                        <input type="number" name="cost_price" min="0" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Selling Price</label>
-                        <input type="number" name="selling_price" min="0" step="0.01" required>
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Unit Price</label>
-                        <input type="number" name="price" min="0" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Opening Stock Quantity</label>
-                        <input type="number" name="quantity" min="0" value="0" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Minimum Stock Alert</label>
-                    <input type="number" name="min_stock" min="0" value="0">
-                </div>
-
-            </div>
-
-            <!-- ── EXTRA / TRACKING ─────────────────── -->
-            <div class="tab-content hidden" id="tab-extra">
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Batch Number</label>
-                        <input type="text" name="batch" maxlength="100">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Expiry Date</label>
-                        <input type="date" name="expiry_date">
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>Barcode</label>
-                        <input type="text" name="barcode" maxlength="100">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Product Image</label>
-                        <input type="file" name="product_image" accept="image/jpeg,image/png,image/webp">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea name="description" rows="3"></textarea>
-                </div>
-
-            </div>
-
-            <!-- Actions -->
-            <div class="form-actions flex">
-                <button type="submit" class="btn btn-product-form-save-action mauto" id="saveProductBtn">
-                    Save Product
-                </button>
-
-                <button type="button" class="btn btn-product-form-cancel-action mauto" id="cancelProductModal">
-                    Cancel
-                </button>
-            </div>
-
-            <!-- Loading -->
-            <div id="productFormLoadingOverlay" style="display:none">
-                <img src="../assets/images/1.gif" alt="Saving...">
-                <p>Saving product…</p>
-            </div>
-
-        </form>
-    </div>
-</div>
 
 
 
+<!-- <script defer>
+    document.getElementById('saveProductBtn').addEventListener('click', function (e) {
+        e.preventDefault();
 
-<script defer>
-document.getElementById('saveProductBtn').addEventListener('click', function (e) {
-    e.preventDefault();
+        const form = document.getElementById('productForm');
+        const formData = new FormData(form);
 
-    const form = document.getElementById('productForm');
-    const formData = new FormData(form);
-
-    console.group('📦 Product FormData');
-    for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-    console.groupEnd();
-
-    fetch('../scripts/save_product.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(async res => {
-        const text = await res.text();
-        console.group('📡 Raw Server Response');
-        console.log(text);
+        console.group('📦 Product FormData');
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
         console.groupEnd();
 
-        try {
-            return JSON.parse(text);
-        } catch (e) {
-            throw new Error('Invalid JSON response');
-        }
-    })
-    .then(data => {
-        console.log('✅ Parsed JSON:', data);
-        if (data.status === 'success') {
-            notify('success', 'Saved', data.message, 2000);
-            form.reset();
-        } else {
-            notify('warning', 'Save Failed', data.message, 3000);
-        }
-    })
-    .catch(err => {
-        console.error('❌ Fetch Error:', err);
-        notify('error', 'Server Error', err.message, 3000);
+        fetch('../scripts/save_product.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(async res => {
+            const text = await res.text();
+            console.group('📡 Raw Server Response');
+            console.log(text);
+            console.groupEnd();
+
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                throw new Error('Invalid JSON response');
+            }
+        })
+        .then(data => {
+            console.log('✅ Parsed JSON:', data);
+            if (data.status === 'success') {
+                notify('success', 'Saved', data.message, 2000);
+                form.reset();
+            } else {
+                notify('warning', 'Save Failed', data.message, 3000);
+            }
+        })
+        .catch(err => {
+            console.error('❌ Fetch Error:', err);
+            notify('error', 'Server Error', err.message, 3000);
+        });
     });
-});
-</script>
+</script> -->
 
 
 
@@ -509,12 +598,12 @@ document.getElementById('saveProductBtn').addEventListener('click', function (e)
                                     </div>
                                 </td>
                                 <td class="item-amount">320.00</td>
-                                <td><div class="picture-placeholder"><img class="full" src="../assets/images/products/1.jpg"></div></td>
+                                <td><div class="picture-placeholder"><img class="full" src=""></div></td>
                                 <td>
                                     <div class="action-buttons">
-                                        <button type="button" class="btn btn-save" >Update</button>
-                                        <button type="button" class="btn btn-edit" >Edit</button>
-                                        <button type="button" class="btn btn-delete">Delete</button>
+                                        <button type="button" class="btn btn-save " >Update</button>
+                                        <button type="button" class="btn btn-edit " >Edit</button>
+                                        <button type="button" class="btn btn-delete " >Delete</button>
                                     </div>
                                 </td>
                             </tr>
@@ -621,7 +710,7 @@ document.getElementById('saveProductBtn').addEventListener('click', function (e)
 
             <!-- SAME LOADING OVERLAY -->
             <div id="editProductFormLoadingOverlay" style="display:none">
-                <img src="images/1.gif" alt="Saving...">
+                <img src="../assets/images/1.gif" alt="Saving...">
                 <p>Updating product…</p>
             </div>
 
@@ -651,82 +740,30 @@ document.getElementById('saveProductBtn').addEventListener('click', function (e)
 
 
 
-<!-- Modal Overlay -->
-<div id="signup-requests-modal" class="settings-modal poppins" style="display:none;">
-  <div class="settings-modal-content signup-wide">
 
-    <div class="modal-header">
-      <h2>Pending Signup Requests</h2>
-      <button type="button" class="close-btn" id="close-signup-requests">×</button>
+
+
+
+<div class="flex pagination-cont poppins red">
+    <div class="page-size">
+        <label>Show</label>
+        <select id="pageLimit">
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        <span>items</span>
     </div>
 
-    <form id="signup-requests-form" class="settings-form">
+    <div class="page-controls">
+        <button type="button" id="firstPage">«</button>
+        <button type="button" id="prevPage">‹</button>
 
-      <div class="tab-content">
+        <span id="pageInfo">Page 1</span>
 
-        <table class="settings-table signup-table">
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Phone</th>
-              <th>Assign Role</th>
-              <th>Branch</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <!-- Dummy User 1 -->
-            <tr>
-              <td>john_doe</td>
-              <td>+254712345678</td>
-
-              <td>
-                <select name="users[1][role]">                  
-                  <option value="cashier" selected>Cashier</option>
-                  <option value="manager">Manager</option>
-                  <option value="admin">Admin</option>
-                  <option value="superadmin">S.Admin</option>
-                </select>
-              </td>
-
-              <td>
-                <select name="users[1][branch]">
-                  <option value="">Select branch</option>
-                  <option value="1" selected>Main Branch</option>
-                  <option value="2">Westlands</option>
-                  <option value="3">Kisii</option>
-                </select>
-              </td>
-
-              <td>
-                <select name="users[1][status]">
-                  <option value="active" selected>Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </td>
-
-              <td class="row-actions">
-                <button type="button" class="btn success">Approve</button>
-                <button type="button" class="btn danger">Reject</button>
-              </td>
-            </tr>
-
-            
-
-
-          </tbody>
-        </table>
-
-      </div>
-
-
-      
-
-    </form>
-  </div>
+        <button type="button" id="nextPage">›</button>
+        <button type="button" id="lastPage">»</button>
+    </div>
 </div>
 
 
@@ -735,9 +772,8 @@ document.getElementById('saveProductBtn').addEventListener('click', function (e)
 
 
 
-
 <!-- PENDING USERS MODAL UX -->
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     const openBtn  = document.getElementById('pendingusers');
@@ -769,7 +805,203 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
-   
+    -->
+
+
+
+
+<!-- SETTINGS -->
+
+<div id="settings-modal" class="settings-modal" style="display: none;">
+  <div class="settings-modal-content">
+
+    <div class="modal-header">
+      <h2>Settings</h2>
+      <button type="button" class="close-btn" id="close-settings">×</button>
+    </div>
+
+    <div class="settings-tabs">
+      <div class="settings-section active" data-tab="general">General</div>
+      <div class="settings-section" data-tab="company">Company / Branch</div>
+      <div class="settings-section" data-tab="profile">Profile</div>
+    </div>
+
+    <form id="settings-form" class="settings-form">
+
+      <!-- ── General ──────────────────────────────────────────────── -->
+      <div class="tab-content" id="tab-general">
+
+        <div class="form-group">
+          <label>Theme</label>
+          <select id="theme-select" name="theme">
+            <option value="auto">System (Auto)</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Currency</label>
+          <select id="currency-select" name="currency">
+            <option value="KES">KES - Kenyan Shilling</option>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="UGX">UGX - Ugandan Shilling</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Timezone</label>
+          <select id="timezone" name="timezone">
+            <option value="Africa/Nairobi">Africa / Nairobi</option>
+            <option value="UTC">UTC</option>
+            <option value="Europe/London">Europe / London</option>
+            <option value="America/New_York">America / New York</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Date Format</label>
+          <select id="date-format" name="date_format">
+            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Low Stock Alert Threshold</label>
+          <input type="number" id="low-stock-threshold" name="low_stock_threshold" min="0" placeholder="e.g. 10">
+        </div>
+
+        <div class="form-group">
+          <label>Default Sale Type</label>
+          <select id="default-sale-type" name="default_sale_type">
+            <option value="cash">Cash</option>
+            <option value="mpesa">M-PESA</option>
+            <option value="card">Card</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- ── Company / Branch ─────────────────────────────────────── -->
+      <div class="tab-content hidden" id="tab-company">
+
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="company-name" name="company_name" placeholder="e.g. Kinanga Traders Ltd" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label>Business Registration / KRA PIN</label>
+          <input type="text" id="business-pin" name="business_pin" placeholder="e.g. P012345678X">
+        </div>
+
+        <div class="form-group">
+          <label>Branch Name</label>
+          <input type="text" id="branch-name" name="branch_name" placeholder="e.g. Kisii Main Branch" maxlength="80">
+        </div>
+
+        <div class="form-group">
+          <label>Branch Phone</label>
+          <input type="tel" id="branch-phone" name="branch_phone" placeholder="+254 7XX XXX XXX">
+        </div>
+
+        <div class="form-group">
+          <label>Branch Email</label>
+          <input type="email" id="branch-email" name="branch_email" placeholder="branch@example.com">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Kisii Town, Along Moi Avenue" maxlength="150">
+        </div>
+
+        <div class="form-group">
+          <label>Default Tax Rate (%)</label>
+          <input type="number" id="tax-rate" name="tax_rate" min="0" max="100" step="0.01" placeholder="e.g. 16">
+        </div>
+
+        <div class="form-group">
+          <label>Receipt Footer Note</label>
+          <input type="text" id="receipt-footer" name="receipt_footer" placeholder="e.g. Goods once sold are not returnable">
+        </div>
+
+      </div>
+
+      <!-- ── Profile ──────────────────────────────────────────────── -->
+      <div class="tab-content hidden" id="tab-profile">
+
+        <div class="profile-header">
+          <img id="profile-preview-large" src="../assets/images/profiles/default.jpg" alt="Your profile picture">
+          <div class="profile-info">
+            <h3 id="current-fullname">Loading...</h3>
+            <small id="current-username">@username</small><br>
+            <small id="current-role">Role: Cashier</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="profile-fname" name="fname" placeholder="First name" required maxlength="50">
+        </div>
+
+        <div class="form-group">
+          <label>Surname</label>
+          <input type="text" id="profile-sname" name="sname" placeholder="Surname" required maxlength="50">
+        </div>
+
+        <div class="form-group profile-pic-group">
+          <label>Change Profile Picture</label>
+          <div class="profile-pic-controls">
+            <img id="profile-preview-small" src="../assets/images/profiles/default.jpg" alt="Preview">
+            <input type="file" id="profile-pic-input" name="profile_pic" accept="image/jpeg,image/png,image/webp" hidden>
+            <button type="button" id="btn-choose-pic" class="btn secondary">Choose Photo</button>
+            <small>Max 5MB • JPG, PNG, WebP</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Language</label>
+          <select id="preferred-language" name="language">
+            <option value="en">English</option>
+            <option value="sw">Swahili</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Last Password Change</label>
+          <input type="text" id="last-password-change" value="—" readonly>
+        </div>
+
+        <div class="form-group password-reset">
+          <label>Password</label>
+          <button type="button" id="btn-reset-password" class="btn danger">Reset Password</button>
+          <small>We'll send a reset link to your email</small>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="cancel-settings" class="btn secondary">Cancel</button>
+        <button type="submit" id="save-settings-btn" class="btn primary">Save Changes</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+    
+
+ </script>
 
 
 
@@ -777,66 +1009,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-
-<!-- fetch products -->
-
-<script defer>
-document.addEventListener('DOMContentLoaded', () => {
-    const tbody = document.querySelector('.cart-item-container .cart-item-table tbody');
-
-    if (!tbody) return;
-
-    fetch('../scripts/fetch_products.php')
-        .then(res => res.json())
-        .then(data => {
-            if (data.status !== 'success') {
-                console.warn('Failed to fetch products:', data.message);
-                return;
-            }
-
-            tbody.innerHTML = ''; // clear existing rows
-
-            data.products.forEach(prod => {
-                const tr = document.createElement('tr');
-                tr.classList.add('cart-item-row');
-
-                tr.innerHTML = `
-                    <td class="item-code">${prod.code}</td>
-                    <td class="item-name">${prod.name}</td>
-                    <td>
-                        <div class="qty-control">
-                            <button type="button" class="qty-btn minus">-</button>
-                            <input type="number" class="qty-input" value="${prod.stock}" min="1" step="1">
-                            <button type="button" class="qty-btn plus">+</button>
-                        </div>
-                    </td>
-                    <td class="item-amount">${Number(prod.unit_price).toFixed(2)}</td>
-                    <td>
-                        <div class="picture-placeholder">
-                            <img class="full" src="../${prod.picture_url || 'assets/images/products/placeholder.png'}" alt="${prod.name}">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button type="button" class="btn btn-save">Update</button>
-                            <button type="button" class="btn btn-edit">Edit</button>
-                            <button type="button" class="btn btn-delete">Delete</button>
-                        </div>
-                    </td>
-                `;
-
-                tbody.appendChild(tr);
-            });
-        })
-        .catch(err => {
-            console.error('Error fetching products:', err);
-        });
-});
-</script>
 
 
 
@@ -871,7 +1043,16 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="../js/notification.js" defer></script>
 <script src="../js/skeleton.js" defer ></script>
 <script src="../js/dashboard.js" defer ></script>
+<script src="../js/fetch_products.js" defer></script>
+<script src="../js/stock.js" defer></script>
+<script src="../js/session.js" defer></script>
+<script src="../js/profile.js" defer></script>
+<script src="../js/approve.js" defer></script>
+
+
+<!-- 
 <script>
+    // make the + - btn work
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.qty-btn');
     if (!btn) return;
@@ -897,64 +1078,63 @@ document.addEventListener('input', (e) => {
 });
 </script>
 
+ -->
 
 
 
 
-
-<!-- <script defer>
+ <!-- <script defer>
     //save product
 
 
-document.getElementById('saveProductBtn').addEventListener('click', function (e) {
-    e.preventDefault();
+        document.getElementById('saveProductBtn').addEventListener('click', function (e) {
+            e.preventDefault();
 
-    const form = document.getElementById('productForm');
-    const formData = new FormData(form);
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
 
-    // 🔍 LOG FORM DATA BEFORE SENDING
-    console.group('📦 Product FormData');
-    for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-    console.groupEnd();
+            // 🔍 LOG FORM DATA BEFORE SENDING
+            console.group('📦 Product FormData');
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+            console.groupEnd();
 
-    fetch('../scripts/save_product.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(async res => {
-        const text = await res.text();
+            fetch('../scripts/save_product.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async res => {
+                const text = await res.text();
 
-        // 🔍 LOG RAW RESPONSE
-        console.group('📡 Raw Server Response');
-        console.log(text);
-        console.groupEnd();
+                // 🔍 LOG RAW RESPONSE
+                console.group('📡 Raw Server Response');
+                console.log(text);
+                console.groupEnd();
 
-        try {
-            return JSON.parse(text);
-        } catch (e) {
-            throw new Error('Invalid JSON response');
-        }
-    })
-    .then(data => {
-        console.log('✅ Parsed JSON:', data);
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    throw new Error('Invalid JSON response');
+                }
+            })
+            .then(data => {
+                console.log('✅ Parsed JSON:', data);
 
-        if (data.status === 'success') {
-            notify('success', 'Saved', data.message, 2000);
-            form.reset();
-        } else {
-            notify('warning', 'Save Failed', data.message, 3000);
-        }
-    })
-    .catch(err => {
-        console.error('❌ Fetch Error:', err);
-        notify('error', 'Server Error', err.message, 3000);
-    });
-});
+                if (data.status === 'success') {
+                    notify('success', 'Saved', data.message, 2000);
+                    form.reset();
+                } else {
+                    notify('warning', 'Save Failed', data.message, 3000);
+                }
+            })
+            .catch(err => {
+                console.error('❌ Fetch Error:', err);
+                notify('error', 'Server Error', err.message, 3000);
+            });
+        });
 </script> -->
 
-</script>
 
 
 
@@ -963,10 +1143,9 @@ document.getElementById('saveProductBtn').addEventListener('click', function (e)
 
 
 
+ 
 
-
-
-<script>
+<!-- <script>
 const modal = document.getElementById('productModal');
 const openBtn = document.getElementById('openProductModal');
 const closeBtn = document.getElementById('closeProductModal');
@@ -1006,8 +1185,10 @@ form.addEventListener('submit', (e) => {
     // backend hook goes here
     closeModal();
 });
-</script>
+</script> -->
 
+
+<!--
 
 
 
@@ -1091,8 +1272,7 @@ restockForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         closeRestockModal();
     }, 2000);
-});
-</script>
+}); -->
 
 
 
@@ -1105,7 +1285,10 @@ restockForm.addEventListener('submit', (e) => {
 
 
 
+<!-- 
 <script>
+// edit product
+
 const editButtons = document.querySelectorAll('.btn-edit'); // all edit buttons
 const editProductModal = document.getElementById('editProductModal');
 const closeEditProductModalBtn = document.getElementById('closeEditProductModal');
@@ -1159,6 +1342,8 @@ editProductForm.addEventListener('submit', (e) => {
 });
 </script>
 
+
+
 <script>
 // Select all delete buttons in the table
 const deleteButtons = document.querySelectorAll('.btn-delete');
@@ -1198,7 +1383,7 @@ confirmDeleteBtn.addEventListener('click', () => {
     closeDeleteModal();
 });
 </script>
-
+ -->
 
 
 
