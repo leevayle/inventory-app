@@ -91,3 +91,29 @@
 .transparent{
     opacity: 0;
 }
+
+
+
+
+/* Target the entire scrollbar */
+::-webkit-scrollbar {
+  width: 3px; /* width of the vertical scrollbar */
+  height: 3px; /* height of the horizontal scrollbar */
+}
+
+/* Target the track (the background area) */
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 10px;
+}
+
+/* Target the thumb (the draggable handle) */
+::-webkit-scrollbar-thumb {
+  background: var(--accent2);
+  border-radius: 10px;
+}
+
+/* Change thumb color on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent1);
+}

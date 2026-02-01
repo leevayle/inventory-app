@@ -164,6 +164,7 @@ body {
 
 .subnav{
     min-height: 60px;
+    height: auto;
     width: 95%;    
     overflow-x: auto;
     overflow-y: hidden;
@@ -177,6 +178,10 @@ body {
 .subnavleft{
     padding-left: 20px;
     margin-right: auto;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    white-space: nowrap;
     
 }
 .subtitlenav{
@@ -184,9 +189,9 @@ body {
     padding-right: 15px;
     color: var(--black);
     margin-left: 20px;
-    margin-top: auto;
-    height: 40px;
+    margin-top: auto;height: 40px;
     font-size: large;
+    text-align: center;
 }
 .subtitlenav:hover{
     color: var(--accent1);
@@ -983,7 +988,7 @@ body {
     padding: 0px;
    }
    .bottomcard1, .bottomcard2, .bottomcard3{
-    width: 90%;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
    }
@@ -1019,7 +1024,7 @@ body {
 
 
 @media screen and (max-width:1065px) {
-   .approval, .dash-settings, .subnavright{
+   .approval, .dash-settings{
     display: none;
    }
    .profile{
