@@ -1,0 +1,57 @@
+
+*{
+    transition: all 0.2s ease-in-out;
+}
+
+.cart-item-container{
+    margin-bottom: 0px;
+    height: 100%;
+    gap: 20px;
+}
+.sell-left{
+    width: 67%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.sell-right{
+    width: 30%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sell-top-left{
+    height: 75%;
+}
+.sell-bottom-left{
+    height: 20%;
+}
+.payment{
+    height: 99%;
+}
+
+.payment, .sell-bottom-left , .sell-top-left{
+    width: 99%;
+    border-radius: 40px;
+    background-color: var(--white);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width:1100px) {
+    .cart-item-container{
+        flex-direction: column;
+    }
+    .sell-left, .sell-right{
+        width:99%;
+    }
+}

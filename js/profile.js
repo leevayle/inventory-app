@@ -39,7 +39,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Hide skeleton after image loads
         profileImg.onload = () => {
-            if (typeof hideSkeleton === 'function') hideSkeleton();
+            if (typeof hideSkeleton === 'function') 
+                
+                setTimeout(() => {
+                    hideSkeleton();
+                }, 500);
         };
 
         // Fallback: hide skeleton if image already cached
