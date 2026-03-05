@@ -1,135 +1,32 @@
 /* =========================================================
-   STOCK.JS
-   Centralized frontend logic for stock & UI interactions
+    STOCK.JS - Fixed & Optimized
    ========================================================= */
 
-/* =========================================================
-   1. DOM READY BOOTSTRAP
-   ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    // initPendingUsersModal();
     initDashboardNavigation();
     initTabs();
     initRestockModal();
+    initSettingsModal();
+    initProductCreationModal();
+    initUserModals();
 });
 
-/* =========================================================
-   2. PENDING USERS MODAL
-   ========================================================= */
-// function initPendingUsersModal() {
-//     const openBtn  = document.getElementById('pendingusers');
-//     const modal    = document.getElementById('signup-requests-modal');
-//     const closeBtn = document.getElementById('close-signup-requests');
-//     const tbody    = modal?.querySelector('tbody');
-
-//     if (!openBtn || !modal || !closeBtn || !tbody) return;
-
-//     openBtn.addEventListener('click', async () => {
-//         modal.style.display = 'flex';
-//         document.body.style.overflow = 'hidden';
-
-//         tbody.innerHTML = '<tr><td colspan="6">Loading…</td></tr>';
-
-//         try {
-//             const res = await fetch('../scripts/approve.php', {
-//                 credentials: 'same-origin'
-//             });
-
-//             const data = await res.json();
-
-//             if (!data.success) {
-//                 tbody.innerHTML = '<tr><td colspan="6">Failed to load users</td></tr>';
-//                 return;
-//             }
-
-//             if (!data.pendingUsers.length) {
-//                 tbody.innerHTML = '<tr><td colspan="6">No pending users</td></tr>';
-//                 return;
-//             }
-
-//             tbody.innerHTML = '';
-
-//             data.pendingUsers.forEach(user => {
-//                 const tr = document.createElement('tr');
-
-//                 tr.innerHTML = `
-//                     <td>${user.username}</td>
-//                     <td>${user.phone}</td>
-
-//                     <td>
-//                         <select name="users[${user.id}][role]">
-//                             <option value="">Select role</option>
-//                             <option value="cashier">Cashier</option>
-//                             <option value="manager">Manager</option>
-//                             <option value="admin">Admin</option>
-//                             <option value="superadmin">S.Admin</option>
-//                         </select>
-//                     </td>
-
-//                     <td>
-//                         <select name="users[${user.id}][branch]">
-//                             <option value="1">Main Branch</option>
-//                         </select>
-//                     </td>
-
-//                     <td>
-//                         <select name="users[${user.id}][status]">
-//                             <option value="active">Active</option>
-//                             <option value="inactive">Inactive</option>
-//                         </select>
-//                     </td>
-
-//                     <td class="row-actions">
-//                         <button type="button" class="btn success" data-id="${user.id}">Approve</button>
-//                         <button type="button" class="btn danger" data-id="${user.id}">Reject</button>
-//                     </td>
-//                 `;
-
-//                 tbody.appendChild(tr);
-//             });
-
-//         } catch (err) {
-//             tbody.innerHTML = '<tr><td colspan="6">Server error</td></tr>';
-//         }
-//     });
-
-//     closeBtn.addEventListener('click', closeModal);
-//     modal.addEventListener('click', (e) => {
-//         if (e.target === modal) closeModal();
-//     });
-
-//     function closeModal() {
-//         modal.style.display = 'none';
-//         document.body.style.overflow = '';
-//     }
-// }
-
-
-/* =========================================================
-   3. DASHBOARD NAVIGATION + SEARCH FOCUS
-   ========================================================= */
+/* --- 3. DASHBOARD NAVIGATION --- */
 function initDashboardNavigation() {
     const search = document.getElementById('search');
     const dashbtn = document.getElementById('dashbtn');
-
     if (search) search.focus();
-
     if (dashbtn) {
-        dashbtn.addEventListener('click', () => {
-            window.location.href = 'dashboard.html';
-        });
+        dashbtn.addEventListener('click', () => { window.location.href = 'dashboard.html'; });
     }
 }
 
-/* =========================================================
-   4. TAB SWITCHING
-   ========================================================= */
+/* --- 4. TAB SWITCHING --- */
 function initTabs() {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-
             btn.classList.add('active');
             document.getElementById(`tab-${btn.dataset.tab}`)?.classList.remove('hidden');
         });
@@ -137,34 +34,84 @@ function initTabs() {
 }
 
 /* =========================================================
-   5. QUANTITY + / - CONTROLS (EVENT DELEGATION)
+   5. QUANTITY + / - CONTROLS & QUICK UPDATE
    ========================================================= */
 document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.qty-btn');
-    if (!btn) return;
+    
+    // PART A: PLUS / MINUS BUTTONS
+    const qtyBtn = e.target.closest('.qty-btn');
+    if (qtyBtn) {
+        const control = qtyBtn.closest('.qty-control');
+        const input = control.querySelector('.qty-input');
+        let value = parseInt(input.value, 10) || 0;
+        
+        if (qtyBtn.classList.contains('plus')) value++;
+        if (qtyBtn.classList.contains('minus')) value--;
 
-    const control = btn.closest('.qty-control');
-    const input = control.querySelector('.qty-input');
+        if (value < 0) value = 0; 
+        input.value = value;
+        return; 
+    }
 
-    let value = parseInt(input.value, 10) || 1;
+    // PART B: THE "UPDATE" BUTTON
+    // We target buttons with .btn-save that specifically say "Update"
+    const updateBtn = e.target.closest('.btn-save');
+    if (updateBtn && updateBtn.textContent.trim() === 'Update') {
+        e.preventDefault();
+        
+        const row = updateBtn.closest('.cart-item-row');
+        if (!row) return;
 
-    if (btn.classList.contains('plus')) value++;
-    if (btn.classList.contains('minus')) value--;
+        // Extracting data from the row
+        const productCode = row.querySelector('.item-code')?.textContent.trim();
+        const newQty = row.querySelector('.qty-input')?.value;
 
-    if (value < 1) value = 1;
-    input.value = value;
+        if (!productCode) {
+            notify('error', 'Error', 'Product code not found', 3000);
+            return;
+        }
+
+        // Loading State
+        const originalHTML = updateBtn.innerHTML;
+        updateBtn.disabled = true;
+        updateBtn.textContent = '...';
+
+        const formData = new FormData();
+        formData.append('code', productCode);
+        formData.append('qty', newQty);
+
+        fetch('../scripts/update-quantity.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // 3-second notification as requested
+                notify('success', 'Saved', `Stock updated to ${newQty}`, 3000);
+            } else {
+                notify('error', 'Update Failed', data.message, 3000);
+            }
+        })
+        .catch(err => {
+            console.error('Fetch Error:', err);
+            notify('error', 'Error', 'Server connection failed', 3000);
+        })
+        .finally(() => {
+            updateBtn.disabled = false;
+            updateBtn.innerHTML = originalHTML;
+        });
+    }
 });
 
+// Manual typing validation
 document.addEventListener('input', (e) => {
     if (!e.target.classList.contains('qty-input')) return;
-
     let value = parseInt(e.target.value, 10);
-    if (isNaN(value) || value < 1) e.target.value = 1;
+    if (isNaN(value) || value < 0) e.target.value = 0;
 });
 
-/* =========================================================
-   6. RESTOCK MODAL
-   ========================================================= */
+/* --- 6. RESTOCK MODAL --- */
 function initRestockModal() {
     const restockBtn = document.getElementById('restockbtn');
     const restockModal = document.getElementById('restockModal');
@@ -173,312 +120,128 @@ function initRestockModal() {
     const overlay = document.getElementById('restockFormLoadingOverlay');
 
     if (!restockBtn || !restockModal) return;
-
-    restockBtn.addEventListener('click', () => {
-        restockModal.classList.add('active');
-    });
-
-    closeBtn?.addEventListener('click', closeModal);
-    restockModal.addEventListener('click', (e) => {
-        if (e.target === restockModal) closeModal();
-    });
-
+    restockBtn.addEventListener('click', () => restockModal.classList.add('active'));
+    closeBtn?.addEventListener('click', () => restockModal.classList.remove('active'));
+    
     restockForm?.addEventListener('submit', (e) => {
         e.preventDefault();
         overlay.style.display = 'flex';
-
-        setTimeout(() => {
-            closeModal();
+        setTimeout(() => { 
+            restockModal.classList.remove('active'); 
+            overlay.style.display = 'none';
+            restockForm.reset();
         }, 2000);
     });
-
-    function closeModal() {
-        restockModal.classList.remove('active');
-        overlay.style.display = 'none';
-        restockForm.reset();
-    }
 }
 
-/* =========================================================
-   7. EDIT PRODUCT MODAL (FIXED — EVENT DELEGATION)
-   ========================================================= */
+/* --- 7. EDIT PRODUCT MODAL --- */
 const editProductModal = document.getElementById('editProductModal');
 const editProductForm = document.getElementById('editProductForm');
 const editOverlay = document.getElementById('editProductFormLoadingOverlay');
 
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-edit');
-    if (!btn) return;
+    if (!btn || !editProductForm) return;
 
     const row = btn.closest('.cart-item-row');
     if (!row) return;
 
     editProductModal.classList.add('active');
-
     editProductForm.code.value = row.querySelector('.item-code')?.textContent.trim() || '';
     editProductForm.name.value = row.querySelector('.item-name')?.textContent.trim() || '';
-    editProductForm.qty.value = row.querySelector('.qty-input')?.value || 1;
-
+    editProductForm.qty.value = row.querySelector('.qty-input')?.value || 0;
     editProductForm.batch.value = row.dataset.batch || '';
     editProductForm.supplier.value = row.dataset.supplier || '';
     editProductForm.unit_price.value = row.dataset.unitPrice || '';
     editProductForm.expiry_date.value = row.dataset.expiry || '';
 });
 
-document.getElementById('closeEditProductModal')?.addEventListener('click', closeEditModal);
-editProductModal?.addEventListener('click', (e) => {
-    if (e.target === editProductModal) closeEditModal();
-});
+document.getElementById('closeEditProductModal')?.addEventListener('click', () => editProductModal.classList.remove('active'));
 
-editProductForm?.addEventListener('submit', (e) => {
+editProductForm?.addEventListener('submit', function(e) {
     e.preventDefault();
     editOverlay.style.display = 'flex';
+    const cleanData = new FormData();
+    new FormData(this).forEach((value, key) => {
+        if (value instanceof File) { if (value.size > 0) cleanData.append(key, value); }
+        else if (value.toString().trim() !== "") cleanData.append(key, value);
+    });
 
-    setTimeout(() => {
-        closeEditModal();
-    }, 2000);
+    fetch('../scripts/edit.php', { method: 'POST', body: cleanData })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            notify('success', 'Saved', data.message, 2000);
+            setTimeout(() => location.reload(), 1500);
+        } else {
+            notify('error', 'Error', data.message, 3000);
+            editOverlay.style.display = 'none';
+        }
+    }).catch(() => editOverlay.style.display = 'none');
 });
 
-function closeEditModal() {
-    editProductModal.classList.remove('active');
-    editOverlay.style.display = 'none';
-    editProductForm.reset();
-}
-
-/* =========================================================
-   8. DELETE PRODUCT MODAL (FIXED — EVENT DELEGATION)
-   ========================================================= */
+/* --- 8. DELETE PRODUCT MODAL --- */
 const deleteModal = document.getElementById('deleteConfirmModal');
 const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-
 let rowToDelete = null;
 
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-delete');
-    if (!btn) return;
-
+    if (!btn || btn.closest('.modal')) return;
     rowToDelete = btn.closest('.cart-item-row');
-    deleteModal.classList.add('active');
+    if (rowToDelete) deleteModal.classList.add('active');
 });
 
-document.getElementById('closeDeleteModal')?.addEventListener('click', closeDeleteModal);
-document.getElementById('cancelDeleteBtn')?.addEventListener('click', closeDeleteModal);
-deleteModal?.addEventListener('click', (e) => {
-    if (e.target === deleteModal) closeDeleteModal();
-});
+document.getElementById('cancelDeleteBtn')?.addEventListener('click', () => deleteModal.classList.remove('active'));
+document.getElementById('closeDeleteModal')?.addEventListener('click', () => deleteModal.classList.remove('active'));
 
 confirmDeleteBtn?.addEventListener('click', () => {
-    if (rowToDelete) rowToDelete.remove();
-    closeDeleteModal();
-});
-
-function closeDeleteModal() {
-    deleteModal.classList.remove('active');
-    rowToDelete = null;
-}
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-
-//     const openBtn  = document.getElementById('pendingusers');
-//     const modal    = document.getElementById('signup-requests-modal');
-//     const closeBtn = document.getElementById('close-signup-requests');
-
-//     // Open modal
-//     openBtn.addEventListener('click', () => {
-//         modal.style.display = 'flex';
-//         document.body.style.overflow = 'hidden'; // prevent background scroll
-//     });
-
-//     // Close modal via X
-//     closeBtn.addEventListener('click', () => {
-//         closeModal();
-//     });
-
-//     // Close modal by clicking backdrop
-//     modal.addEventListener('click', (e) => {
-//         if (e.target === modal) {
-//             closeModal();
-//         }
-//     });
-
-//     function closeModal() {
-//         modal.style.display = 'none';
-//         document.body.style.overflow = '';
-//     }
-
-// });
-
-
-// ====================================
-//      SETTINGS
-//  =================================
-
-        document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('settings-modal');
-        const openBtn = document.getElementById('settings');
-        const closeBtn = document.getElementById('close-settings');
-        const cancelBtn = document.getElementById('cancel-settings');
-
-        const tabs = document.querySelectorAll('.settings-section');
-        const contents = document.querySelectorAll('.tab-content');
-
-        // Open modal
-        openBtn?.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
-
-        // Close modal
-        [closeBtn, cancelBtn].forEach(btn => {
-            btn?.addEventListener('click', () => {
-            modal.style.display = 'none';
-            });
-        });
-
-        // Close on backdrop click
-        modal.addEventListener('click', e => {
-            if (e.target === modal) {
-            modal.style.display = 'none';
-            }
-        });
-
-        // Tabs logic
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.add('hidden'));
-
-            tab.classList.add('active');
-            document
-                .getElementById(`tab-${tab.dataset.tab}`)
-                .classList.remove('hidden');
-            });
-        });
-        });
-
-
-
-        const modal = document.getElementById('productModal');
-const openBtn = document.getElementById('openProductModal');
-const closeBtn = document.getElementById('closeProductModal');
-const cancelBtn = document.getElementById('cancelProductModal');
-const form = document.getElementById('productForm');
-
-openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-});
-
-closeBtn.addEventListener('click', closeModal);
-cancelBtn.addEventListener('click', closeModal);
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
-
-function closeModal() {
-    modal.classList.remove('active');
-    form.reset();
-}
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const data = new FormData(form);
-
-    const product = {
-        code: data.get('code'),
-        name: data.get('name'),
-        price: data.get('price'),
-        qty: data.get('qty')
-    };
-
-    console.log('New Product:', product);
-
-    // backend hook goes here
-    closeModal();
-});
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const openBtn  = document.getElementById('pendingusers');
-    const modal    = document.getElementById('signup-requests-modal');
-    const closeBtn = document.getElementById('close-signup-requests');
-
-    // Open modal
-    openBtn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // prevent background scroll
-    });
-
-    // Close modal via X
-    closeBtn.addEventListener('click', () => {
-        closeModal();
-    });
-
-    // Close modal by clicking backdrop
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
+    if (!rowToDelete) return;
+    const code = rowToDelete.querySelector('.item-code')?.textContent.trim();
+    const fd = new FormData(); fd.append('code', code);
+    fetch('../scripts/delete-product.php', { method: 'POST', body: fd })
+    .then(res => res.json()).then(data => {
+        if(data.status==='success') { 
+            notify('success', 'Deleted', data.message, 2000);
+            rowToDelete.remove(); 
+            deleteModal.classList.remove('active');
         }
     });
-
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-
 });
 
+/* --- 9. ADDITIONAL INITIALIZERS (SAFE WRAPPERS) --- */
+function initSettingsModal() {
+    const modal = document.getElementById('settings-modal');
+    const openBtn = document.getElementById('settings');
+    openBtn?.addEventListener('click', () => modal.style.display = 'flex');
+    document.getElementById('close-settings')?.addEventListener('click', () => modal.style.display = 'none');
+    document.getElementById('cancel-settings')?.addEventListener('click', () => modal.style.display = 'none');
+}
 
-// saving a product
-document.getElementById('saveProductBtn').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const form = document.getElementById('productForm');
-            const formData = new FormData(form);
-
-            // 🔍 LOG FORM DATA BEFORE SENDING
-            console.group('📦 Product FormData');
-            for (let [key, value] of formData.entries()) {
-                console.log(key, value);
+function initProductCreationModal() {
+    const modal = document.getElementById('productModal');
+    const openBtn = document.getElementById('openProductModal');
+    openBtn?.addEventListener('click', () => modal.classList.add('active'));
+    document.getElementById('closeProductModal')?.addEventListener('click', () => modal.classList.remove('active'));
+    
+    // Save Product Fetch logic
+    document.getElementById('saveProductBtn')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        const f = document.getElementById('productForm');
+        fetch('../scripts/save_product.php', { method: 'POST', body: new FormData(f) })
+        .then(res => res.json()).then(data => {
+            if(data.status==='success') {
+                notify('success', 'Saved', data.message, 2000);
+                modal.classList.remove('active');
+                f.reset();
             }
-            console.groupEnd();
-
-            fetch('../scripts/save_product.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(async res => {
-                const text = await res.text();
-
-                // 🔍 LOG RAW RESPONSE
-                console.group('📡 Raw Server Response');
-                console.log(text);
-                console.groupEnd();
-
-                try {
-                    return JSON.parse(text);
-                } catch (e) {
-                    throw new Error('Invalid JSON response');
-                }
-            })
-            .then(data => {
-                console.log('✅ Parsed JSON:', data);
-
-                if (data.status === 'success') {
-                    notify('success', 'Saved', data.message, 2000);
-                    form.reset();
-                } else {
-                    notify('warning', 'Save Failed', data.message, 3000);
-                }
-            })
-            .catch(err => {
-                console.error('❌ Fetch Error:', err);
-                notify('error', 'Server Error', err.message, 3000);
-            });
         });
+    });
+}
+
+function initUserModals() {
+    const openBtn = document.getElementById('pendingusers');
+    const modal = document.getElementById('signup-requests-modal');
+    openBtn?.addEventListener('click', () => modal.style.display = 'flex');
+    document.getElementById('close-signup-requests')?.addEventListener('click', () => modal.style.display = 'none');
+}
