@@ -14,10 +14,57 @@ document.addEventListener('DOMContentLoaded', () => {
 /* --- 3. DASHBOARD NAVIGATION --- */
 function initDashboardNavigation() {
     const search = document.getElementById('search');
-    const dashbtn = document.getElementById('dashbtn');
     if (search) search.focus();
-    if (dashbtn) {
-        dashbtn.addEventListener('click', () => { window.location.href = 'dashboard.html'; });
+
+    // define pages mapping based on nav title text
+    const mapping = {
+        'home': 'dashboard.html',
+        'sell': 'sell.html',
+        'stock control': 'stock.html',
+        'bills': 'bills.html',
+        'orders': 'orders.html'
+    };
+
+    // attach click listeners to all roundnav items
+    // compute base path (directory containing current file)
+    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    document.querySelectorAll('.roundnav').forEach(el => {
+        const title = el.querySelector('.navtitle')?.textContent.trim().toLowerCase();
+        if (title && mapping[title]) {
+            el.addEventListener('click', () => {
+                // use basePath so links resolve correctly from any page depth
+                window.location.href = basePath + mapping[title];
+            });
+        }
+    });
+
+    // mobile dropdown navigation
+    const mobile = document.getElementById('mobile-navigation');
+    if (mobile) {
+        mobile.addEventListener('change', () => {
+            const val = mobile.value.toLowerCase();
+            if (mapping[val]) window.location.href = mapping[val];
+        });
+    }
+
+    // mark active nav item based on current file name
+    const current = window.location.pathname.split('/').pop();
+    document.querySelectorAll('.roundnav').forEach(el => {
+        const title = el.querySelector('.navtitle')?.textContent.trim().toLowerCase();
+        if (title && mapping[title] && mapping[title].endsWith(current)) {
+            el.classList.add('active');
+        } else {
+            el.classList.remove('active');
+        }
+    });
+    if (mobile) {
+        for (let opt of mobile.options) {
+            const val = opt.value.toLowerCase();
+            if (mapping[val] && mapping[val].endsWith(current)) {
+                mobile.value = opt.value;
+                break;
+            }
+        }
     }
 }
 

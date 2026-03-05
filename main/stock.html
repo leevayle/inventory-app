@@ -1212,29 +1212,7 @@ form.addEventListener('submit', (e) => {
 
 <script src="../js/session.js" defer></script>
 <script src="../js/approve.js" defer></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const search = document.getElementById('search');
-
-        search.focus();
-
-        const dashbtn = document.getElementById('dashbtn');
-
-            dashbtn.addEventListener('click', ()=>{
-                window.location.href = 'dashboard.html';
-            });
-    });
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-
-    btn.classList.add('active');
-    document.getElementById(`tab-${btn.dataset.tab}`).classList.remove('hidden');
-  });
-});
-</script>
+<!-- navigation and tab logic now handled centrally in ../js/stock.js -->
 
 
 
