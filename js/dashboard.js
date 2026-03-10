@@ -26,7 +26,7 @@ function initLowStockCheck() {
 
     const tbody = document.querySelector('.dummy-inventory-table tbody');
     if (!tbody) {
-        console.error("Table body not found! Check your HTML class: .dummy-inventory-table tbody");
+        console.warn("Table body not found! Check your HTML class: .dummy-inventory-table tbody");
         return;
     }
 

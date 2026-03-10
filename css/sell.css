@@ -43,6 +43,12 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
+
+.sell-top-left{
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
 .sell-totals , .sell-discount{
     width: 48%;
     height: 100%;

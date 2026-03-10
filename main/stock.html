@@ -1050,7 +1050,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 <script src="../js/notification.js" defer></script>
 <script src="../js/skeleton.js" defer ></script>
-<script src="../js/dashboard.js" defer ></script>
+<!-- <script src="../js/dashboard.js" defer ></script> -->
 <script src="../js/fetch_products.js" defer></script>
 <script src="../js/stock.js" defer></script>
 <script src="../js/session.js" defer></script>
@@ -1211,7 +1211,7 @@ form.addEventListener('submit', (e) => {
 
 
 <script src="../js/session.js" defer></script>
-<script src="../js/approve.js" defer></script>
+<script src="../js/approve.js" defer></script> -->
 <!-- navigation and tab logic now handled centrally in ../js/stock.js -->
 
 
@@ -1258,118 +1258,21 @@ restockForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         closeRestockModal();
     }, 2000);
-}); -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<script>
-// edit product
-
-const editButtons = document.querySelectorAll('.btn-edit'); // all edit buttons
-const editProductModal = document.getElementById('editProductModal');
-const closeEditProductModalBtn = document.getElementById('closeEditProductModal');
-const editProductForm = document.getElementById('editProductForm');
-const editOverlay = document.getElementById('editProductFormLoadingOverlay');
-
-// open modal for clicked button
-editButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        editProductModal.classList.add('active');
-
-        // Example: preload data from row
-        const row = btn.closest('.cart-item-row');
-
-        editProductForm.code.value = row.querySelector('.item-code').textContent.trim();
-        editProductForm.name.value = row.querySelector('.item-name').textContent.trim();
-
-        // optional: preload qty if needed
-        const qtyInput = row.querySelector('.qty-input');
-        if (qtyInput) editProductForm.qty.value = qtyInput.value;
-
-        // You can preload batch, supplier, etc. if stored in data- attributes
-        editProductForm.batch.value = row.dataset.batch || '';
-        editProductForm.supplier.value = row.dataset.supplier || '';
-        editProductForm.unit_price.value = row.dataset.unitPrice || '';
-        editProductForm.expiry_date.value = row.dataset.expiry || '';
-    });
-});
-
-// close modal
-closeEditProductModalBtn.addEventListener('click', closeEditProductModal);
-editProductModal.addEventListener('click', (e) => {
-    if (e.target === editProductModal) closeEditProductModal();
-});
-
-function closeEditProductModal() {
-    editProductModal.classList.remove('active');
-    editOverlay.style.display = 'none';
-    editProductForm.reset();
-}
-
-// form submit
-editProductForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    editOverlay.style.display = 'flex';
-
-    setTimeout(() => {
-        closeEditProductModal();
-    }, 2000);
 });
 </script>
 
 
 
-<script>
-// Select all delete buttons in the table
-const deleteButtons = document.querySelectorAll('.btn-delete');
-const deleteModal = document.getElementById('deleteConfirmModal');
-const closeDeleteModalBtn = document.getElementById('closeDeleteModal');
-const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
-let rowToDelete = null; // store the row that triggered delete
 
-// open modal on delete click
-deleteButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        rowToDelete = btn.closest('.cart-item-row');
-        deleteModal.classList.add('active');
-    });
-});
 
-// close modal
-closeDeleteModalBtn.addEventListener('click', closeDeleteModal);
-cancelDeleteBtn.addEventListener('click', closeDeleteModal);
-deleteModal.addEventListener('click', (e) => {
-    if (e.target === deleteModal) closeDeleteModal();
-});
 
-function closeDeleteModal() {
-    deleteModal.classList.remove('active');
-    rowToDelete = null;
-}
 
-// confirm delete
-confirmDeleteBtn.addEventListener('click', () => {
-    if (rowToDelete) {
-        rowToDelete.remove(); // remove row from table
-        rowToDelete = null;
-    }
-    closeDeleteModal();
-});
-</script>
- -->
+
+
+
+
+
 
 
 
